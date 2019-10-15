@@ -25,7 +25,7 @@ function getVuelos()
 function searchVuelos($origen, $destino, $partida)
 {
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE origen = $origen AND destino = $destino AND partida = $partida ORDER BY partida;";
+    $query = "SELECT * FROM vuelo WHERE origen = $origen AND destino = $destino AND partida = '$partida';";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {

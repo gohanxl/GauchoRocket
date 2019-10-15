@@ -10,8 +10,15 @@
     }
 
     function vuelo_buscar(){
-        if ( !empty(searchVuelos($_GET['origen'], $_GET['destino'],$_GET['partida']))) {
-            $vuelos = searchVuelos($_GET['origen'], $_GET['destino'],$_GET['partida']);
+        $vuelos = getVuelos();
+        $locaciones = getLocacion();
+        $origen = str_replace('+', ' ',$_GET['origen']);
+        $destino = str_replace('+', ' ',$_GET['destino']);
+        if ( !empty(searchVuelos(getLocacionId($origen), getLocacionId($destino),$_GET['partida']))) {
+            $vuelos = searchVuelos(getLocacionId($origen), getLocacionId($destino),$_GET['partida']);
+            if ( !empty(searchVuelos(getLocacionId($destino), getLocacionId($origen),$_GET['vuelta']))){
+                $vueltas = searchVuelos(getLocacionId($destino), getLocacionId($origen),$_GET['vuelta']);
+            }
         }
         else {
             $vuelos = getVuelos();
