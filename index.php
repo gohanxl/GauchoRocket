@@ -39,7 +39,7 @@ function parseRoutes()
 
 function extractModuleName($routes)
 {
-    return !empty($routes[1]) ? $routes[1] : "home";
+    return !empty($routes[1]) ? $routes[1] : "vuelo";
 }
 
 function extractActionName($routes)

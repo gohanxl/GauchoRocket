@@ -17,7 +17,7 @@
 
     <title>Gaucho Rocket</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/" style="margin-top: 4px;"><img src="../public/img/rocket.png"
                                           width="50" height="50" style="margin-bottom: 5px;"> GauchoRocket
     </a>
@@ -37,12 +37,12 @@
                                 <a class='nav-link' href='AGREGARRUTAS'>Comprar</a>
                             </li>
                         </ul>
-                    <button class='btn btn-outline-secondary my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
+                    <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
                     </div>";
             } else {
                 echo "
                         </ul>
-                        <button class='btn btn-outline-primary my-2 my-sm-0' style='background-color: darkslateblue; color: white;' type='submit' onclick=\"window.location.replace('/login')\">Iniciar sesión</button>
+                        <button class='btn btn-outline-light my-2 my-sm-0' type='submit' onclick=\"window.location.replace('/login')\">Iniciar sesión</button>
                         </div>
                         ";
             }
