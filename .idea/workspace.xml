@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_vuelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_vuelo.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +98,7 @@
       <workItem from="1570580478241" duration="3000" />
       <workItem from="1570594339988" duration="89000" />
       <workItem from="1571088320531" duration="479000" />
-      <workItem from="1571094217321" duration="2336000" />
+      <workItem from="1571094217321" duration="4490000" />
     </task>
     <servers />
   </component>
