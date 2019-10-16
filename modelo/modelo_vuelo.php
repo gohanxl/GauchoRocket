@@ -16,6 +16,7 @@ function getVuelos()
             $element['duracion'] = $row['duracion'];
             $element['nave'] = $row['nave'];
             $element['partida'] = $row['partida'];
+            $element['hora'] = $row['hora'];
             $resultArray[] = $element;
         }
     }
@@ -37,6 +38,7 @@ function searchVuelos($origen, $destino, $partida)
             $element['duracion'] = $row['duracion'];
             $element['nave'] = $row['nave'];
             $element['partida'] = $row['partida'];
+            $element['hora'] = $row['hora'];
             $resultArray[] = $element;
         }
     }

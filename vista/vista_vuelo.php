@@ -3,7 +3,7 @@
         <div class="col-md-2 mb-2">
             <label for="inputTipo">Partida</label>
             <select id="inputTipo" class="form-control" name="origen" required>
-                <option selected>Elegir origen...</option>
+                <option disabled selected value="">Elegir origen...</option>
                 <?php
                 foreach ($locaciones as $locacion) {
                     echo "<option>" . $locacion['descripcion'] . "</option>";
@@ -14,7 +14,7 @@
         <div class="col-md-2 mb-2">
             <label for="inputTipo">Destino</label>
             <select id="inputTipo" class="form-control" name="destino" required>
-                <option selected>Elegir destino...</option>
+                <option selected disabled value="">Elegir destino...</option>
                 <?php
                 foreach ($locaciones as $locacion) {
                     echo "<option>" . $locacion['descripcion'] . "</option>";
@@ -23,11 +23,11 @@
             </select>
         </div>
         <div class="col-md-2 mb-2">
-            <label for="buscar">Ida</label>
-            <input class="form-control mr-sm-2" type="date" name="partida">
+            <label for="partida">Ida</label>
+            <input class="form-control mr-sm-2" type="date" name="partida" required>
         </div>
         <div class="col-md-2 mb-2">
-            <label for="buscar">Vuelta</label>
+            <label for="vuelta">Vuelta</label>
             <input class="form-control mr-sm-2" type="date" name="vuelta">
         </div>
         <div class="col-md-1 mb-1">
@@ -65,6 +65,7 @@ if (isset($message)) {
         <th scope="col">Duracion</th>
         <th scope="col">Nave</th>
         <th scope="col">Partida</th>
+        <th scope="col">Hora</th>
     </tr>
     </thead>
     <tbody>
@@ -77,6 +78,7 @@ if (isset($message)) {
             <td>" . $vuelo['duracion'] . "</td>
             <td>" . getNaveDescripcion($vuelo['nave']) . "</td>
             <td>" . $vuelo['partida'] . "</td>
+            <td>" . $vuelo['hora'] . "</td>
         </tr>";}
     echo "
     </tbody>
@@ -93,6 +95,7 @@ if (isset($message)) {
                     <th scope=\"col\">Duracion</th>
                     <th scope=\"col\">Nave</th>
                     <th scope=\"col\">Partida</th>
+                    <th scope=\"col\">Hora</th>
                 </tr>
                 </thead>
                 <tbody>";
@@ -104,6 +107,7 @@ if (isset($message)) {
                         <td>" . $vuelta['duracion'] . "</td>
                         <td>" . getNaveDescripcion($vuelta['nave']) . "</td>
                         <td>" . $vuelta['partida'] . "</td>
+                        <td>" . $vuelta['hora'] . "</td>
                     </tr>";
         }
         echo "

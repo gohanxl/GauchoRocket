@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2019 a las 04:31:32
+-- Tiempo de generación: 16-10-2019 a las 21:05:57
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -298,18 +298,22 @@ CREATE TABLE `vuelo` (
   `destino` int(11) NOT NULL,
   `duracion` int(11) NOT NULL,
   `nave` int(11) NOT NULL,
-  `partida` datetime NOT NULL
+  `partida` date NOT NULL,
+  `hora` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `vuelo`
 --
 
-INSERT INTO `vuelo` (`id`, `origen`, `destino`, `duracion`, `nave`, `partida`) VALUES
-(2, 8, 2, 8, 1, '2019-11-01 00:00:00'),
-(3, 9, 2, 8, 4, '2019-11-01 00:00:00'),
-(4, 2, 8, 8, 1, '2019-11-08 00:00:00'),
-(5, 2, 9, 8, 4, '2019-11-08 00:00:00');
+INSERT INTO `vuelo` (`id`, `origen`, `destino`, `duracion`, `nave`, `partida`, `hora`) VALUES
+(2, 8, 2, 8, 1, '2019-11-01', '00:00:00'),
+(3, 9, 2, 8, 4, '2019-11-01', '00:00:00'),
+(4, 2, 8, 8, 1, '2019-11-08', '00:00:00'),
+(5, 2, 9, 8, 4, '2019-11-08', '00:00:00'),
+(6, 8, 2, 8, 30, '2019-11-01', '13:00:00'),
+(7, 8, 2, 8, 3, '2019-11-01', '05:00:00'),
+(8, 2, 8, 8, 7, '2019-11-08', '06:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -434,7 +438,7 @@ ALTER TABLE `tipo_vuelo`
 -- AUTO_INCREMENT de la tabla `vuelo`
 --
 ALTER TABLE `vuelo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
