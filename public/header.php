@@ -36,6 +36,9 @@
                             <li class='nav-item active'>
                                 <a class='nav-link' href='AGREGARRUTAS'>Comprar</a>
                             </li>
+                            <li class='nav-item active'>
+                                <a class='nav-link' href='turno/alta'>Reserva</a>
+                            </li>                            
                         </ul>
                     <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
                     </div>";

@@ -31,7 +31,7 @@
             <input class="form-control mr-sm-2" type="date" name="vuelta">
         </div>
         <div class="col-md-1 mb-1">
-            <label for="buscar">Pasajes</label>
+            <label for="pasaje">Pasajes</label>
             <input class="form-control mr-sm-2" type="number" placeholder="" name="pasaje">
         </div>
         <div class="col-md-2 mb-2">
@@ -46,7 +46,7 @@
             </select>
         </div>
         <div class="col-md-1">
-            <label for="submit"></label>
+            <label for="submit" style="visibility: hidden;">buscar</label>
             <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
     </div>

@@ -27,6 +27,7 @@ function autoLogin($user, $password){
     if(login($user, $password) == $user){
         session_start();
         $_SESSION['logged'] = true;
+        $_SESSION['user'] = $_POST['user'];
         header('Location: /');
     }else{
         return 'El usuario o la contraseña no son validos.';
