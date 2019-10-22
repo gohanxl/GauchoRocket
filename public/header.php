@@ -34,7 +34,7 @@
             if (isset($_SESSION['logged'])) {
                 echo "
                             <li class='nav-item active'>
-                                <a class='nav-link' href='AGREGARRUTAS'>Comprar</a>
+                                <a class='nav-link' href='pasaje/comprar'>Comprar</a>
                             </li>
                             <li class='nav-item active'>
                                 <a class='nav-link' href='turno/alta'>Reserva</a>
