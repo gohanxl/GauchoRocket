@@ -23,6 +23,27 @@ function getVuelos()
     return $resultArray;
 }
 
+function searchVueloId($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM vuelo WHERE id = $id";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['origen'] = $row['origen'];
+            $element['destino'] = $row['destino'];
+            $element['duracion'] = $row['duracion'];
+            $element['nave'] = $row['nave'];
+            $element['partida'] = $row['partida'];
+            $element['hora'] = $row['hora'];
+            $resultArray[] = $element;
+        }
+    }
+    return reset($resultArray);
+}
+
 function searchVuelos($origen, $destino, $partida)
 {
     $conn = getConexion();

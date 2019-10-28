@@ -5,7 +5,10 @@ if (isset($_POST['submit'])) {
         $centro = $_POST['centro'];
         $usuario = $_SESSION['user'];
 
-        addTurno($fecha, getClienteId(getUsuarioId($usuario)), getCentroId($centro));
+        $clienteId = getClienteId(getUsuarioId($usuario));
+        $centroId = getCentroId($centro);
+        addTurno($fecha, $clienteId, $centroId);
+        addTipoCliente($clienteId);
         header("Location: /");
     };
 }

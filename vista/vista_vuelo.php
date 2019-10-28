@@ -1,6 +1,6 @@
 <form class="form mb-2" method="get" action="/vuelo/buscar">
     <div class="form-row">
-        <div class="col-md-2 mb-2">
+        <div class="col-md-3 mb-2">
             <label for="inputTipo">Partida</label>
             <select id="inputTipo" class="form-control" name="origen" required>
                 <option disabled selected value="">Elegir origen...</option>
@@ -11,7 +11,7 @@
                 ?>
             </select>
         </div>
-        <div class="col-md-2 mb-2">
+        <div class="col-md-3 mb-2">
             <label for="inputTipo">Destino</label>
             <select id="inputTipo" class="form-control" name="destino" required>
                 <option selected disabled value="">Elegir destino...</option>
@@ -30,22 +30,7 @@
             <label for="vuelta">Vuelta</label>
             <input class="form-control mr-sm-2" type="date" name="vuelta">
         </div>
-        <div class="col-md-1 mb-1">
-            <label for="pasaje">Pasajes</label>
-            <input class="form-control mr-sm-2" type="number" placeholder="" name="pasaje">
-        </div>
-        <div class="col-md-2 mb-2">
-            <label for="inputCabina">Cabina</label>
-            <select id="inputCabina" class="form-control" name="cabina" required>
-                <option selected>Elegir...</option>
-                <?php
-                foreach ($cabinas as $cabina) {
-                    echo "<option>" . $cabina['descripcion'] . "</option>";
-                };
-                ?>
-            </select>
-        </div>
-        <div class="col-md-1">
+        <div class="col-md-1 mb-2">
             <label for="submit" style="visibility: hidden;">buscar</label>
             <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
@@ -66,6 +51,11 @@ if (isset($message)) {
         <th scope="col">Nave</th>
         <th scope="col">Partida</th>
         <th scope="col">Hora</th>
+        <?php
+        if( isset($_SESSION['logged'])){
+        echo "<th scope='col'></th>";
+        };
+        ?>
     </tr>
     </thead>
     <tbody>
@@ -78,8 +68,21 @@ if (isset($message)) {
             <td>" . $vuelo['duracion'] . "</td>
             <td>" . getNaveDescripcion($vuelo['nave']) . "</td>
             <td>" . $vuelo['partida'] . "</td>
-            <td>" . $vuelo['hora'] . "</td>
-        </tr>";}
+            <td>" . $vuelo['hora'] . "</td>";
+            if(isset($_SESSION['logged'])){
+                echo "
+            <td>                
+            <div class='row'>
+                <div class='span6 mr-1'>
+                    <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
+                        <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
+                        <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>                   
+                    </form>          
+                </div>
+            </div>
+            </td>";
+            };
+    echo "</tr>";}
     echo "
     </tbody>
     </table>";
@@ -96,6 +99,7 @@ if (isset($message)) {
                     <th scope=\"col\">Nave</th>
                     <th scope=\"col\">Partida</th>
                     <th scope=\"col\">Hora</th>
+                    <th scope='col'></th>
                 </tr>
                 </thead>
                 <tbody>";
@@ -107,10 +111,22 @@ if (isset($message)) {
                         <td>" . $vuelta['duracion'] . "</td>
                         <td>" . getNaveDescripcion($vuelta['nave']) . "</td>
                         <td>" . $vuelta['partida'] . "</td>
-                        <td>" . $vuelta['hora'] . "</td>
-                    </tr>";
-        }
-        echo "
+                        <td>" . $vuelta['hora'] . "</td>";
+            if($_SESSION['logged']){
+                echo "
+            <td>
+            <div class='row'>
+                <div class='span6 mr-1'>
+                    <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
+                        <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
+                        <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>
+                    </form>
+                </div>
+            </div>
+            </td>";
+            };
+    echo "</tr>";}
+    echo "
                 </tbody>
                 </table>";
     }

@@ -28,4 +28,13 @@ function addTurno($fecha, $usuario, $centro)
     execute_query($conn, $query);
 }
 
+function addTipoCliente($id)
+{
+    $tipo_cliente = random_int(1, 3);
+    $conn = getConexion();
+    $query = "UPDATE client SET tipo_cliente =  $tipo_cliente WHERE id = $id;";
+    execute_query($conn, $query);
+}
+
+
 ?>
