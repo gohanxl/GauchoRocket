@@ -2,7 +2,7 @@
     <div class="form-row">
         <div class="col-md-3 mb-2">
             <label for="inputTipo">Partida</label>
-            <select id="inputTipo" class="form-control" name="origen" required>
+            <select id="inputTipo" class="form-control" name="origen">
                 <option disabled selected value="">Elegir origen...</option>
                 <?php
                 foreach ($locaciones as $locacion) {
@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-3 mb-2">
             <label for="inputTipo">Destino</label>
-            <select id="inputTipo" class="form-control" name="destino" required>
+            <select id="inputTipo" class="form-control" name="destino">
                 <option selected disabled value="">Elegir destino...</option>
                 <?php
                 foreach ($locaciones as $locacion) {
@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-2 mb-2">
             <label for="partida">Ida</label>
-            <input class="form-control mr-sm-2" type="date" name="partida" required>
+            <input class="form-control mr-sm-2" type="date" name="partida">
         </div>
         <div class="col-md-2 mb-2">
             <label for="vuelta">Vuelta</label>
@@ -86,48 +86,4 @@ if (isset($message)) {
     echo "
     </tbody>
     </table>";
-
-    if (isset($vueltas)) {
-        echo "
-            <h3>Vuelta</h3>
-            <table class=\"table table-hover\">
-            <thead>
-                <tr>
-                    <th scope=\"col\">Origen</th>
-                    <th scope=\"col\">Destino</th>
-                    <th scope=\"col\">Duracion</th>
-                    <th scope=\"col\">Nave</th>
-                    <th scope=\"col\">Partida</th>
-                    <th scope=\"col\">Hora</th>
-                    <th scope='col'></th>
-                </tr>
-                </thead>
-                <tbody>";
-        foreach ($vueltas as $vuelta) {
-            echo "
-                    <tr>
-                        <td>" . getLocacionDescripcion($vuelta['origen']) . "</td>
-                        <td>" . getLocacionDescripcion($vuelta['destino']) . "</td>
-                        <td>" . $vuelta['duracion'] . "</td>
-                        <td>" . getNaveDescripcion($vuelta['nave']) . "</td>
-                        <td>" . $vuelta['partida'] . "</td>
-                        <td>" . $vuelta['hora'] . "</td>";
-            if($_SESSION['logged']){
-                echo "
-            <td>
-            <div class='row'>
-                <div class='span6 mr-1'>
-                    <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
-                        <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
-                        <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>
-                    </form>
-                </div>
-            </div>
-            </td>";
-            };
-    echo "</tr>";}
-    echo "
-                </tbody>
-                </table>";
-    }
     ?>

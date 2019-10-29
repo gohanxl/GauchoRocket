@@ -46,9 +46,28 @@ function searchVueloId($id){
 
 function searchVuelos($origen, $destino, $partida)
 {
+    $criterio = "";
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE origen = $origen AND destino = $destino AND partida = '$partida';";
-    $result = execute_query($conn, $query);
+    $query = "SELECT * FROM vuelo";
+    if (isset($origen)) {
+        $criterio = $query . " WHERE  origen = $origen";
+    }
+    if (isset($destino)) {
+        if (empty($criterio)) {
+            $criterio = $query . " WHERE destino = $destino";
+        } else if(!empty($destino)){
+            $criterio = $criterio . " AND destino = $destino";
+        }
+    }
+    if (isset($partida)) {
+        if (empty($criterio)) {
+            $criterio = $query . " WHERE partida = $partida";
+        } else if(!empty($partida)) {
+            $criterio = $criterio . " AND partida = $partida";
+        }
+    }
+
+    $result = execute_query($conn, $criterio);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
