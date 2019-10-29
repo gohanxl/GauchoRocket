@@ -5,7 +5,14 @@ if (isset($_POST['vuelo'])) {
     $modelo = getNaveModelo($vuelo['nave']);
     $cabinas = getCabinaModelo($modelo);
 
-    $pasajes = $cabinas['capacidad'] - contadorPasajes($vuelo['id'], $cabinas['cabina']);
+/*    foreach ($cabinas as $cabina) {
+
+        $pasajes = $cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina']);
+
+        echo "imprime esto asd";
+    };
+
+    echo $pasajes;*/
 }
 ?>
 <form action="alta" method="POST" enctype="application/x-www-form-urlencoded">
@@ -29,11 +36,11 @@ if (isset($_POST['vuelo'])) {
         </div>
         <div class="form-group col-md-2">
             <label for="inputCabina">Tipo de Cabina</label>
-            <select id="inputCabina" class="form-control" name="cabina" required>
+            <select id="inputCabina" class="form-control" name="cabina" required onchange="test()">
                 <option selected value="">Elegir...</option>
                 <?php
                 foreach ($cabinas as $cabina) {
-                    echo "<option value=" . $cabina['cabina'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
+                    echo "<option value=" . $cabina['capacidad'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
                 };
                 ?>
             </select>
@@ -50,9 +57,13 @@ if (isset($_POST['vuelo'])) {
 </button>
 
 <script>
-    var cabina = document.getElementById("inputCabina");
-    var selected = cabina.options[cabina.selectedIndex].value;
-    console.log(selected);
-    var pasaje = document.getElementById("pasaje");
-    pasaje.value = 121;
+    function test() {
+        let pasaje = document.getElementById("pasaje");
+
+        let cabina = document.getElementById("inputCabina");
+
+        let selected = cabina.options[cabina.selectedIndex].value;
+
+        return pasaje.value = selected;
+    }
 </script>
