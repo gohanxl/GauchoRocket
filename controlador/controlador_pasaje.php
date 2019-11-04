@@ -10,3 +10,8 @@ function pasaje_reserva()
 {
     include("vista/vista_compra.php");
 }
+
+function pasaje_alta(){
+
+    include("vista/vista_reserva.php");
+}

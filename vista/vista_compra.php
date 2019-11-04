@@ -5,14 +5,14 @@ if (isset($_POST['vuelo'])) {
     $modelo = getNaveModelo($vuelo['nave']);
     $cabinas = getCabinaModelo($modelo);
 
-/*    foreach ($cabinas as $cabina) {
+    /*    foreach ($cabinas as $cabina) {
 
-        $pasajes = $cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina']);
+            $pasajes = $cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina']);
 
-        echo "imprime esto asd";
-    };
+            echo "imprime esto asd";
+        };
 
-    echo $pasajes;*/
+        echo $pasajes;*/
 }
 ?>
 <form action="alta" method="POST" enctype="application/x-www-form-urlencoded">
@@ -40,20 +40,20 @@ if (isset($_POST['vuelo'])) {
                 <option selected value="">Elegir...</option>
                 <?php
                 foreach ($cabinas as $cabina) {
-                    echo "<option value=" . $cabina['capacidad'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
+                    echo "<option value=" . ($cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina'])) . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
                 };
                 ?>
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPasaje">Pasaje</label>
-            <input type="number" class="form-control" id="pasaje" name="pasaje" max="<?php $pasajes ?>"
+            <input type="number" class="form-control" id="pasaje" name="pasaje" max=""
                    value="" required>
         </div>
     </div>
+    <button type="submit" class="btn btn-primary" name="submit">Comprar</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.replace('/')" name="cancel">Cancelar
 </form>
-<button type="submit" class="btn btn-primary" name="submit">Comprar</button>
-<button type="button" class="btn btn-secondary" onclick="window.location.replace('/')" name="cancel">Cancelar
 </button>
 
 <script>

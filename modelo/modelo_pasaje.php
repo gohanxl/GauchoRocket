@@ -11,3 +11,11 @@ function contadorPasajes($vuelo_id, $cabina_id)
     return mysqli_fetch_assoc($result);
 
 }
+
+function getTipoDeCabina($cantidad_asientos){
+
+    $conn = getConexion();
+    $query = "SELECT descripcion FROM latabla WHERE cantidad = $cantidad_asientos";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result);
+}
