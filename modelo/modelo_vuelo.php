@@ -61,9 +61,9 @@ function searchVuelos($origen, $destino, $partida)
     }
     if (isset($partida)) {
         if (empty($criterio)) {
-            $criterio = $query . " WHERE partida = $partida";
+            $criterio = $query . " WHERE partida = '$partida'";
         } else if(!empty($partida)) {
-            $criterio = $criterio . " AND partida = $partida";
+            $criterio = $criterio . " AND partida = '$partida'";
         }
     }
 

@@ -1,6 +1,6 @@
 <form class="form mb-2" method="get" action="/vuelo/buscar">
     <div class="form-row">
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
             <label for="inputTipo">Partida</label>
             <select id="inputTipo" class="form-control" name="origen">
                 <option disabled selected value="">Elegir origen...</option>
@@ -11,7 +11,7 @@
                 ?>
             </select>
         </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-4 mb-2">
             <label for="inputTipo">Destino</label>
             <select id="inputTipo" class="form-control" name="destino">
                 <option selected disabled value="">Elegir destino...</option>
@@ -22,14 +22,16 @@
                 ?>
             </select>
         </div>
-        <div class="col-md-2 mb-2">
+        <div class="col-md-3 mb-2">
             <label for="partida">Ida</label>
-            <input class="form-control mr-sm-2" type="date" name="partida">
+            <input class="form-control mr-sm-2" value="" type="date" name="partida">
         </div>
+        <!--
         <div class="col-md-2 mb-2">
             <label for="vuelta">Vuelta</label>
             <input class="form-control mr-sm-2" type="date" name="vuelta">
         </div>
+        -->
         <div class="col-md-1 mb-2">
             <label for="submit" style="visibility: hidden;">buscar</label>
             <button class="btn btn-primary" type="submit">Buscar</button>

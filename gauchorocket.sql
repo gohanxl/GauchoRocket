@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2019 a las 21:05:57
+-- Tiempo de generación: 05-11-2019 a las 11:11:49
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -41,6 +41,50 @@ INSERT INTO `cabina` (`id`, `descripcion`) VALUES
 (1, 'General'),
 (2, 'Familiar'),
 (3, 'Suite');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `centro_medico`
+--
+
+CREATE TABLE `centro_medico` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `turnos` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `centro_medico`
+--
+
+INSERT INTO `centro_medico` (`id`, `nombre`, `turnos`) VALUES
+(1, 'Buenos Aires', 300),
+(2, 'Shangai', 210),
+(3, 'Ankara', 200);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `client`
+--
+
+CREATE TABLE `client` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo_cliente` int(11) DEFAULT NULL,
+  `usuario` int(11) NOT NULL,
+  `telefono` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `foto` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_nacimiento` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `client`
+--
+
+INSERT INTO `client` (`id`, `nombre`, `tipo_cliente`, `usuario`, `telefono`, `foto`, `fecha_nacimiento`) VALUES
+(4, 'Root', 2, 0, '11111111', '', '1994-08-27');
 
 -- --------------------------------------------------------
 
@@ -204,6 +248,27 @@ INSERT INTO `nave` (`id`, `matricula`, `modelo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pasaje`
+--
+
+CREATE TABLE `pasaje` (
+  `id` int(11) NOT NULL,
+  `vuelo` int(11) UNSIGNED NOT NULL,
+  `cliente` int(11) NOT NULL,
+  `reserva` tinyint(1) DEFAULT NULL,
+  `fecha_reserva` datetime DEFAULT NULL,
+  `checkin` tinyint(1) DEFAULT NULL,
+  `fecha_checkin` datetime DEFAULT NULL,
+  `compra` tinyint(1) DEFAULT NULL,
+  `fecha_compra` datetime DEFAULT NULL,
+  `codigo` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  `cabina` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipo_cliente`
 --
 
@@ -270,6 +335,37 @@ INSERT INTO `tipo_vuelo` (`id`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `turno`
+--
+
+CREATE TABLE `turno` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `cliente` int(11) NOT NULL,
+  `centro_medico` int(11) NOT NULL,
+  `asistencia` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `turno`
+--
+
+INSERT INTO `turno` (`id`, `fecha`, `cliente`, `centro_medico`, `asistencia`) VALUES
+(5, '2019-11-30', 4, 1, NULL),
+(6, '2019-12-31', 4, 1, NULL),
+(7, '2019-10-22', 4, 1, NULL),
+(8, '2019-10-17', 4, 1, NULL),
+(9, '2019-10-11', 4, 1, NULL),
+(10, '2019-10-11', 4, 1, NULL),
+(11, '2019-10-11', 4, 1, NULL),
+(12, '2019-10-09', 4, 1, NULL),
+(13, '2019-10-10', 4, 1, NULL),
+(14, '2019-10-10', 4, 1, NULL),
+(15, '2019-10-03', 4, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -326,6 +422,20 @@ ALTER TABLE `cabina`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `centro_medico`
+--
+ALTER TABLE `centro_medico`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tipo_cliente` (`tipo_cliente`),
+  ADD KEY `usuario` (`usuario`);
+
+--
 -- Indices de la tabla `locacion`
 --
 ALTER TABLE `locacion`
@@ -354,6 +464,15 @@ ALTER TABLE `nave`
   ADD KEY `nave_ibfk_1` (`modelo`);
 
 --
+-- Indices de la tabla `pasaje`
+--
+ALTER TABLE `pasaje`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vuelo` (`vuelo`),
+  ADD KEY `cliente` (`cliente`),
+  ADD KEY `cabina` (`cabina`);
+
+--
 -- Indices de la tabla `tipo_cliente`
 --
 ALTER TABLE `tipo_cliente`
@@ -374,6 +493,20 @@ ALTER TABLE `tipo_vuelo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `turno`
+--
+ALTER TABLE `turno`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `centro_medico` (`centro_medico`),
+  ADD KEY `cliente` (`cliente`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `vuelo`
 --
 ALTER TABLE `vuelo`
@@ -391,6 +524,18 @@ ALTER TABLE `vuelo`
 --
 ALTER TABLE `cabina`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `centro_medico`
+--
+ALTER TABLE `centro_medico`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `client`
+--
+ALTER TABLE `client`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `locacion`
@@ -417,6 +562,12 @@ ALTER TABLE `nave`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
+-- AUTO_INCREMENT de la tabla `pasaje`
+--
+ALTER TABLE `pasaje`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
 --
 ALTER TABLE `tipo_cliente`
@@ -435,6 +586,12 @@ ALTER TABLE `tipo_vuelo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de la tabla `turno`
+--
+ALTER TABLE `turno`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT de la tabla `vuelo`
 --
 ALTER TABLE `vuelo`
@@ -443,6 +600,13 @@ ALTER TABLE `vuelo`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `client`
+--
+ALTER TABLE `client`
+  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`tipo_cliente`) REFERENCES `tipo_cliente` (`id`),
+  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`);
 
 --
 -- Filtros para la tabla `modelo`
@@ -464,11 +628,26 @@ ALTER TABLE `nave`
   ADD CONSTRAINT `nave_ibfk_1` FOREIGN KEY (`modelo`) REFERENCES `modelo` (`id`);
 
 --
+-- Filtros para la tabla `pasaje`
+--
+ALTER TABLE `pasaje`
+  ADD CONSTRAINT `pasaje_ibfk_1` FOREIGN KEY (`vuelo`) REFERENCES `vuelo` (`id`),
+  ADD CONSTRAINT `pasaje_ibfk_2` FOREIGN KEY (`cliente`) REFERENCES `client` (`id`),
+  ADD CONSTRAINT `pasaje_ibfk_3` FOREIGN KEY (`cabina`) REFERENCES `cabina` (`id`);
+
+--
 -- Filtros para la tabla `tipo_cliente_vuelo`
 --
 ALTER TABLE `tipo_cliente_vuelo`
   ADD CONSTRAINT `tipo_cliente_vuelo_ibfk_1` FOREIGN KEY (`tipo_cliente`) REFERENCES `tipo_cliente` (`id`),
   ADD CONSTRAINT `tipo_cliente_vuelo_ibfk_2` FOREIGN KEY (`tipo_vuelo`) REFERENCES `tipo_vuelo` (`id`);
+
+--
+-- Filtros para la tabla `turno`
+--
+ALTER TABLE `turno`
+  ADD CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`centro_medico`) REFERENCES `centro_medico` (`id`),
+  ADD CONSTRAINT `turno_ibfk_2` FOREIGN KEY (`cliente`) REFERENCES `client` (`id`);
 
 --
 -- Filtros para la tabla `vuelo`

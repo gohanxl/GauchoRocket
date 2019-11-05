@@ -29,9 +29,27 @@ function getNaveModelo($id)
 
 function getCabinaModelo($modelo_id)
 {
-
     $conn = getConexion();
     $query = "SELECT * FROM modelo_cabina WHERE modelo = $modelo_id;";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['modelo'] = $row['modelo'];
+            $element['cabina'] = $row['cabina'];
+            $element['capacidad'] = $row['capacidad'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}
+
+function getCabinaModeloByCabina($cabina_id)
+{
+    $conn = getConexion();
+    $query = "SELECT * FROM modelo_cabina WHERE modelo = $cabina_id;";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {

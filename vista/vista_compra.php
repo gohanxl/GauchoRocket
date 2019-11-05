@@ -10,9 +10,21 @@ if (isset($_POST['vuelo'])) {
         $pasajes = $cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina']);
 
         echo "imprime esto asd";
-    };
 
     echo $pasajes;*/
+}
+if (isset($_POST['submit'])){
+  $pasaje = $_POST['pasaje'];
+  $cabina = $_POST['cabina'];
+  $contarPasaje = contadorPasajes($vuelo['id'], $cabina);
+  $cabinaCapacidad = getCabinaModeloByCabina($cabina['cabina']);
+  $cantidadPasajes = $cabinaCapacidad['capacidad'] - $contarPasaje;
+  if($cantidadPasajes > $pasaje){
+    echo "HACER COMPRA";
+  }
+  else{
+      echo "INFORMAR QUE NO PUEDE";
+  }
 }
 ?>
 <form action="alta" method="POST" enctype="application/x-www-form-urlencoded">
@@ -40,15 +52,14 @@ if (isset($_POST['vuelo'])) {
                 <option selected value="">Elegir...</option>
                 <?php
                 foreach ($cabinas as $cabina) {
-                    echo "<option value=" . $cabina['capacidad'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
+                    echo "<option value=" . $cabina['cabina'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
                 };
                 ?>
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPasaje">Pasaje</label>
-            <input type="number" class="form-control" id="pasaje" name="pasaje" max="<?php $pasajes ?>"
-                   value="" required>
+            <input type="number" class="form-control" id="pasaje" name="pasaje" required>
         </div>
     </div>
 </form>
@@ -64,6 +75,6 @@ if (isset($_POST['vuelo'])) {
 
         let selected = cabina.options[cabina.selectedIndex].value;
 
-        return pasaje.value = selected;
+        return true;
     }
 </script>
