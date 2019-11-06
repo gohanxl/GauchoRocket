@@ -1,24 +1,44 @@
 <?php
+
 if (isset($_POST['vuelo'])) {
     $id = (int)$_POST['vuelo'];
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
     $cabinas = getCabinaModelo($modelo);
 
-    /*    foreach ($cabinas as $cabina) {
-
-            $pasajes = $cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina']);
-
-            echo "imprime esto asd";
-        };
-
-        echo $pasajes;*/
 }
+
+if (isset($_POST['submit'])) {
+
+    $cabina = $_POST['cabina'];
+    $vuelo = searchVueloId($id);
+    $modelo = getNaveModelo($vuelo['nave']);
+    $pasajes = contadorPasajes($vuelo['id'], $cabina);
+
+    $capacidad = getCabinaCapacidad($modelo, $cabina);
+
+    $total = $capacidad - $pasajes;
+
+
+
+    if($_POST['pasaje'] < $total){
+        insertPasaje($_POST['vuelo'], );
+    }else{
+        echo 'error maximo ' . $total;
+    }
+
+    echo $capacidad;
+    echo $pasajes;
+
+    echo $total;
+}
+
+
 ?>
-<form action="alta" method="POST" enctype="application/x-www-form-urlencoded">
+<form action="" method="POST" enctype="application/x-www-form-urlencoded">
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label for="destino">Origen</label>
+            <label for="origen">Origen</label>
             <input type="text" class="form-control" id="origen" name="origen"
                    value="<?php echo getLocacionDescripcion($vuelo['origen']) ?>"
                    disabled>
@@ -34,13 +54,14 @@ if (isset($_POST['vuelo'])) {
             <input type="text" class="form-control" id="partido" name="partida" value="<?php echo $vuelo['partida'] ?>"
                    disabled>
         </div>
+        <input type="hidden" id="vuelo" name="vuelo" value="<?php echo $vuelo['id'] ?>">
         <div class="form-group col-md-2">
             <label for="inputCabina">Tipo de Cabina</label>
-            <select id="inputCabina" class="form-control" name="cabina" required onchange="test()">
+            <select id="inputCabina" class="form-control" name="cabina" required>
                 <option selected value="">Elegir...</option>
                 <?php
                 foreach ($cabinas as $cabina) {
-                    echo "<option value=" . ($cabina['capacidad'] - contadorPasajes($vuelo['id'], $cabina['cabina'])) . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
+                    echo "<option value=" . $cabina['cabina'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
                 };
                 ?>
             </select>

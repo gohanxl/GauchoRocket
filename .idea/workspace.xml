@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/controlador_pasaje.php" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/controlador_pasaje.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gauchorocket.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gauchorocket.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/modelo_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/modelo_nave.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_nave.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modelo/modelo_pasaje.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_pasaje.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vista/vista_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_reserva.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_reserva.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +44,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RaIqe8ALv4bAj3MUFUBEZJcyOa" />

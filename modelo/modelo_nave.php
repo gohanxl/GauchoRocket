@@ -56,3 +56,13 @@ function getCabinaDescripcion($id)
 
     return mysqli_fetch_assoc($result)['descripcion'];
 }
+
+function getCabinaCapacidad($modelo, $cabina)
+{
+
+    $conn = getConexion();
+    $query = "SELECT capacidad FROM modelo_cabina WHERE modelo = $modelo AND cabina = $cabina;";
+    $result = execute_query($conn, $query);
+
+    return mysqli_fetch_assoc($result)['capacidad'];
+}

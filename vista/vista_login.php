@@ -24,10 +24,11 @@ if (isset($_POST['login'])) {
 }
 
 function autoLogin($user, $password){
-    if(login($user, $password) == $user){
+    $validar = login($user, $password);
+    if($validar['user'] == $user){
         session_start();
         $_SESSION['logged'] = true;
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $validar['id'];
         header('Location: /');
     }else{
         return 'El usuario o la contraseña no son validos.';
