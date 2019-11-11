@@ -20,10 +20,11 @@ if (isset($_POST['submit'])) {
     $total = $capacidad - $pasajes;
 
 
+    if ($_POST['pasaje'] < $total) {
 
-    if($_POST['pasaje'] < $total){
-        insertPasaje($_POST['vuelo'], );
-    }else{
+        insertPasaje($_POST['vuelo'], $_SESSION['user'], 1, date("Y-m-d H:i:s"), bin2hex(random_bytes(5)), $_POST['cabina']);
+
+    } else {
         echo 'error maximo ' . $total;
     }
 

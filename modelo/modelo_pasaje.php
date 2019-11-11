@@ -12,22 +12,13 @@ function contadorPasajes($vuelo_id, $cabina_id)
 
 }
 
-function insertPasaje($vuelo_id, $cliente_id, $reserva_id, $fecha_reserva, $codigo_reserva, $cabina_id)
+function insertPasaje($vuelo_id, $cliente_id, $reserva_estado, $fecha_reserva, $codigo_reserva, $cabina_id)
 {
 
     $conn = getConexion();
-    $query = "INSERT INTO pasaje (
-                vuelo,
-                cliente,
-                reserva,
-                fecha_reserva,
-                checkin,
-                fecha_checkin,
-                compra,
-                fecha_compra,
-                codigo,
-                precio,
-                cabina) 
-                VALUES ($vuelo_id, $cliente_id, $reserva_id, $fecha_reserva, null, null, null, $codigo_reserva, null, $cabina_id );";
+    $query = "INSERT INTO pasaje (vuelo, cliente, reserva, fecha_reserva, checkin, fecha_checkin, compra, fecha_compra, codigo,precio, cabina) 
+                VALUES ($vuelo_id, $cliente_id, $reserva_estado,'$fecha_reserva', null, null, null, null, '$codigo_reserva', null, $cabina_id);";
+
+    echo $query;
     execute_query($conn, $query);
 }
