@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modelo/modelo_pasaje.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_pasaje.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/vista_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/modelo_cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_cliente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +109,7 @@
       <workItem from="1572374702977" duration="6267000" />
       <workItem from="1572876772966" duration="8448000" />
       <workItem from="1573073969680" duration="2127000" />
-      <workItem from="1573416528231" duration="8240000" />
+      <workItem from="1573416528231" duration="17937000" />
     </task>
     <servers />
   </component>
@@ -133,7 +134,7 @@
       <breakpoints>
         <line-breakpoint suspend="NONE" type="php">
           <url>file://$PROJECT_DIR$/controlador/controlador_vuelo.php</url>
-          <line>30</line>
+          <line>31</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

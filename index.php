@@ -7,7 +7,7 @@ $_GET = extractGetParams();
 
 session_start();
 
-if (empty($_SESSION['logged']) && $moduleName == 'login') {
+if (empty($_SESSION['logged']) && $moduleName == 'login' || $moduleName == 'registro') {
     $filename = "controlador/controlador_" . $moduleName . ".php";
     if (file_exists($filename)) {
         include_once($filename);

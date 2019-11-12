@@ -14,3 +14,11 @@ function getClienteId($idUsuario)
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['id'];
 }
+
+function addCliente($user, $userId, $telefono, $fecha_nacimiento){
+
+    $conn = getConexion();
+    $query = "INSERT INTO client (nombre, tipo_cliente, usuario, telefono, foto, fecha_nacimiento)
+                VALUES('$user', null, $userId, '$telefono', ' ', '$fecha_nacimiento');";
+    execute_query($conn, $query);
+}
