@@ -5,6 +5,7 @@ include_once("modelo/modelo_locacion.php");
 
 function vuelo_index()
 {
+    $tipos_vuelo = getTipoVuelo();
     $vuelos = getVuelos();
     $locaciones = getLocacion();
     include("vista/vista_vuelo.php");
@@ -12,6 +13,7 @@ function vuelo_index()
 
 function vuelo_buscar()
 {
+    $tipos_vuelo = getTipoVuelo();
     $vuelos = getVuelos();
     $locaciones = getLocacion();
     $origen = "";
@@ -20,7 +22,6 @@ function vuelo_buscar()
         $origen = str_replace('+', ' ', $_GET['origen']);
     }
     if (isset($_GET['destino'])) {
-        echo "entre aca";
         $destino = str_replace('+', ' ', $_GET['destino']);
     }
 

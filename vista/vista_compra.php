@@ -10,6 +10,8 @@ if (isset($_POST['vuelo'])) {
 
 if (isset($_POST['submit'])) {
 
+
+    $cliente = getClienteId($_SESSION['user']);
     $cabina = $_POST['cabina'];
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
@@ -22,16 +24,11 @@ if (isset($_POST['submit'])) {
 
     if ($_POST['pasaje'] < $total) {
 
-        insertPasaje($_POST['vuelo'], $_SESSION['user'], 1, date("Y-m-d H:i:s"), bin2hex(random_bytes(5)), $_POST['cabina']);
+        insertPasaje($_POST['vuelo'], $cliente, 1, date("Y-m-d H:i:s"), bin2hex(random_bytes(5)), $_POST['cabina']);
 
     } else {
-        echo 'error maximo ' . $total;
+        $error = "No es posible comprar esa cantidad. La cantidad máxima es " . $total;
     }
-
-    echo $capacidad;
-    echo $pasajes;
-
-    echo $total;
 }
 
 
@@ -73,6 +70,11 @@ if (isset($_POST['submit'])) {
                    value="" required>
         </div>
     </div>
+    <?php
+        if(isset($error)){
+            echo "<p style='color: red;'>" . $error . "</p>";
+        }
+    ?>
     <button type="submit" class="btn btn-primary" name="submit">Comprar</button>
     <button type="button" class="btn btn-secondary" onclick="window.location.replace('/')" name="cancel">Cancelar
 </form>

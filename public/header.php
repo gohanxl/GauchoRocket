@@ -28,14 +28,11 @@
     <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
         <ul class='navbar-nav mr-auto mt-2 mt-lg-0'>
             <li class='nav-item active'>
-                <a class='nav-link' href='/viajes'>Viajes</a>
+                <a class='nav-link' href='/vuelo'>Viajes</a>
             </li>
             <?php
             if (isset($_SESSION['logged'])) {
                 echo "
-                            <li class='nav-item active'>
-                                <a class='nav-link' href='/pasaje/reserva'>Reserva</a>
-                            </li>
                             <li class='nav-item active'>
                                 <a class='nav-link' href='/turno/alta'>Turnos</a>
                             </li>                            

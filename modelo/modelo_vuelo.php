@@ -23,6 +23,23 @@ function getVuelos()
     return $resultArray;
 }
 
+function getTipoVuelo()
+{
+    $conn = getConexion();
+    $query = "SELECT * FROM tipo_vuelo;";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_fetch_assoc($result) > 0){
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['descripcion'] = $row['descripcion'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}
+
 function searchVueloId($id){
     $conn = getConexion();
     $query = "SELECT * FROM vuelo WHERE id = $id";

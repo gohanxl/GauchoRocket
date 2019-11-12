@@ -1,6 +1,17 @@
 <form class="form mb-2" method="get" action="/vuelo/buscar">
     <div class="form-row">
-        <div class="col-md-3 mb-2">
+        <div class="col-md-2 mb-2">
+            <label for="inputTipo">Tipo de vuelo</label>
+            <select id="inputTipo" class="form-control" name="tipo_vuelo">
+                <option disabled selected value="">Elegir tipo...</option>
+                <?php
+                foreach ($tipos_vuelo as $tipo) {
+                    echo "<option>" . $tipo['descripcion'] . "</option>";
+                };
+                ?>
+            </select>
+        </div>
+        <div class="col-md-2 mb-2">
             <label for="inputTipo">Partida</label>
             <select id="inputTipo" class="form-control" name="origen">
                 <option disabled selected value="">Elegir origen...</option>
@@ -11,7 +22,7 @@
                 ?>
             </select>
         </div>
-        <div class="col-md-3 mb-2">
+        <div class="col-md-2 mb-2">
             <label for="inputTipo">Destino</label>
             <select id="inputTipo" class="form-control" name="destino">
                 <option selected disabled value="">Elegir destino...</option>

@@ -18,7 +18,5 @@ function insertPasaje($vuelo_id, $cliente_id, $reserva_estado, $fecha_reserva, $
     $conn = getConexion();
     $query = "INSERT INTO pasaje (vuelo, cliente, reserva, fecha_reserva, checkin, fecha_checkin, compra, fecha_compra, codigo,precio, cabina) 
                 VALUES ($vuelo_id, $cliente_id, $reserva_estado,'$fecha_reserva', null, null, null, null, '$codigo_reserva', null, $cabina_id);";
-
-    echo $query;
     execute_query($conn, $query);
 }

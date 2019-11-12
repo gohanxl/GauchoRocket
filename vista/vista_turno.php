@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
         $centro = $_POST['centro'];
         $usuario = $_SESSION['user'];
 
-        $clienteId = getClienteId(getUsuarioId($usuario));
+        $clienteId = getClienteId($usuario);
         $centroId = getCentroId($centro);
         addTurno($fecha, $clienteId, $centroId);
         addTipoCliente($clienteId);
