@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 <form action="" method="POST" enctype="application/x-www-form-urlencoded">
     <div class="form-row">

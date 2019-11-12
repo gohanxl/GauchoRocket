@@ -8,13 +8,19 @@ if (isset($_POST['vuelo'])) {
 
 }
 
-if (isset($_POST['submit'])) {
+if(isset($_POST['reserva'])){
 
+
+}
+
+if (isset($_POST['submit'])) {
 
     $cliente = getClienteId($_SESSION['user']);
     $cabina = $_POST['cabina'];
+    $vueloId = $_POST['vuelo'];
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
+    $pasaje = $_POST['pasaje'];
     $pasajes = contadorPasajes($vuelo['id'], $cabina);
 
     $capacidad = getCabinaCapacidad($modelo, $cabina);
@@ -22,10 +28,48 @@ if (isset($_POST['submit'])) {
     $total = $capacidad - $pasajes;
 
 
-    if ($_POST['pasaje'] < $total) {
+    if ($pasaje < $total) {
+        $codigo = bin2hex(random_bytes(5));
+        insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
 
-        insertPasaje($_POST['vuelo'], $cliente, 1, date("Y-m-d H:i:s"), bin2hex(random_bytes(5)), $_POST['cabina']);
+        if ($pasaje > 1) {
+            echo "
+                <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
+                  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
+                    <div class=\"modal-content\">
+                      <div class=\"modal-header\">
+                        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Reserva de pasajes</h5>
 
+                      </div>
+                      <div class=\"modal-body\">
+                      <form action='#' method='POST'>
+                      <input type='hidden' name='pasaje' value='$pasaje'>
+                      <input type='hidden' name='vueloReserva' value='$vueloId'>
+                      <input type='hidden' name='codigo' value='$codigo'>
+                      <input type='hidden' name='cabina' value='$cabina'>
+                      ";
+                        for($i=0;$i<$pasaje-1;$i++){
+                            echo "
+                              <div class=\"form-group\">
+                                <label for=\"exampleInputEmail1\">Email</label>
+                                <input type=\"email\" class=\"form-control\" id=\"email" . $i . "\" aria-describedby=\"emailHelp\" placeholder=\"Ingrese email\" required>
+                              </div>
+                            ";
+                        }
+                        echo"
+                      </div>
+                      <div class=\"modal-footer\">
+                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancelar</button>
+                        <input type=\"submit\" class=\"btn btn-primary\" name='reserva' value='Reservar'>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            <script>
+                $('#myModal').modal('show');
+            </script>";
+        }
     } else {
         $error = "No es posible comprar esa cantidad. La cantidad máxima es " . $total;
     }
@@ -71,9 +115,9 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <?php
-        if(isset($error)){
-            echo "<p style='color: red;'>" . $error . "</p>";
-        }
+    if (isset($error)) {
+        echo "<p style='color: #ff0000;'>" . $error . "</p>";
+    }
     ?>
     <button type="submit" class="btn btn-primary" name="submit">Comprar</button>
     <button type="button" class="btn btn-secondary" onclick="window.location.replace('/')" name="cancel">Cancelar
