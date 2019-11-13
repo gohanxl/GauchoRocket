@@ -5,6 +5,7 @@ include_once("modelo/modelo_pasaje.php");
 include_once("modelo/modelo_locacion.php");
 include_once("modelo/modelo_nave.php");
 include_once ("modelo/modelo_pasaje.php");
+include_once ("modelo/modelo_registro.php");
 
 function pasaje_reserva()
 {
@@ -14,4 +15,8 @@ function pasaje_reserva()
 function pasaje_alta(){
 
     include("vista/vista_reserva.php");
+}
+
+function pasaje_exito(){
+    include("vista/vista_exito.php");
 }

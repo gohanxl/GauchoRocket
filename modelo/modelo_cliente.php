@@ -22,3 +22,16 @@ function addCliente($user, $userId, $telefono, $fecha_nacimiento){
                 VALUES('$user', null, $userId, '$telefono', ' ', '$fecha_nacimiento');";
     execute_query($conn, $query);
 }
+
+function registrarCliente($usuario){
+    $conn = getConexion();
+    $query = "INSERT INTO client (usuario) VALUES ($usuario);";
+    execute_query($conn, $query);
+}
+
+function getUsuarioIdByEmail($email){
+    $conn = getConexion();
+    $query = "SELECT * FROM usuario WHERE email = '$email';";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['id'];
+}

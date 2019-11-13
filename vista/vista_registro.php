@@ -42,10 +42,7 @@ if(isset($_POST['registro'])){
         $email = $_POST['email'];
         $telefono = $_POST['telefono'];
         $fec_nacimiento = $_POST['nacimiento'];
-
-        $id = random_int(2, 40);
-
-        registrarUsuario($id, $user, $password, $email);
+        registrarUsuario($user, $password, $email);
 
         $userId = getUsuarioId($user);
         addCliente($user, $userId, $telefono, $fec_nacimiento);

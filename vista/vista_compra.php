@@ -10,7 +10,28 @@ if (isset($_POST['vuelo'])) {
 
 if(isset($_POST['reserva'])){
 
+    $vueloId = $_POST['vueloReserva'];
+    $codigo = $_POST['codigo'];
+    $cabina = $_POST['cabina'];
+    $pasaje = $_POST['pasaje']-1;
 
+    for($i=0;$i<$pasaje;$i++){
+        $pass = bin2hex(random_bytes(4));
+        $existe = getUsuarioIdByEmail($_POST['email'.$i]);
+        if(empty($existe)){
+            registrarUsuario($_POST['email'.$i], $pass, $_POST['email'.$i]);
+            $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
+            registrarCliente($usuarioId);
+        }
+    }
+
+    for($i=0;$i<$pasaje;$i++){
+        $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
+        $cliente = getClienteId($usuarioId);
+        insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
+    }
+
+    header('Location: /pasaje/exito');
 }
 
 if (isset($_POST['submit'])) {
@@ -52,7 +73,7 @@ if (isset($_POST['submit'])) {
                             echo "
                               <div class=\"form-group\">
                                 <label for=\"exampleInputEmail1\">Email</label>
-                                <input type=\"email\" class=\"form-control\" id=\"email" . $i . "\" aria-describedby=\"emailHelp\" placeholder=\"Ingrese email\" required>
+                                <input type=\"email\" class=\"form-control\" name='email". $i . "' id=\"email" . $i . "\" aria-describedby=\"emailHelp\" placeholder=\"Ingrese email\" required>
                               </div>
                             ";
                         }
