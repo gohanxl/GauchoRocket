@@ -52,10 +52,10 @@ if (isset($message)) {
     echo "<label class='text-danger'>" . $message . "</label>";
 }
 ?>
-<h3>Ida</h3>
 <table class="table table-hover">
     <thead>
     <tr>
+        <th scope="col">Tipo vuelo</th>
         <th scope="col">Origen</th>
         <th scope="col">Destino</th>
         <th scope="col">Duracion</th>
@@ -74,6 +74,7 @@ if (isset($message)) {
     foreach ($vuelos as $vuelo) {
         echo "    
         <tr>
+            <td>" . getDescriptionTipoVuelo($vuelo['tipo_vuelo']) . "</td>
             <td>" . getLocacionDescripcion($vuelo['origen']) . "</td>
             <td>" . getLocacionDescripcion($vuelo['destino']) . "</td>
             <td>" . $vuelo['duracion'] . "</td>

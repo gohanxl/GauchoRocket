@@ -5,6 +5,7 @@ if (isset($_POST['vuelo'])) {
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
     $cabinas = getCabinaModelo($modelo);
+    $tipo_vuelo = getIdTipoVuelo($vuelo);
 
 }
 
@@ -41,13 +42,24 @@ if (isset($_POST['submit'])) {
     $vueloId = $_POST['vuelo'];
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
+    $tipo_vuelo = getDescriptionTipoVuelo($_POST['tipo_vuelo']);
     $pasaje = $_POST['pasaje'];
     $pasajes = contadorPasajes($vuelo['id'], $cabina);
 
     $capacidad = getCabinaCapacidad($modelo, $cabina);
 
-    $total = $capacidad - $pasajes;
+    if ($tipo_vuelo == "Entre destino"){
+        $origen = getLocacionDescripcion(getOrigenByVueloId($vueloId));
+        $destino = getLocacionDescripcion(getDestinoByVueloId($vueloId));
+        // while que recorra hasta destino sin incluir flag que active true cuando encuentre el origen y comienze a hacer los count
+        //for que recorra array y cuente el maximo de pasajes en ese trayecto( buscar en tabla trayecto por vuelo id origen comparado con origen del array
 
+        $pasajes = contadorPasajes($vuelo['id'], $cabina);
+    }
+    else{
+        $pasajes = contadorPasajes($vuelo['id'], $cabina);
+        $total = $capacidad - $pasajes;
+    }
 
     if ($pasaje < $total) {
         $codigo = bin2hex(random_bytes(5));
@@ -68,6 +80,7 @@ if (isset($_POST['submit'])) {
                       <input type='hidden' name='vueloReserva' value='$vueloId'>
                       <input type='hidden' name='codigo' value='$codigo'>
                       <input type='hidden' name='cabina' value='$cabina'>
+                      <input type='hidden' name='tipo_vuelo' value='$tipo_vuelo'>
                       ";
                         for($i=0;$i<$pasaje-1;$i++){
                             echo "

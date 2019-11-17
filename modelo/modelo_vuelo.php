@@ -17,6 +17,7 @@ function getVuelos()
             $element['nave'] = $row['nave'];
             $element['partida'] = $row['partida'];
             $element['hora'] = $row['hora'];
+            $element['tipo_vuelo'] = $row['tipo_vuelo'];
             $resultArray[] = $element;
         }
     }
@@ -55,6 +56,7 @@ function searchVueloId($id){
             $element['nave'] = $row['nave'];
             $element['partida'] = $row['partida'];
             $element['hora'] = $row['hora'];
+            $element['tipo_vuelo'] = $row['tipo_vuelo'];
             $resultArray[] = $element;
         }
     }
@@ -96,6 +98,7 @@ function searchVuelos($origen, $destino, $partida)
             $element['nave'] = $row['nave'];
             $element['partida'] = $row['partida'];
             $element['hora'] = $row['hora'];
+            $element['tipo_vuelo'] = $row['tipo_vuelo'];
             $resultArray[] = $element;
         }
     }
@@ -109,4 +112,34 @@ function addVuelo($numero, $nombre, $tipo, $imagen)
     execute_query($conn, $query);
 }
 
+
+function getDescriptionTipoVuelo($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM tipo_vuelo WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['descripcion'];
+}
+
+function getIdTipoVuelo($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM vuelo WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['tipo_vuelo'];
+}
+
+function getDestinoByVueloId($id){
+$conn = getConexion();
+    $query = "SELECT * FROM vuelo WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['destino'];
+}
+
+function getOrigenByVueloId($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM vuelo WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['origen'];
+}
+
 ?>
+

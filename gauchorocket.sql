@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2019 a las 11:11:49
+-- Tiempo de generación: 18-11-2019 a las 00:56:55
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -17,8 +17,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
-use gauchorocket;
 
 --
 -- Base de datos: `gauchorocket`
@@ -73,12 +71,12 @@ INSERT INTO `centro_medico` (`id`, `nombre`, `turnos`) VALUES
 
 CREATE TABLE `client` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `tipo_cliente` int(11) DEFAULT NULL,
   `usuario` int(11) NOT NULL,
-  `telefono` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `foto` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `fecha_nacimiento` date NOT NULL
+  `telefono` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `foto` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -86,7 +84,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nombre`, `tipo_cliente`, `usuario`, `telefono`, `foto`, `fecha_nacimiento`) VALUES
-(4, 'Root', 2, 0, '11111111', '', '1994-08-27');
+(4, 'Root', 3, 0, '11111111', '', '1994-08-27'),
+(5, NULL, NULL, 2, NULL, NULL, NULL),
+(6, NULL, NULL, 3, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -200,6 +200,7 @@ CREATE TABLE `nave` (
 --
 -- Volcado de datos para la tabla `nave`
 --
+
 INSERT INTO `nave` (`id`, `matricula`, `modelo`) VALUES
 (1, 'AA1', 7),
 (2, 'AA5', 7),
@@ -246,6 +247,8 @@ INSERT INTO `nave` (`id`, `matricula`, `modelo`) VALUES
 (43, 'BA2', 3),
 (44, 'BA3', 3);
 
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `pasaje`
 --
@@ -261,9 +264,49 @@ CREATE TABLE `pasaje` (
   `compra` tinyint(1) DEFAULT NULL,
   `fecha_compra` datetime DEFAULT NULL,
   `codigo` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
-  `precio` decimal(10,0) NOT NULL,
+  `precio` decimal(10,0) DEFAULT NULL,
   `cabina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pasaje`
+--
+
+INSERT INTO `pasaje` (`id`, `vuelo`, `cliente`, `reserva`, `fecha_reserva`, `checkin`, `fecha_checkin`, `compra`, `fecha_compra`, `codigo`, `precio`, `cabina`) VALUES
+(1, 2, 4, 1, '2019-11-12 02:51:40', NULL, NULL, NULL, NULL, '15b56bce6e', NULL, 2),
+(2, 2, 4, 1, '2019-11-12 03:41:35', NULL, NULL, NULL, NULL, 'a994b7ac4c', NULL, 1),
+(3, 2, 4, 1, '2019-11-12 03:41:53', NULL, NULL, NULL, NULL, '12fa3768fb', NULL, 2),
+(4, 3, 4, 1, '2019-11-12 03:44:02', NULL, NULL, NULL, NULL, 'fa80fb3576', NULL, 1),
+(5, 3, 4, 1, '2019-11-12 03:46:44', NULL, NULL, NULL, NULL, '00d4839ea4', NULL, 2),
+(6, 3, 4, 1, '2019-11-12 03:46:49', NULL, NULL, NULL, NULL, '6f05c47818', NULL, 2),
+(7, 3, 4, 1, '2019-11-12 03:47:01', NULL, NULL, NULL, NULL, '0a8b318322', NULL, 2),
+(8, 3, 4, 1, '2019-11-12 03:47:24', NULL, NULL, NULL, NULL, '4e5a33be72', NULL, 1),
+(9, 2, 4, 1, '2019-11-12 03:52:42', NULL, NULL, NULL, NULL, '83c90b1ee6', NULL, 3),
+(10, 2, 4, 1, '2019-11-12 03:52:57', NULL, NULL, NULL, NULL, '414283a370', NULL, 1),
+(11, 2, 4, 1, '2019-11-12 03:55:04', NULL, NULL, NULL, NULL, '287ec6d8a8', NULL, 3),
+(12, 2, 4, 1, '2019-11-12 03:55:13', NULL, NULL, NULL, NULL, '65ca809e2e', NULL, 2),
+(13, 3, 4, 1, '2019-11-12 03:57:26', NULL, NULL, NULL, NULL, '50c0793dd2', NULL, 2),
+(14, 3, 4, 1, '2019-11-12 04:21:31', NULL, NULL, NULL, NULL, '88e4ec1d11', NULL, 2),
+(15, 3, 4, 1, '2019-11-12 04:21:53', NULL, NULL, NULL, NULL, 'd230a65c09', NULL, 2),
+(16, 2, 4, 1, '2019-11-12 04:22:01', NULL, NULL, NULL, NULL, 'e49dcd1526', NULL, 2),
+(17, 2, 4, 1, '2019-11-12 04:22:43', NULL, NULL, NULL, NULL, '3ff744edfa', NULL, 2),
+(18, 5, 4, 1, '2019-11-12 04:22:49', NULL, NULL, NULL, NULL, '2bcb137d82', NULL, 2),
+(19, 5, 4, 1, '2019-11-12 04:24:14', NULL, NULL, NULL, NULL, 'e09fec9d1f', NULL, 2),
+(20, 5, 4, 1, '2019-11-12 04:25:15', NULL, NULL, NULL, NULL, '9b87431560', NULL, 2),
+(21, 5, 4, 1, '2019-11-12 04:26:00', NULL, NULL, NULL, NULL, '37f783a63c', NULL, 2),
+(22, 5, 4, 1, '2019-11-12 04:26:28', NULL, NULL, NULL, NULL, 'f2cb2ee0ca', NULL, 2),
+(23, 5, 4, 1, '2019-11-12 04:26:35', NULL, NULL, NULL, NULL, '8f6f54e124', NULL, 1),
+(24, 6, 4, 1, '2019-11-12 04:27:33', NULL, NULL, NULL, NULL, '0eec182903', NULL, 2),
+(25, 3, 4, 1, '2019-11-12 04:28:18', NULL, NULL, NULL, NULL, 'ac596454c3', NULL, 2),
+(26, 3, 4, 1, '2019-11-12 04:29:04', NULL, NULL, NULL, NULL, '1481feeea3', NULL, 2),
+(27, 3, 4, 1, '2019-11-12 04:29:10', NULL, NULL, NULL, NULL, '1489c65ab2', NULL, 2),
+(28, 2, 5, 1, '2019-11-13 00:39:07', NULL, NULL, NULL, NULL, '2d9b8f0b00', NULL, 3),
+(29, 2, 6, 1, '2019-11-13 00:39:43', NULL, NULL, NULL, NULL, '19ae5cdfe7', NULL, 2),
+(30, 2, 5, 1, '2019-11-13 00:50:55', NULL, NULL, NULL, NULL, '406a81b95c', NULL, 3),
+(31, 2, 5, 1, '2019-11-13 00:51:46', NULL, NULL, NULL, NULL, '1c5291d37d', NULL, 2),
+(32, 2, 6, 1, '2019-11-13 00:52:32', NULL, NULL, NULL, NULL, '21a38d933f', NULL, 1),
+(33, 2, 5, 1, '2019-11-13 00:54:18', NULL, NULL, NULL, NULL, '2831859e63', NULL, 2),
+(34, 2, 5, 1, '2019-11-13 00:55:45', NULL, NULL, NULL, NULL, '62bc14af91', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -326,10 +369,54 @@ CREATE TABLE `tipo_vuelo` (
 --
 
 INSERT INTO `tipo_vuelo` (`id`, `descripcion`) VALUES
+(2, 'Tour'),
+(5, 'Entre destino'),
+(6, 'Suborbital');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_vuelo_modelo`
+--
+
+CREATE TABLE `tipo_vuelo_modelo` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_vuelo_modelo`
+--
+
+INSERT INTO `tipo_vuelo_modelo` (`id`, `descripcion`) VALUES
 (1, 'Orbital'),
 (2, 'Baja Aceleracion'),
 (3, 'Alta Aceleracion'),
 (4, 'Entre destino');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trayecto`
+--
+
+CREATE TABLE `trayecto` (
+  `id` int(11) NOT NULL,
+  `vuelo_id` int(10) UNSIGNED NOT NULL,
+  `origen` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trayecto_pasaje`
+--
+
+CREATE TABLE `trayecto_pasaje` (
+  `id` int(11) NOT NULL,
+  `trayecto_id` int(11) NOT NULL,
+  `pasaje_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -360,7 +447,8 @@ INSERT INTO `turno` (`id`, `fecha`, `cliente`, `centro_medico`, `asistencia`) VA
 (12, '2019-10-09', 4, 1, NULL),
 (13, '2019-10-10', 4, 1, NULL),
 (14, '2019-10-10', 4, 1, NULL),
-(15, '2019-10-03', 4, 1, NULL);
+(15, '2019-10-03', 4, 1, NULL),
+(16, '2019-12-01', 4, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -371,15 +459,19 @@ INSERT INTO `turno` (`id`, `fecha`, `cliente`, `centro_medico`, `asistencia`) VA
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `user` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(1000) COLLATE utf8_spanish_ci NOT NULL
+  `password` varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `registrado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `user`, `password`) VALUES
-(0, 'root', '63a9f0ea7bb98050796b649e85481845');
+INSERT INTO `usuario` (`id`, `user`, `password`, `email`, `registrado`) VALUES
+(1, 'root', '63a9f0ea7bb98050796b649e85481845', 'root@root.com', 1),
+(2, 'pepe@pepe.com', '924ade4907bb60d1efa87f826a4af324', 'pepe@pepe.com', 0),
+(3, 'lacquaniti@gmail.com', '093be985814bba353ab09c410a43b072', 'lacquaniti@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -394,23 +486,24 @@ CREATE TABLE `vuelo` (
   `duracion` int(11) NOT NULL,
   `nave` int(11) NOT NULL,
   `partida` date NOT NULL,
-  `hora` time NOT NULL
+  `hora` time NOT NULL,
+  `tipo_vuelo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `vuelo`
 --
 
-INSERT INTO `vuelo` (`id`, `origen`, `destino`, `duracion`, `nave`, `partida`, `hora`) VALUES
-(2, 8, 2, 8, 1, '2019-11-01', '00:00:00'),
-(3, 9, 2, 8, 4, '2019-11-01', '00:00:00'),
-(4, 2, 8, 8, 1, '2019-11-08', '00:00:00'),
-(5, 2, 9, 8, 4, '2019-11-08', '00:00:00'),
-(6, 8, 2, 8, 30, '2019-11-01', '13:00:00'),
-(7, 8, 2, 8, 3, '2019-11-01', '05:00:00'),
-(8, 2, 8, 8, 7, '2019-11-08', '06:00:00');
+INSERT INTO `vuelo` (`id`, `origen`, `destino`, `duracion`, `nave`, `partida`, `hora`, `tipo_vuelo`) VALUES
+(2, 8, 2, 8, 1, '2019-11-01', '00:00:00', 5),
+(3, 9, 2, 8, 4, '2019-11-01', '00:00:00', 6),
+(4, 2, 8, 8, 1, '2019-11-08', '00:00:00', 6),
+(5, 2, 9, 8, 4, '2019-11-08', '00:00:00', 6),
+(6, 8, 2, 8, 30, '2019-11-01', '13:00:00', 6),
+(7, 8, 2, 8, 3, '2019-11-01', '05:00:00', 6),
+(8, 2, 8, 8, 7, '2019-11-08', '06:00:00', 6);
 
-
+--
 -- Índices para tablas volcadas
 --
 
@@ -492,6 +585,28 @@ ALTER TABLE `tipo_vuelo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `tipo_vuelo_modelo`
+--
+ALTER TABLE `tipo_vuelo_modelo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `trayecto`
+--
+ALTER TABLE `trayecto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vuelo_id` (`vuelo_id`),
+  ADD KEY `origen` (`origen`);
+
+--
+-- Indices de la tabla `trayecto_pasaje`
+--
+ALTER TABLE `trayecto_pasaje`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pasaje_id` (`pasaje_id`),
+  ADD KEY `trayecto_id` (`trayecto_id`);
+
+--
 -- Indices de la tabla `turno`
 --
 ALTER TABLE `turno`
@@ -512,7 +627,8 @@ ALTER TABLE `vuelo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `origen` (`origen`),
   ADD KEY `destino` (`destino`),
-  ADD KEY `vuelo_ibfk_3` (`nave`);
+  ADD KEY `vuelo_ibfk_3` (`nave`),
+  ADD KEY `tipo_vuelo` (`tipo_vuelo`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -534,7 +650,7 @@ ALTER TABLE `centro_medico`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `locacion`
@@ -564,7 +680,7 @@ ALTER TABLE `nave`
 -- AUTO_INCREMENT de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
@@ -582,13 +698,37 @@ ALTER TABLE `tipo_cliente_vuelo`
 -- AUTO_INCREMENT de la tabla `tipo_vuelo`
 --
 ALTER TABLE `tipo_vuelo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_vuelo_modelo`
+--
+ALTER TABLE `tipo_vuelo_modelo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `trayecto`
+--
+ALTER TABLE `trayecto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `trayecto_pasaje`
+--
+ALTER TABLE `trayecto_pasaje`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `vuelo`
@@ -605,13 +745,13 @@ ALTER TABLE `vuelo`
 --
 ALTER TABLE `client`
   ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`tipo_cliente`) REFERENCES `tipo_cliente` (`id`),
-  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `modelo`
 --
 ALTER TABLE `modelo`
-  ADD CONSTRAINT `modelo_ibfk_1` FOREIGN KEY (`tipo_vuelo`) REFERENCES `tipo_vuelo` (`id`);
+  ADD CONSTRAINT `modelo_ibfk_1` FOREIGN KEY (`tipo_vuelo`) REFERENCES `tipo_vuelo_modelo` (`id`);
 
 --
 -- Filtros para la tabla `modelo_cabina`
@@ -639,7 +779,21 @@ ALTER TABLE `pasaje`
 --
 ALTER TABLE `tipo_cliente_vuelo`
   ADD CONSTRAINT `tipo_cliente_vuelo_ibfk_1` FOREIGN KEY (`tipo_cliente`) REFERENCES `tipo_cliente` (`id`),
-  ADD CONSTRAINT `tipo_cliente_vuelo_ibfk_2` FOREIGN KEY (`tipo_vuelo`) REFERENCES `tipo_vuelo` (`id`);
+  ADD CONSTRAINT `tipo_cliente_vuelo_ibfk_2` FOREIGN KEY (`tipo_vuelo`) REFERENCES `tipo_vuelo_modelo` (`id`);
+
+--
+-- Filtros para la tabla `trayecto`
+--
+ALTER TABLE `trayecto`
+  ADD CONSTRAINT `trayecto_ibfk_1` FOREIGN KEY (`vuelo_id`) REFERENCES `vuelo` (`id`),
+  ADD CONSTRAINT `trayecto_ibfk_2` FOREIGN KEY (`origen`) REFERENCES `vuelo` (`origen`);
+
+--
+-- Filtros para la tabla `trayecto_pasaje`
+--
+ALTER TABLE `trayecto_pasaje`
+  ADD CONSTRAINT `trayecto_pasaje_ibfk_1` FOREIGN KEY (`pasaje_id`) REFERENCES `pasaje` (`id`),
+  ADD CONSTRAINT `trayecto_pasaje_ibfk_2` FOREIGN KEY (`trayecto_id`) REFERENCES `trayecto` (`id`);
 
 --
 -- Filtros para la tabla `turno`
@@ -654,7 +808,8 @@ ALTER TABLE `turno`
 ALTER TABLE `vuelo`
   ADD CONSTRAINT `vuelo_ibfk_1` FOREIGN KEY (`origen`) REFERENCES `locacion` (`id`),
   ADD CONSTRAINT `vuelo_ibfk_2` FOREIGN KEY (`destino`) REFERENCES `locacion` (`id`),
-  ADD CONSTRAINT `vuelo_ibfk_3` FOREIGN KEY (`nave`) REFERENCES `nave` (`id`);
+  ADD CONSTRAINT `vuelo_ibfk_3` FOREIGN KEY (`nave`) REFERENCES `nave` (`id`),
+  ADD CONSTRAINT `vuelo_ibfk_4` FOREIGN KEY (`tipo_vuelo`) REFERENCES `tipo_vuelo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
