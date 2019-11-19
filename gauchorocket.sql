@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2019 a las 00:56:55
+-- Tiempo de generación: 19-11-2019 a las 04:06:26
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -66,6 +66,27 @@ INSERT INTO `centro_medico` (`id`, `nombre`, `turnos`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `circuito`
+--
+
+CREATE TABLE `circuito` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `circuito`
+--
+
+INSERT INTO `circuito` (`id`, `descripcion`) VALUES
+(1, 'trayecto1'),
+(2, 'trayecto2'),
+(3, 'trayecto3'),
+(4, 'trayecto4');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `client`
 --
 
@@ -84,9 +105,10 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nombre`, `tipo_cliente`, `usuario`, `telefono`, `foto`, `fecha_nacimiento`) VALUES
-(4, 'Root', 3, 0, '11111111', '', '1994-08-27'),
+(4, 'Root', 3, 1, '11111111', '', '1994-08-27'),
 (5, NULL, NULL, 2, NULL, NULL, NULL),
-(6, NULL, NULL, 3, NULL, NULL, NULL);
+(6, NULL, NULL, 3, NULL, NULL, NULL),
+(7, NULL, NULL, 4, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,7 +134,8 @@ INSERT INTO `locacion` (`id`, `descripcion`) VALUES
 (6, 'Encedalo'),
 (7, 'Titan'),
 (8, 'Buenos Aires'),
-(9, 'Ankara');
+(9, 'Ankara'),
+(10, 'Orbital Hotel');
 
 -- --------------------------------------------------------
 
@@ -306,7 +329,27 @@ INSERT INTO `pasaje` (`id`, `vuelo`, `cliente`, `reserva`, `fecha_reserva`, `che
 (31, 2, 5, 1, '2019-11-13 00:51:46', NULL, NULL, NULL, NULL, '1c5291d37d', NULL, 2),
 (32, 2, 6, 1, '2019-11-13 00:52:32', NULL, NULL, NULL, NULL, '21a38d933f', NULL, 1),
 (33, 2, 5, 1, '2019-11-13 00:54:18', NULL, NULL, NULL, NULL, '2831859e63', NULL, 2),
-(34, 2, 5, 1, '2019-11-13 00:55:45', NULL, NULL, NULL, NULL, '62bc14af91', NULL, 2);
+(34, 2, 5, 1, '2019-11-13 00:55:45', NULL, NULL, NULL, NULL, '62bc14af91', NULL, 2),
+(35, 2, 5, 1, '2019-11-19 01:10:30', NULL, NULL, NULL, NULL, 'dc94a7ad6d', NULL, 1),
+(36, 2, 5, 1, '2019-11-19 01:11:21', NULL, NULL, NULL, NULL, '2949d18693', NULL, 1),
+(37, 3, 6, 1, '2019-11-19 01:15:03', NULL, NULL, NULL, NULL, 'd8775b97c3', NULL, 1),
+(39, 2, 4, 1, '2019-11-19 01:24:51', NULL, NULL, NULL, NULL, '857ad589d4', NULL, 2),
+(40, 2, 4, 1, '2019-11-19 01:25:05', NULL, NULL, NULL, NULL, '9c15e7ef6b', NULL, 1),
+(41, 2, 4, 1, '2019-11-19 01:25:33', NULL, NULL, NULL, NULL, '4a8fc99497', NULL, 1),
+(42, 2, 4, 1, '2019-11-19 01:26:31', NULL, NULL, NULL, NULL, 'afeb77e939', NULL, 1),
+(43, 2, 4, 1, '2019-11-19 02:48:07', NULL, NULL, NULL, NULL, 'a622675810', NULL, 1),
+(44, 2, 4, 1, '2019-11-19 02:48:58', NULL, NULL, NULL, NULL, 'd319f2705b', NULL, 2),
+(45, 2, 6, 1, '2019-11-19 02:49:00', NULL, NULL, NULL, NULL, 'd319f2705b', NULL, 2),
+(46, 2, 4, 1, '2019-11-19 03:24:29', NULL, NULL, NULL, NULL, '88d9ca6e60', NULL, 1),
+(47, 2, 4, 1, '2019-11-19 03:24:57', NULL, NULL, NULL, NULL, 'a6cf3ebf9a', NULL, 1),
+(48, 2, 4, 1, '2019-11-19 03:25:41', NULL, NULL, NULL, NULL, 'ce8001659b', NULL, 1),
+(49, 2, 4, 1, '2019-11-19 03:28:36', NULL, NULL, NULL, NULL, 'dbb570bb3a', NULL, 1),
+(50, 2, 4, 1, '2019-11-19 03:28:40', NULL, NULL, NULL, NULL, '6f52879721', NULL, 2),
+(51, 2, 4, 1, '2019-11-19 03:28:44', NULL, NULL, NULL, NULL, 'aadf89d016', NULL, 3),
+(52, 2, 4, 1, '2019-11-19 03:28:50', NULL, NULL, NULL, NULL, '2b00300f32', NULL, 3),
+(53, 2, 4, 1, '2019-11-19 03:29:03', NULL, NULL, NULL, NULL, '0ed589efc3', NULL, 1),
+(54, 2, 4, 1, '2019-11-19 03:29:06', NULL, NULL, NULL, NULL, '29bcd6d415', NULL, 2),
+(55, 2, 4, 1, '2019-11-19 03:29:10', NULL, NULL, NULL, NULL, 'a26c1b8e12', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -369,9 +412,9 @@ CREATE TABLE `tipo_vuelo` (
 --
 
 INSERT INTO `tipo_vuelo` (`id`, `descripcion`) VALUES
-(2, 'Tour'),
-(5, 'Entre destino'),
-(6, 'Suborbital');
+(9, 'Suborbital'),
+(10, 'Entre destino'),
+(11, 'Tour');
 
 -- --------------------------------------------------------
 
@@ -403,8 +446,20 @@ INSERT INTO `tipo_vuelo_modelo` (`id`, `descripcion`) VALUES
 CREATE TABLE `trayecto` (
   `id` int(11) NOT NULL,
   `vuelo_id` int(10) UNSIGNED NOT NULL,
-  `origen` int(11) NOT NULL
+  `origen` int(11) NOT NULL,
+  `circuito` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `trayecto`
+--
+
+INSERT INTO `trayecto` (`id`, `vuelo_id`, `origen`, `circuito`) VALUES
+(2, 2, 8, 1),
+(3, 2, 1, 1),
+(4, 2, 10, 1),
+(5, 2, 2, 1),
+(6, 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -417,6 +472,25 @@ CREATE TABLE `trayecto_pasaje` (
   `trayecto_id` int(11) NOT NULL,
   `pasaje_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `trayecto_pasaje`
+--
+
+INSERT INTO `trayecto_pasaje` (`id`, `trayecto_id`, `pasaje_id`) VALUES
+(8, 2, 45),
+(9, 2, 44),
+(10, 2, 43),
+(11, 2, 46),
+(12, 2, 47),
+(13, 2, 48),
+(14, 2, 49),
+(15, 2, 50),
+(16, 2, 51),
+(17, 2, 52),
+(18, 2, 53),
+(19, 2, 54),
+(20, 2, 55);
 
 -- --------------------------------------------------------
 
@@ -471,7 +545,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id`, `user`, `password`, `email`, `registrado`) VALUES
 (1, 'root', '63a9f0ea7bb98050796b649e85481845', 'root@root.com', 1),
 (2, 'pepe@pepe.com', '924ade4907bb60d1efa87f826a4af324', 'pepe@pepe.com', 0),
-(3, 'lacquaniti@gmail.com', '093be985814bba353ab09c410a43b072', 'lacquaniti@gmail.com', 0);
+(3, 'lacquaniti@gmail.com', '093be985814bba353ab09c410a43b072', 'lacquaniti@gmail.com', 0),
+(4, '', 'c1b1ffbb86a0ad3bebfe654e91b67241', '', 0);
 
 -- --------------------------------------------------------
 
@@ -495,13 +570,13 @@ CREATE TABLE `vuelo` (
 --
 
 INSERT INTO `vuelo` (`id`, `origen`, `destino`, `duracion`, `nave`, `partida`, `hora`, `tipo_vuelo`) VALUES
-(2, 8, 2, 8, 1, '2019-11-01', '00:00:00', 5),
-(3, 9, 2, 8, 4, '2019-11-01', '00:00:00', 6),
-(4, 2, 8, 8, 1, '2019-11-08', '00:00:00', 6),
-(5, 2, 9, 8, 4, '2019-11-08', '00:00:00', 6),
-(6, 8, 2, 8, 30, '2019-11-01', '13:00:00', 6),
-(7, 8, 2, 8, 3, '2019-11-01', '05:00:00', 6),
-(8, 2, 8, 8, 7, '2019-11-08', '06:00:00', 6);
+(2, 8, 2, 8, 1, '2019-11-01', '00:00:00', 10),
+(3, 9, 2, 8, 4, '2019-11-01', '00:00:00', 9),
+(4, 2, 8, 8, 1, '2019-11-08', '00:00:00', 9),
+(5, 2, 9, 8, 4, '2019-11-08', '00:00:00', 9),
+(6, 8, 2, 8, 30, '2019-11-01', '13:00:00', 9),
+(7, 8, 2, 8, 3, '2019-11-01', '05:00:00', 9),
+(8, 2, 8, 8, 7, '2019-11-08', '06:00:00', 9);
 
 --
 -- Índices para tablas volcadas
@@ -517,6 +592,12 @@ ALTER TABLE `cabina`
 -- Indices de la tabla `centro_medico`
 --
 ALTER TABLE `centro_medico`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `circuito`
+--
+ALTER TABLE `circuito`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -596,7 +677,8 @@ ALTER TABLE `tipo_vuelo_modelo`
 ALTER TABLE `trayecto`
   ADD PRIMARY KEY (`id`),
   ADD KEY `vuelo_id` (`vuelo_id`),
-  ADD KEY `origen` (`origen`);
+  ADD KEY `circuito` (`circuito`),
+  ADD KEY `trayecto_ibfk_2` (`origen`);
 
 --
 -- Indices de la tabla `trayecto_pasaje`
@@ -647,16 +729,22 @@ ALTER TABLE `centro_medico`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `circuito`
+--
+ALTER TABLE `circuito`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `locacion`
 --
 ALTER TABLE `locacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `modelo`
@@ -680,7 +768,7 @@ ALTER TABLE `nave`
 -- AUTO_INCREMENT de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
@@ -698,7 +786,7 @@ ALTER TABLE `tipo_cliente_vuelo`
 -- AUTO_INCREMENT de la tabla `tipo_vuelo`
 --
 ALTER TABLE `tipo_vuelo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_vuelo_modelo`
@@ -710,13 +798,13 @@ ALTER TABLE `tipo_vuelo_modelo`
 -- AUTO_INCREMENT de la tabla `trayecto`
 --
 ALTER TABLE `trayecto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `trayecto_pasaje`
 --
 ALTER TABLE `trayecto_pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `turno`
@@ -728,7 +816,7 @@ ALTER TABLE `turno`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `vuelo`
@@ -786,7 +874,8 @@ ALTER TABLE `tipo_cliente_vuelo`
 --
 ALTER TABLE `trayecto`
   ADD CONSTRAINT `trayecto_ibfk_1` FOREIGN KEY (`vuelo_id`) REFERENCES `vuelo` (`id`),
-  ADD CONSTRAINT `trayecto_ibfk_2` FOREIGN KEY (`origen`) REFERENCES `vuelo` (`origen`);
+  ADD CONSTRAINT `trayecto_ibfk_2` FOREIGN KEY (`origen`) REFERENCES `locacion` (`id`),
+  ADD CONSTRAINT `trayecto_ibfk_3` FOREIGN KEY (`circuito`) REFERENCES `circuito` (`id`);
 
 --
 -- Filtros para la tabla `trayecto_pasaje`
