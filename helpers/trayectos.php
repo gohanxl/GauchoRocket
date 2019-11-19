@@ -1,10 +1,10 @@
 <?php
     include_once("config.php");
 
-    function getTrayectos(){
+    function getTrayectos($trayecto){
         $trayectos = getTrayectosAsArray();
 
-        $trayecto1 =  $trayectos['circuito1']['trayecto1'];
+        $resultado =  $trayectos[$trayecto];
 
-        return $trayecto1;
+        return $resultado;
     }

@@ -24,4 +24,12 @@
         mysqli_close($conn);
         return $result;
     }
+
+    function execute_query_return_id($conn, $query){
+        if(mysqli_query($conn, $query)){
+            $result = mysqli_insert_id($conn);
+        }
+        mysqli_close($conn);
+        return $result;
+    }
 ?>

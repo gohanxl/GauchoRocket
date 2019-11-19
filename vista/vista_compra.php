@@ -5,13 +5,14 @@ if (isset($_POST['vuelo'])) {
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
     $cabinas = getCabinaModelo($modelo);
-    $tipo_vuelo = getIdTipoVuelo($vuelo);
-
+    $tipo_vuelo = getIdTipoVuelo($id);
 }
 
 if(isset($_POST['reserva'])){
 
     $vueloId = $_POST['vueloReserva'];
+    $tipo_vuelo = $_POST['tipo_vuelo'];
+    $trayectoId = $_POST['trayectoId'];
     $codigo = $_POST['codigo'];
     $cabina = $_POST['cabina'];
     $pasaje = $_POST['pasaje']-1;
@@ -29,7 +30,10 @@ if(isset($_POST['reserva'])){
     for($i=0;$i<$pasaje;$i++){
         $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
         $cliente = getClienteId($usuarioId);
-        insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
+        if($tipo_vuelo == "Entre destino"){
+            insertPasajeTrayecto($trayectoId, $pasajeId);
+        }
     }
 
     header('Location: /pasaje/exito');
@@ -40,21 +44,42 @@ if (isset($_POST['submit'])) {
     $cliente = getClienteId($_SESSION['user']);
     $cabina = $_POST['cabina'];
     $vueloId = $_POST['vuelo'];
-    $vuelo = searchVueloId($id);
+    $vuelo = searchVueloId($vueloId);
     $modelo = getNaveModelo($vuelo['nave']);
-    $tipo_vuelo = getDescriptionTipoVuelo($_POST['tipo_vuelo']);
+    $tipo_vuelo = getDescriptionTipoVuelo($vuelo['tipo_vuelo']);
     $pasaje = $_POST['pasaje'];
     $pasajes = contadorPasajes($vuelo['id'], $cabina);
-
     $capacidad = getCabinaCapacidad($modelo, $cabina);
 
     if ($tipo_vuelo == "Entre destino"){
         $origen = getLocacionDescripcion(getOrigenByVueloId($vueloId));
+        $origenId = getLocacionId($origen);
         $destino = getLocacionDescripcion(getDestinoByVueloId($vueloId));
+        $trayecto = getDescripcionCircuitoById(getCircuito($vueloId));
+        $circuitoId = getCircuito($vueloId);
+        $trayectoId = getTrayecto($vueloId);
+        $circuito = getTrayectosByDescripcion($trayecto);
+        $flag = false;
+        $i = 0;
+        $max = 0;
         // while que recorra hasta destino sin incluir flag que active true cuando encuentre el origen y comienze a hacer los count
         //for que recorra array y cuente el maximo de pasajes en ese trayecto( buscar en tabla trayecto por vuelo id origen comparado con origen del array
+        //contador por trayecto_pasaje - insert en esa tabla cada vez que se cree un pasaje entre destino.
+        while($destino != $circuito[$i]){
+            if($circuito[$i] == $origen){
+                $flag = true;
+            }
 
-        $pasajes = contadorPasajes($vuelo['id'], $cabina);
+            if($flag){
+                $pasajes = contadorPasajesTrayecto($origenId, $circuitoId, $cabina);
+                if($pasajes > $max){
+                    $max = $pasajes;
+                }
+            }
+
+            $i++;
+        }
+        $total = $capacidad - $max;
     }
     else{
         $pasajes = contadorPasajes($vuelo['id'], $cabina);
@@ -63,8 +88,10 @@ if (isset($_POST['submit'])) {
 
     if ($pasaje < $total) {
         $codigo = bin2hex(random_bytes(5));
-        insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
-
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
+        if($tipo_vuelo == "Entre destino"){
+            insertPasajeTrayecto($trayectoId, $pasajeId);
+        }
         if ($pasaje > 1) {
             echo "
                 <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
@@ -81,6 +108,7 @@ if (isset($_POST['submit'])) {
                       <input type='hidden' name='codigo' value='$codigo'>
                       <input type='hidden' name='cabina' value='$cabina'>
                       <input type='hidden' name='tipo_vuelo' value='$tipo_vuelo'>
+                      <input type='hidden' name='trayectoId' value='$trayectoId'>
                       ";
                         for($i=0;$i<$pasaje-1;$i++){
                             echo "
@@ -103,6 +131,9 @@ if (isset($_POST['submit'])) {
             <script>
                 $('#myModal').modal('show');
             </script>";
+        }
+        else{
+            header('Location: /pasaje/exito');
         }
     } else {
         $error = "No es posible comprar esa cantidad. La cantidad máxima es " . $total;
@@ -144,8 +175,7 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="form-group col-md-2">
             <label for="inputPasaje">Pasaje</label>
-            <input type="number" class="form-control" id="pasaje" name="pasaje" max=""
-                   value="" required>
+            <input type="number" class="form-control" id="pasaje" name="pasaje" required>
         </div>
     </div>
     <?php

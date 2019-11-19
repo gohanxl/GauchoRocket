@@ -7,5 +7,5 @@
 <script type="text/javascript">
     window.setTimeout(function() {
         window.location.href='/';
-    }, 5000);
+    }, 8000);
 </script>
