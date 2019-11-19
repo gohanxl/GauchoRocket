@@ -18,16 +18,19 @@ function vuelo_buscar()
     $locaciones = getLocacion();
     $origen = "";
     $destino = "";
+    $tipo_vuelo_desc = "";
     if (isset($_GET['origen'])) {
         $origen = str_replace('+', ' ', $_GET['origen']);
     }
     if (isset($_GET['destino'])) {
         $destino = str_replace('+', ' ', $_GET['destino']);
     }
+    if (isset($_GET['tipo_vuelo'])) {
+        $tipo_vuelo_desc = str_replace('+', ' ', $_GET['tipo_vuelo']);
+    }
 
-
-    if ((searchVuelos(getLocacionId($origen), getLocacionId($destino), $_GET['partida']))) {
-        $vuelos = searchVuelos(getLocacionId($origen), getLocacionId($destino), $_GET['partida']);
+    if ((searchVuelos(getLocacionId($origen), getLocacionId($destino), $_GET['partida'], getTipoVueloIdByDescripcion($tipo_vuelo_desc)))) {
+        $vuelos = searchVuelos(getLocacionId($origen), getLocacionId($destino), $_GET['partida'], getTipoVueloIdByDescripcion($tipo_vuelo_desc));
 
         /*if (isset($_GET['destino'])) {
             if ((searchVuelos(getLocacionId($destino), getLocacionId($origen), $_GET['vuelta']))) {
@@ -36,7 +39,7 @@ function vuelo_buscar()
         }*/
 
     } else
-        if (!isset($vuelos) && !isset($vueltas)) {
+        if (!isset($vuelos) || !isset($vueltas)) {
             $vuelos = getVuelos();
             $message = "No se encontraron vuelos.";
         }

@@ -64,13 +64,21 @@ function searchVueloId($id){
     return reset($resultArray);
 }
 
-function searchVuelos($origen, $destino, $partida)
+function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
 {
     $criterio = "";
     $conn = getConexion();
     $query = "SELECT * FROM vuelo";
     if (isset($origen)) {
         $criterio = $query . " WHERE  origen = $origen";
+    }
+
+    if (isset($tipo_vuelo)) {
+        if (empty($criterio)) {
+            $criterio = $query . " WHERE tipo_vuelo = $tipo_vuelo";
+        } else if (!empty($partida)) {
+            $criterio = $criterio . " AND tipo_vuelo = $tipo_vuelo";
+        }
     }
     if (isset($destino)) {
         if (empty($criterio)) {
@@ -119,6 +127,14 @@ function getDescriptionTipoVuelo($id){
     $query = "SELECT * FROM tipo_vuelo WHERE id = $id;";
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['descripcion'];
+}
+
+function getTipoVueloIdByDescripcion($descripcion)
+{
+    $conn = getConexion();
+    $query = "SELECT * FROM tipo_vuelo WHERE descripcion LIKE '$descripcion';";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['id'];
 }
 
 function getDescriptionTipoVueloModelo($id){
@@ -173,8 +189,6 @@ function getDescripcionCircuitoById($id){
 function getTrayectosByDescripcion($trayecto){
     return getTrayectos($trayecto);
 }
-
-
 
 ?>
 
