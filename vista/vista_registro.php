@@ -64,8 +64,7 @@ if(isset($_POST['registro'])){
     }
     ?>
     <label for="inputUser" class="sr-only">Usuario</label>
-    <input type='text' id='inputUser' class='form-control' placeholder='Usuario' name='user' value=''
-           required autofocus>
+    <input type='text' id='inputUser' class='form-control' placeholder='Usuario' name='user' value='' required autofocus>
 
     <input type='password' id='\"inputPassword\"' class='form-control' placeholder='Contraseña'  name='password'   required autofocus>
 

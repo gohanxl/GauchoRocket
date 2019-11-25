@@ -19,6 +19,7 @@ function getVuelos()
             $element['partida'] = $row['partida'];
             $element['hora'] = $row['hora'];
             $element['tipo_vuelo'] = $row['tipo_vuelo'];
+            $element['circuito'] = $row['circuito'];
             $resultArray[] = $element;
         }
     }
@@ -58,6 +59,7 @@ function searchVueloId($id){
             $element['partida'] = $row['partida'];
             $element['hora'] = $row['hora'];
             $element['tipo_vuelo'] = $row['tipo_vuelo'];
+            $element['circuito'] = $row['circuito'];
             $resultArray[] = $element;
         }
     }
@@ -108,6 +110,7 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
             $element['partida'] = $row['partida'];
             $element['hora'] = $row['hora'];
             $element['tipo_vuelo'] = $row['tipo_vuelo'];
+            $element['circuito'] = $row['circuito'];
             $resultArray[] = $element;
         }
     }
@@ -163,20 +166,6 @@ function getOrigenByVueloId($id){
     $query = "SELECT * FROM vuelo WHERE id = $id;";
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['origen'];
-}
-
-function getTrayecto($vuelo_id){
-    $conn = getConexion();
-    $query = "SELECT * FROM trayecto WHERE vuelo_id = $vuelo_id;";
-    $result = execute_query($conn, $query);
-    return mysqli_fetch_assoc($result)['id'];
-}
-
-function getCircuito($vuelo_id){
-    $conn = getConexion();
-    $query = "SELECT * FROM trayecto WHERE vuelo_id = $vuelo_id;";
-    $result = execute_query($conn, $query);
-    return mysqli_fetch_assoc($result)['circuito'];
 }
 
 function getDescripcionCircuitoById($id){

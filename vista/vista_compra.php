@@ -10,9 +10,10 @@ if (isset($_POST['vuelo'])) {
 
 if(isset($_POST['reserva'])){
 
+    $origenId = $_POST['origenId'];
+    $destinoId = $_POST['destinoId'];
     $vueloId = $_POST['vueloReserva'];
     $tipo_vuelo = $_POST['tipo_vuelo'];
-    $trayectoId = $_POST['trayectoId'];
     $codigo = $_POST['codigo'];
     $cabina = $_POST['cabina'];
     $pasaje = $_POST['pasaje']-1;
@@ -30,9 +31,9 @@ if(isset($_POST['reserva'])){
     for($i=0;$i<$pasaje;$i++){
         $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
         $cliente = getClienteId($usuarioId);
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId);
         if($tipo_vuelo == "Entre destino"){
-            insertPasajeTrayecto($trayectoId, $pasajeId);
+            insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
     }
 
@@ -41,9 +42,14 @@ if(isset($_POST['reserva'])){
 
 if (isset($_POST['submit'])) {
 
+    $origenId = $_POST['origen'];
+    $destinoId = $_POST['destino'];
+    $origen = getLocacionDescripcion($origenId);
+    $destino = getLocacionDescripcion($destinoId);
     $cliente = getClienteId($_SESSION['user']);
     $cabina = $_POST['cabina'];
     $vueloId = $_POST['vuelo'];
+    $circuitoId = $vuelo['circuito'];
     $vuelo = searchVueloId($vueloId);
     $modelo = getNaveModelo($vuelo['nave']);
     $tipo_vuelo = getDescriptionTipoVuelo($vuelo['tipo_vuelo']);
@@ -52,13 +58,7 @@ if (isset($_POST['submit'])) {
     $capacidad = getCabinaCapacidad($modelo, $cabina);
 
     if ($tipo_vuelo == "Entre destino"){
-        $origen = getLocacionDescripcion(getOrigenByVueloId($vueloId));
-        $origenId = getLocacionId($origen);
-        $destino = getLocacionDescripcion(getDestinoByVueloId($vueloId));
-        $trayecto = getDescripcionCircuitoById(getCircuito($vueloId));
-        $circuitoId = getCircuito($vueloId);
-        $trayectoId = getTrayecto($vueloId);
-        $circuito = getTrayectosByDescripcion($trayecto);
+        $circuito = getTrayectos(getDescripcionCircuitoById($circuitoId));
         $flag = false;
         $i = 0;
         $max = 0;
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
         //for que recorra array y cuente el maximo de pasajes en ese trayecto( buscar en tabla trayecto por vuelo id origen comparado con origen del array
         //contador por trayecto_pasaje - insert en esa tabla cada vez que se cree un pasaje entre destino.
         while($destino != $circuito[$i]){
-            if($circuito[$i] == $origen){
+            if($circuito[$i] == $origenId){
                 $flag = true;
             }
 
@@ -76,7 +76,6 @@ if (isset($_POST['submit'])) {
                     $max = $pasajes;
                 }
             }
-
             $i++;
         }
         $total = $capacidad - $max;
@@ -88,9 +87,9 @@ if (isset($_POST['submit'])) {
 
     if ($pasaje < $total) {
         $codigo = bin2hex(random_bytes(5));
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId);
         if($tipo_vuelo == "Entre destino"){
-            insertPasajeTrayecto($trayectoId, $pasajeId);
+            insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
         if ($pasaje > 1) {
             echo "
@@ -105,10 +104,11 @@ if (isset($_POST['submit'])) {
                       <form action='#' method='POST'>
                       <input type='hidden' name='pasaje' value='$pasaje'>
                       <input type='hidden' name='vueloReserva' value='$vueloId'>
+                      <input type='hidden' name='origenId' value='$origenId'>
+                      <input type='hidden' name='destinoId' value='$destinoId'>
                       <input type='hidden' name='codigo' value='$codigo'>
                       <input type='hidden' name='cabina' value='$cabina'>
                       <input type='hidden' name='tipo_vuelo' value='$tipo_vuelo'>
-                      <input type='hidden' name='trayectoId' value='$trayectoId'>
                       ";
                         for($i=0;$i<$pasaje-1;$i++){
                             echo "
@@ -143,18 +143,46 @@ if (isset($_POST['submit'])) {
 
 ?>
 <form action="" method="POST" enctype="application/x-www-form-urlencoded">
+
     <div class="form-row">
         <div class="form-group col-md-3">
             <label for="origen">Origen</label>
-            <input type="text" class="form-control" id="origen" name="origen"
-                   value="<?php echo getLocacionDescripcion($vuelo['origen']) ?>"
-                   disabled>
+            <?php
+            if(getDescriptionTipoVuelo($vuelo['tipo_vuelo']) == "Entre destino"){
+                echo "<select class='form-control' id='origen' name='origen' required>";
+                foreach (getTrayectos(getDescripcionCircuitoById($vuelo['circuito'])) as $trayecto) {
+                    echo "<option value=" . getLocacionId($trayecto) . ">" . $trayecto . "</option>";
+                };
+                echo "</select>";
+                      // si la cantidad de pasajes es valida, realizar insert en vuelo_pasaje con el id vuelo pasaje id creado escala
+                      // y el count de pasaje max lo sacamos del nuevo vuelo_pasaje
+                      // pasaje agergar origen destino
+            }
+            else{
+            echo "
+            <input type='text' class='form-control' id='origen' name='origen'
+                   value=" . getLocacionDescripcion($vuelo['origen']) . "
+                   disabled>";
+            }
+            ?>
         </div>
         <div class="form-group col-md-3">
             <label for="destino">Destino</label>
-            <input type="text" class="form-control" id="destino" name="destino"
-                   value="<?php echo getLocacionDescripcion($vuelo['destino']) ?>"
-                   disabled>
+            <?php
+            if(getDescriptionTipoVuelo($vuelo['tipo_vuelo']) == "Entre destino"){
+                echo "<select class='form-control' id='destino' name='destino' required>";
+                foreach (getTrayectos(getDescripcionCircuitoById($vuelo['circuito'])) as $trayecto) {
+                    echo "<option value=" . getLocacionId($trayecto) . ">" . $trayecto . "</option>";
+                };
+                echo "</select>";
+            }
+            else{
+            echo "
+            <input type='text' class='form-control' id='destino' name='destino'
+                   value=" . getLocacionDescripcion($vuelo['destino']) . "
+                   disabled>";
+            }
+            ?>
         </div>
         <div class="form-group col-md-2">
             <label for="partido">Partida</label>
