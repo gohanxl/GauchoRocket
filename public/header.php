@@ -36,7 +36,10 @@
                 echo "
                             <li class='nav-item active'>
                                 <a class='nav-link' href='/turno/alta'>Turnos</a>
-                            </li>                            
+                            </li>     
+                            <li class='nav-item active'>
+                                <a class='nav-link' href='/pasaje/lista'>Pasajes</a>
+                            </li>                         
                         </ul>
                     <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
                     </div>";

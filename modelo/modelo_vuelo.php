@@ -175,8 +175,21 @@ function getDescripcionCircuitoById($id){
     return mysqli_fetch_assoc($result)['descripcion'];
 }
 
+function getPartidaByVueloId($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM vuelo WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['partida'];
+}
+
 function getTrayectosByDescripcion($trayecto){
     return getTrayectos($trayecto);
+}
+
+function compraPasaje($id, $date){
+    $conn = getConexion();
+    $query = "UPDATE pasaje SET compra = true, fecha_compra='$date' WHERE id = $id;";
+    execute_query($conn, $query);
 }
 
 ?>

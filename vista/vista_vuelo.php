@@ -88,7 +88,7 @@ if (isset($message)) {
                 <div class='span6 mr-1'>
                     <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
                         <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
-                        <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>                   
+                        <button type='submit' class='btn btn-primary btn-sm name='comprar'>Reservar</button>                   
                     </form>          
                 </div>
             </div>

@@ -63,19 +63,19 @@ if(isset($_POST['registro'])){
         echo "<label class='text-danger'>" . $error . "</label>";
     }
     ?>
-    <label for="inputUser" class="sr-only">Usuario</label>
     <input type='text' id='inputUser' class='form-control' placeholder='Usuario' name='user' value='' required autofocus>
 
-    <input type='password' id='\"inputPassword\"' class='form-control' placeholder='Contraseña'  name='password'   required autofocus>
+    <input type='password' id='inputPassword' class='form-control mt-3' placeholder='Contraseña'  name='password' required>
 
-    <input type='email' id='inputEmail' class='form-control' placeholder='E-mail'  name='email'   required autofocus>
+    <input type='email' id='inputEmail' class='form-control' placeholder='E-mail'  name='email'   required>
 
-    <input type='text' id='inputTelefono' class='form-control' placeholder='Telefono'  name='telefono'   required autofocus>
+    <input type='text' id='inputTelefono' class='form-control mt-3' placeholder='Telefono'  name='telefono'   required>
 
-    <input type='date' id='inputDate' class='form-control' placeholder='Nacimiento'  name='nacimiento'   required autofocus>
+    <input type='date' id='inputDate' class='form-control mt-3' placeholder='Nacimiento'  name='nacimiento'   required>
 
-    <input class="btn btn-lg btn-primary btn-block" type="submit" name="registro" value="Registrarse"
+    <input class="btn btn-primary btn-block mt-2" type="submit" name="registro" value="Registrarse"
            style="background-color: darkslateblue"/>
+    <button class="btn btn-danger btn-block mt-2" onclick="window.location='/'">Cancelar</button>
 </form>
 </body>
 </html>

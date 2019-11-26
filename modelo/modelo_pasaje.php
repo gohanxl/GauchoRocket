@@ -36,3 +36,26 @@ function insertPasajeTrayecto($trayecto_id, $pasaje_id, $origen){
     $query = "INSERT INTO vuelo_pasaje(vuelo_id, pasaje_id, escala) VALUES ($trayecto_id, $pasaje_id, $origen);";
     execute_query($conn, $query);
 }
+
+function getPasajesByCliente($cliente){
+    $conn = getConexion();
+    $query = "SELECT * FROM pasaje WHERE cliente = $cliente;";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['codigo'] = $row['codigo'];
+            $element['vuelo'] = $row['vuelo'];
+            $element['cliente'] = $row['cliente'];
+            $element['origen'] = $row['origen'];
+            $element['destino'] = $row['destino'];
+            $element['reserva'] = $row['reserva'];
+            $element['compra'] = $row['compra'];
+            $element['checkin'] = $row['checkin'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}

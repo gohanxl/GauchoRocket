@@ -14,7 +14,20 @@ function pasaje_reserva()
 
 function pasaje_alta(){
 
-    include("vista/vista_reserva.php");
+    include("vista/vista_confirmar_compra.php");
+}
+
+function pasaje_lista(){
+    $pasajes = getPasajesByCliente(getClienteId($_SESSION['user']));
+    include("vista/vista_pasajes.php");
+}
+
+function pasaje_compra(){
+    include("vista/vista_confirmar_compra.php");
+}
+
+function pasaje_confirmado(){
+    include("vista/vista_exito_compra.php");
 }
 
 function pasaje_exito(){
