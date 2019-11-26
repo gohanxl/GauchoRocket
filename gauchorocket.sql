@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2019 a las 02:00:01
+-- Tiempo de generación: 26-11-2019 a las 04:50:25
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -299,9 +299,9 @@ CREATE TABLE `pasaje` (
 --
 
 INSERT INTO `pasaje` (`id`, `vuelo`, `cliente`, `reserva`, `fecha_reserva`, `checkin`, `fecha_checkin`, `compra`, `fecha_compra`, `codigo`, `precio`, `cabina`, `origen`, `destino`) VALUES
-(1, 2, 4, 1, '2019-11-12 02:51:40', NULL, NULL, NULL, NULL, '15b56bce6e', NULL, 2, 0, 0),
-(2, 2, 4, 1, '2019-11-12 03:41:35', NULL, NULL, NULL, NULL, 'a994b7ac4c', NULL, 1, 0, 0),
-(3, 2, 4, 1, '2019-11-12 03:41:53', NULL, NULL, NULL, NULL, '12fa3768fb', NULL, 2, 0, 0),
+(1, 2, 4, 1, '2019-11-12 02:51:40', NULL, NULL, 1, '2019-11-26 04:37:47', '15b56bce6e', NULL, 2, 0, 0),
+(2, 2, 4, 1, '2019-11-12 03:41:35', NULL, NULL, 1, '2019-11-26 04:42:47', 'a994b7ac4c', NULL, 1, 0, 0),
+(3, 2, 4, 1, '2019-11-12 03:41:53', NULL, NULL, 1, '2019-11-26 04:44:21', '12fa3768fb', NULL, 2, 0, 0),
 (4, 3, 4, 1, '2019-11-12 03:44:02', NULL, NULL, NULL, NULL, 'fa80fb3576', NULL, 1, 0, 0),
 (5, 3, 4, 1, '2019-11-12 03:46:44', NULL, NULL, NULL, NULL, '00d4839ea4', NULL, 2, 0, 0),
 (6, 3, 4, 1, '2019-11-12 03:46:49', NULL, NULL, NULL, NULL, '6f05c47818', NULL, 2, 0, 0),
@@ -368,7 +368,11 @@ INSERT INTO `pasaje` (`id`, `vuelo`, `cliente`, `reserva`, `fecha_reserva`, `che
 (68, 2, 4, 1, '2019-11-25 01:45:37', NULL, NULL, NULL, NULL, '23df552316', NULL, 1, 1, 4),
 (69, 2, 4, 1, '2019-11-25 01:45:46', NULL, NULL, NULL, NULL, '23e9617398', NULL, 1, 8, 8),
 (70, 2, 4, 1, '2019-11-25 01:45:53', NULL, NULL, NULL, NULL, 'fe138bb0bf', NULL, 1, 1, 2),
-(71, 2, 4, 1, '2019-11-25 01:46:02', NULL, NULL, NULL, NULL, '7554a9136b', NULL, 1, 1, 4);
+(71, 2, 4, 1, '2019-11-25 01:46:02', NULL, NULL, NULL, NULL, '7554a9136b', NULL, 1, 1, 4),
+(72, 2, 4, 1, '2019-11-26 01:08:03', NULL, NULL, NULL, NULL, 'b1e4919552', NULL, 1, 8, 8),
+(73, 2, 4, 1, '2019-11-26 01:21:28', NULL, NULL, NULL, NULL, '09cd1d3896', NULL, 1, 8, 8),
+(74, 3, 4, 1, '2019-11-26 01:22:06', NULL, NULL, NULL, NULL, 'f428b88a9a', NULL, 1, 9, 2),
+(75, 3, 4, 1, '2019-11-26 01:23:57', NULL, NULL, 1, NULL, 'f4e05ce25d', NULL, 1, 9, 2);
 
 -- --------------------------------------------------------
 
@@ -577,7 +581,9 @@ INSERT INTO `vuelo_pasaje` (`id`, `vuelo_id`, `pasaje_id`, `escala`) VALUES
 (33, 2, 68, 1),
 (34, 2, 69, 8),
 (35, 2, 70, 1),
-(36, 2, 71, 1);
+(36, 2, 71, 1),
+(37, 2, 72, 8),
+(38, 2, 73, 8);
 
 --
 -- Índices para tablas volcadas
@@ -764,7 +770,7 @@ ALTER TABLE `nave`
 -- AUTO_INCREMENT de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
@@ -812,7 +818,7 @@ ALTER TABLE `vuelo`
 -- AUTO_INCREMENT de la tabla `vuelo_pasaje`
 --
 ALTER TABLE `vuelo_pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Restricciones para tablas volcadas
