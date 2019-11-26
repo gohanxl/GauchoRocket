@@ -15,7 +15,7 @@
 
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
-            <h2 class="display-4">Compra de pasaje</h2>
+            <h2 class="display-4">Pago de pasaje</h2>
         </div>
     </div>
     <!-- End -->

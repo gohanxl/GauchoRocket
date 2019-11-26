@@ -32,7 +32,7 @@ function getTipoVuelo()
     $query = "SELECT * FROM tipo_vuelo ORDER BY descripcion;";
     $result = execute_query($conn, $query);
     $resultArray = Array();
-    if (mysqli_fetch_assoc($result) > 0){
+    if (mysqli_num_rows($result) > 0){
         while ($row = mysqli_fetch_assoc($result)) {
             $element = Array();
             $element['id'] = $row['id'];

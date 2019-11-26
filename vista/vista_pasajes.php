@@ -33,7 +33,7 @@
         echo"
         <form class='form-inline mb-2' action='/pasaje/compra' method='POST' enctype='multipart/form-data'>
             <input type='hidden' name='pasaje' value=" . $pasaje['id'] . ">
-            <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>                   
+            <button type='submit' class='btn btn-primary btn-sm name='comprar'>Pagar</button>                   
         </form>
         ";
         }
