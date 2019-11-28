@@ -5,7 +5,7 @@ include_once("helpers/trayectos.php");
 function getVuelos()
 {
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo ORDER BY partida;";
+    $query = "SELECT * FROM vuelo WHERE partida > CURDATE() ORDER BY partida;";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {
@@ -45,7 +45,7 @@ function getTipoVuelo()
 
 function searchVueloId($id){
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE id = $id";
+    $query = "SELECT * FROM vuelo WHERE id = $id;";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {
@@ -70,7 +70,7 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
 {
     $criterio = "";
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo";
+    $query = "SELECT * FROM vuelo WHERE partida > CURDATE();";
     if (isset($origen)) {
         $criterio = $query . " WHERE  origen = $origen";
     }

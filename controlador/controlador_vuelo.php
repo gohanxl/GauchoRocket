@@ -2,6 +2,7 @@
 include_once("modelo/modelo_nave.php");
 include_once("modelo/modelo_vuelo.php");
 include_once("modelo/modelo_locacion.php");
+include_once("modelo/modelo_cliente.php");
 
 function vuelo_index()
 {

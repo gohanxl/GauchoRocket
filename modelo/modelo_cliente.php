@@ -29,6 +29,13 @@ function registrarCliente($usuario){
     execute_query($conn, $query);
 }
 
+function getTipoCliente($usuario_id){
+    $conn = getConexion();
+    $query = "SELECT * FROM client WHERE id = $usuario_id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['tipo_cliente'];
+}
+
 function getUsuarioIdByEmail($email){
     $conn = getConexion();
     $query = "SELECT * FROM usuario WHERE email = '$email';";

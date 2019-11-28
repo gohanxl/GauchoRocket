@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2019 a las 04:50:25
+-- Tiempo de generación: 28-11-2019 a las 04:23:37
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -105,11 +105,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nombre`, `tipo_cliente`, `usuario`, `telefono`, `foto`, `fecha_nacimiento`) VALUES
-(4, 'Root', 3, 1, '11111111', '', '1994-08-27'),
-(5, NULL, NULL, 2, NULL, NULL, NULL),
-(6, NULL, NULL, 3, NULL, NULL, NULL),
-(7, NULL, NULL, 4, NULL, NULL, NULL),
-(8, NULL, NULL, 5, NULL, NULL, NULL);
+(9, 'Root', 1, 6, '1111-1111', NULL, '1994-08-27'),
+(10, 'isaias', 3, 7, '1130394046', ' ', '1994-08-27'),
+(11, NULL, NULL, 8, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -291,88 +289,42 @@ CREATE TABLE `pasaje` (
   `precio` decimal(10,0) DEFAULT NULL,
   `cabina` int(11) NOT NULL,
   `origen` int(11) NOT NULL,
-  `destino` int(11) NOT NULL
+  `destino` int(11) NOT NULL,
+  `espera` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `pasaje`
 --
 
-INSERT INTO `pasaje` (`id`, `vuelo`, `cliente`, `reserva`, `fecha_reserva`, `checkin`, `fecha_checkin`, `compra`, `fecha_compra`, `codigo`, `precio`, `cabina`, `origen`, `destino`) VALUES
-(1, 2, 4, 1, '2019-11-12 02:51:40', NULL, NULL, 1, '2019-11-26 04:37:47', '15b56bce6e', NULL, 2, 0, 0),
-(2, 2, 4, 1, '2019-11-12 03:41:35', NULL, NULL, 1, '2019-11-26 04:42:47', 'a994b7ac4c', NULL, 1, 0, 0),
-(3, 2, 4, 1, '2019-11-12 03:41:53', NULL, NULL, 1, '2019-11-26 04:44:21', '12fa3768fb', NULL, 2, 0, 0),
-(4, 3, 4, 1, '2019-11-12 03:44:02', NULL, NULL, NULL, NULL, 'fa80fb3576', NULL, 1, 0, 0),
-(5, 3, 4, 1, '2019-11-12 03:46:44', NULL, NULL, NULL, NULL, '00d4839ea4', NULL, 2, 0, 0),
-(6, 3, 4, 1, '2019-11-12 03:46:49', NULL, NULL, NULL, NULL, '6f05c47818', NULL, 2, 0, 0),
-(7, 3, 4, 1, '2019-11-12 03:47:01', NULL, NULL, NULL, NULL, '0a8b318322', NULL, 2, 0, 0),
-(8, 3, 4, 1, '2019-11-12 03:47:24', NULL, NULL, NULL, NULL, '4e5a33be72', NULL, 1, 0, 0),
-(9, 2, 4, 1, '2019-11-12 03:52:42', NULL, NULL, NULL, NULL, '83c90b1ee6', NULL, 3, 0, 0),
-(10, 2, 4, 1, '2019-11-12 03:52:57', NULL, NULL, NULL, NULL, '414283a370', NULL, 1, 0, 0),
-(11, 2, 4, 1, '2019-11-12 03:55:04', NULL, NULL, NULL, NULL, '287ec6d8a8', NULL, 3, 0, 0),
-(12, 2, 4, 1, '2019-11-12 03:55:13', NULL, NULL, NULL, NULL, '65ca809e2e', NULL, 2, 0, 0),
-(13, 3, 4, 1, '2019-11-12 03:57:26', NULL, NULL, NULL, NULL, '50c0793dd2', NULL, 2, 0, 0),
-(14, 3, 4, 1, '2019-11-12 04:21:31', NULL, NULL, NULL, NULL, '88e4ec1d11', NULL, 2, 0, 0),
-(15, 3, 4, 1, '2019-11-12 04:21:53', NULL, NULL, NULL, NULL, 'd230a65c09', NULL, 2, 0, 0),
-(16, 2, 4, 1, '2019-11-12 04:22:01', NULL, NULL, NULL, NULL, 'e49dcd1526', NULL, 2, 0, 0),
-(17, 2, 4, 1, '2019-11-12 04:22:43', NULL, NULL, NULL, NULL, '3ff744edfa', NULL, 2, 0, 0),
-(18, 5, 4, 1, '2019-11-12 04:22:49', NULL, NULL, NULL, NULL, '2bcb137d82', NULL, 2, 0, 0),
-(19, 5, 4, 1, '2019-11-12 04:24:14', NULL, NULL, NULL, NULL, 'e09fec9d1f', NULL, 2, 0, 0),
-(20, 5, 4, 1, '2019-11-12 04:25:15', NULL, NULL, NULL, NULL, '9b87431560', NULL, 2, 0, 0),
-(21, 5, 4, 1, '2019-11-12 04:26:00', NULL, NULL, NULL, NULL, '37f783a63c', NULL, 2, 0, 0),
-(22, 5, 4, 1, '2019-11-12 04:26:28', NULL, NULL, NULL, NULL, 'f2cb2ee0ca', NULL, 2, 0, 0),
-(23, 5, 4, 1, '2019-11-12 04:26:35', NULL, NULL, NULL, NULL, '8f6f54e124', NULL, 1, 0, 0),
-(24, 6, 4, 1, '2019-11-12 04:27:33', NULL, NULL, NULL, NULL, '0eec182903', NULL, 2, 0, 0),
-(25, 3, 4, 1, '2019-11-12 04:28:18', NULL, NULL, NULL, NULL, 'ac596454c3', NULL, 2, 0, 0),
-(26, 3, 4, 1, '2019-11-12 04:29:04', NULL, NULL, NULL, NULL, '1481feeea3', NULL, 2, 0, 0),
-(27, 3, 4, 1, '2019-11-12 04:29:10', NULL, NULL, NULL, NULL, '1489c65ab2', NULL, 2, 0, 0),
-(28, 2, 5, 1, '2019-11-13 00:39:07', NULL, NULL, NULL, NULL, '2d9b8f0b00', NULL, 3, 0, 0),
-(29, 2, 6, 1, '2019-11-13 00:39:43', NULL, NULL, NULL, NULL, '19ae5cdfe7', NULL, 2, 0, 0),
-(30, 2, 5, 1, '2019-11-13 00:50:55', NULL, NULL, NULL, NULL, '406a81b95c', NULL, 3, 0, 0),
-(31, 2, 5, 1, '2019-11-13 00:51:46', NULL, NULL, NULL, NULL, '1c5291d37d', NULL, 2, 0, 0),
-(32, 2, 6, 1, '2019-11-13 00:52:32', NULL, NULL, NULL, NULL, '21a38d933f', NULL, 1, 0, 0),
-(33, 2, 5, 1, '2019-11-13 00:54:18', NULL, NULL, NULL, NULL, '2831859e63', NULL, 2, 0, 0),
-(34, 2, 5, 1, '2019-11-13 00:55:45', NULL, NULL, NULL, NULL, '62bc14af91', NULL, 2, 0, 0),
-(35, 2, 5, 1, '2019-11-19 01:10:30', NULL, NULL, NULL, NULL, 'dc94a7ad6d', NULL, 1, 0, 0),
-(36, 2, 5, 1, '2019-11-19 01:11:21', NULL, NULL, NULL, NULL, '2949d18693', NULL, 1, 0, 0),
-(37, 3, 6, 1, '2019-11-19 01:15:03', NULL, NULL, NULL, NULL, 'd8775b97c3', NULL, 1, 0, 0),
-(39, 2, 4, 1, '2019-11-19 01:24:51', NULL, NULL, NULL, NULL, '857ad589d4', NULL, 2, 0, 0),
-(40, 2, 4, 1, '2019-11-19 01:25:05', NULL, NULL, NULL, NULL, '9c15e7ef6b', NULL, 1, 0, 0),
-(41, 2, 4, 1, '2019-11-19 01:25:33', NULL, NULL, NULL, NULL, '4a8fc99497', NULL, 1, 0, 0),
-(42, 2, 4, 1, '2019-11-19 01:26:31', NULL, NULL, NULL, NULL, 'afeb77e939', NULL, 1, 0, 0),
-(43, 2, 4, 1, '2019-11-19 02:48:07', NULL, NULL, NULL, NULL, 'a622675810', NULL, 1, 0, 0),
-(44, 2, 4, 1, '2019-11-19 02:48:58', NULL, NULL, NULL, NULL, 'd319f2705b', NULL, 2, 0, 0),
-(45, 2, 6, 1, '2019-11-19 02:49:00', NULL, NULL, NULL, NULL, 'd319f2705b', NULL, 2, 0, 0),
-(46, 2, 4, 1, '2019-11-19 03:24:29', NULL, NULL, NULL, NULL, '88d9ca6e60', NULL, 1, 0, 0),
-(47, 2, 4, 1, '2019-11-19 03:24:57', NULL, NULL, NULL, NULL, 'a6cf3ebf9a', NULL, 1, 0, 0),
-(48, 2, 4, 1, '2019-11-19 03:25:41', NULL, NULL, NULL, NULL, 'ce8001659b', NULL, 1, 0, 0),
-(49, 2, 4, 1, '2019-11-19 03:28:36', NULL, NULL, NULL, NULL, 'dbb570bb3a', NULL, 1, 0, 0),
-(50, 2, 4, 1, '2019-11-19 03:28:40', NULL, NULL, NULL, NULL, '6f52879721', NULL, 2, 0, 0),
-(51, 2, 4, 1, '2019-11-19 03:28:44', NULL, NULL, NULL, NULL, 'aadf89d016', NULL, 3, 0, 0),
-(52, 2, 4, 1, '2019-11-19 03:28:50', NULL, NULL, NULL, NULL, '2b00300f32', NULL, 3, 0, 0),
-(53, 2, 4, 1, '2019-11-19 03:29:03', NULL, NULL, NULL, NULL, '0ed589efc3', NULL, 1, 0, 0),
-(54, 2, 4, 1, '2019-11-19 03:29:06', NULL, NULL, NULL, NULL, '29bcd6d415', NULL, 2, 0, 0),
-(55, 2, 4, 1, '2019-11-19 03:29:10', NULL, NULL, NULL, NULL, 'a26c1b8e12', NULL, 3, 0, 0),
-(56, 2, 4, 1, '2019-11-25 01:39:15', NULL, NULL, NULL, NULL, 'c923f980dc', NULL, 1, 8, 10),
-(57, 2, 4, 1, '2019-11-25 01:41:03', NULL, NULL, NULL, NULL, '85b28e1de9', NULL, 2, 8, 8),
-(58, 2, 5, 1, '2019-11-25 01:41:05', NULL, NULL, NULL, NULL, '85b28e1de9', NULL, 2, 8, 8),
-(59, 2, 4, 1, '2019-11-25 01:41:59', NULL, NULL, NULL, NULL, '0d17775b24', NULL, 2, 1, 4),
-(60, 2, 5, 1, '2019-11-25 01:42:05', NULL, NULL, NULL, NULL, '0d17775b24', NULL, 2, 1, 4),
-(61, 2, 8, 1, '2019-11-25 01:42:05', NULL, NULL, NULL, NULL, '0d17775b24', NULL, 2, 1, 4),
-(62, 2, 4, 1, '2019-11-25 01:44:25', NULL, NULL, NULL, NULL, 'f97cac1a9d', NULL, 1, 1, 4),
-(63, 2, 4, 1, '2019-11-25 01:44:36', NULL, NULL, NULL, NULL, '9ce25bb5ac', NULL, 1, 8, 8),
-(64, 2, 4, 1, '2019-11-25 01:44:49', NULL, NULL, NULL, NULL, '1e2b3afd4c', NULL, 1, 1, 4),
-(65, 2, 4, 1, '2019-11-25 01:45:03', NULL, NULL, NULL, NULL, '01b8b625f5', NULL, 1, 1, 4),
-(66, 2, 4, 1, '2019-11-25 01:45:13', NULL, NULL, NULL, NULL, '83bd067b94', NULL, 1, 1, 4),
-(67, 2, 4, 1, '2019-11-25 01:45:27', NULL, NULL, NULL, NULL, 'ebbdf6f6b2', NULL, 1, 8, 8),
-(68, 2, 4, 1, '2019-11-25 01:45:37', NULL, NULL, NULL, NULL, '23df552316', NULL, 1, 1, 4),
-(69, 2, 4, 1, '2019-11-25 01:45:46', NULL, NULL, NULL, NULL, '23e9617398', NULL, 1, 8, 8),
-(70, 2, 4, 1, '2019-11-25 01:45:53', NULL, NULL, NULL, NULL, 'fe138bb0bf', NULL, 1, 1, 2),
-(71, 2, 4, 1, '2019-11-25 01:46:02', NULL, NULL, NULL, NULL, '7554a9136b', NULL, 1, 1, 4),
-(72, 2, 4, 1, '2019-11-26 01:08:03', NULL, NULL, NULL, NULL, 'b1e4919552', NULL, 1, 8, 8),
-(73, 2, 4, 1, '2019-11-26 01:21:28', NULL, NULL, NULL, NULL, '09cd1d3896', NULL, 1, 8, 8),
-(74, 3, 4, 1, '2019-11-26 01:22:06', NULL, NULL, NULL, NULL, 'f428b88a9a', NULL, 1, 9, 2),
-(75, 3, 4, 1, '2019-11-26 01:23:57', NULL, NULL, 1, NULL, 'f4e05ce25d', NULL, 1, 9, 2);
+INSERT INTO `pasaje` (`id`, `vuelo`, `cliente`, `reserva`, `fecha_reserva`, `checkin`, `fecha_checkin`, `compra`, `fecha_compra`, `codigo`, `precio`, `cabina`, `origen`, `destino`, `espera`) VALUES
+(78, 9, 10, 1, '2019-11-28 04:06:34', NULL, NULL, 1, '2019-11-28 04:11:43', '01f0e9b2a4', '100', 1, 8, 2, 0),
+(79, 9, 11, 1, '2019-11-28 04:06:36', NULL, NULL, NULL, NULL, '01f0e9b2a4', '100', 1, 8, 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `precio_vuelo_cabina`
+--
+
+CREATE TABLE `precio_vuelo_cabina` (
+  `id` int(11) NOT NULL,
+  `id_vuelo` int(11) UNSIGNED NOT NULL,
+  `id_cabina` int(11) NOT NULL,
+  `precio` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `precio_vuelo_cabina`
+--
+
+INSERT INTO `precio_vuelo_cabina` (`id`, `id_vuelo`, `id_cabina`, `precio`) VALUES
+(1, 9, 1, '100'),
+(2, 9, 2, '200'),
+(3, 9, 3, '300'),
+(4, 10, 1, '250'),
+(5, 10, 2, '350'),
+(6, 10, 3, '400');
 
 -- --------------------------------------------------------
 
@@ -479,18 +431,7 @@ CREATE TABLE `turno` (
 --
 
 INSERT INTO `turno` (`id`, `fecha`, `cliente`, `centro_medico`, `asistencia`) VALUES
-(5, '2019-11-30', 4, 1, NULL),
-(6, '2019-12-31', 4, 1, NULL),
-(7, '2019-10-22', 4, 1, NULL),
-(8, '2019-10-17', 4, 1, NULL),
-(9, '2019-10-11', 4, 1, NULL),
-(10, '2019-10-11', 4, 1, NULL),
-(11, '2019-10-11', 4, 1, NULL),
-(12, '2019-10-09', 4, 1, NULL),
-(13, '2019-10-10', 4, 1, NULL),
-(14, '2019-10-10', 4, 1, NULL),
-(15, '2019-10-03', 4, 1, NULL),
-(16, '2019-12-01', 4, 2, NULL);
+(19, '2019-11-27', 10, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -503,19 +444,18 @@ CREATE TABLE `usuario` (
   `user` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(1000) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `registrado` tinyint(1) DEFAULT 0
+  `registrado` tinyint(1) DEFAULT 0,
+  `administrador` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `user`, `password`, `email`, `registrado`) VALUES
-(1, 'root', '63a9f0ea7bb98050796b649e85481845', 'root@root.com', 1),
-(2, 'pepe@pepe.com', '924ade4907bb60d1efa87f826a4af324', 'pepe@pepe.com', 0),
-(3, 'lacquaniti@gmail.com', '093be985814bba353ab09c410a43b072', 'lacquaniti@gmail.com', 0),
-(4, '', 'c1b1ffbb86a0ad3bebfe654e91b67241', '', 0),
-(5, 'demian@gmail.com', 'e624e5f73a829eefa179fe97a824c0a0', 'demian@gmail.com', 0);
+INSERT INTO `usuario` (`id`, `user`, `password`, `email`, `registrado`, `administrador`) VALUES
+(6, 'root', '63a9f0ea7bb98050796b649e85481845', 'root@root.com', 1, 1),
+(7, 'isaias', 'dc72a933916ab141527fce2bbdfbd6cf', 'isaias@isaias.com', 0, 0),
+(8, 'lacquaniti@gmail.com', '48cf4aec1249edce67f378d1e51b0d33', 'lacquaniti@gmail.com', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -540,13 +480,9 @@ CREATE TABLE `vuelo` (
 --
 
 INSERT INTO `vuelo` (`id`, `origen`, `destino`, `duracion`, `nave`, `partida`, `hora`, `tipo_vuelo`, `circuito`) VALUES
-(2, 8, 2, 8, 1, '2019-11-01', '00:00:00', 10, 1),
-(3, 9, 2, 8, 4, '2019-11-01', '00:00:00', 9, NULL),
-(4, 2, 8, 8, 1, '2019-11-08', '00:00:00', 9, NULL),
-(5, 2, 9, 8, 4, '2019-11-08', '00:00:00', 9, NULL),
-(6, 8, 2, 8, 30, '2019-11-01', '13:00:00', 9, NULL),
-(7, 8, 2, 8, 3, '2019-11-01', '05:00:00', 9, NULL),
-(8, 2, 8, 8, 7, '2019-11-08', '06:00:00', 9, NULL);
+(9, 8, 4, 8, 1, '2020-01-01', '07:00:00', 10, 1),
+(10, 9, 2, 8, 28, '2020-01-01', '07:00:00', 9, NULL),
+(11, 8, 1, 8, 37, '2019-11-26', '18:00:00', 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -566,24 +502,8 @@ CREATE TABLE `vuelo_pasaje` (
 --
 
 INSERT INTO `vuelo_pasaje` (`id`, `vuelo_id`, `pasaje_id`, `escala`) VALUES
-(21, 2, 56, 8),
-(22, 2, 57, 8),
-(23, 2, 58, 8),
-(24, 2, 59, 1),
-(25, 2, 60, 1),
-(26, 2, 61, 1),
-(27, 2, 62, 1),
-(28, 2, 63, 8),
-(29, 2, 64, 1),
-(30, 2, 65, 1),
-(31, 2, 66, 1),
-(32, 2, 67, 8),
-(33, 2, 68, 1),
-(34, 2, 69, 8),
-(35, 2, 70, 1),
-(36, 2, 71, 1),
-(37, 2, 72, 8),
-(38, 2, 73, 8);
+(41, 9, 78, 8),
+(42, 9, 79, 8);
 
 --
 -- Índices para tablas volcadas
@@ -653,6 +573,14 @@ ALTER TABLE `pasaje`
   ADD KEY `cabina` (`cabina`),
   ADD KEY `origen` (`origen`),
   ADD KEY `destino` (`destino`);
+
+--
+-- Indices de la tabla `precio_vuelo_cabina`
+--
+ALTER TABLE `precio_vuelo_cabina`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_vuelo` (`id_vuelo`),
+  ADD KEY `id_cabina` (`id_cabina`);
 
 --
 -- Indices de la tabla `tipo_cliente`
@@ -740,7 +668,7 @@ ALTER TABLE `circuito`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `locacion`
@@ -770,7 +698,13 @@ ALTER TABLE `nave`
 -- AUTO_INCREMENT de la tabla `pasaje`
 --
 ALTER TABLE `pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT de la tabla `precio_vuelo_cabina`
+--
+ALTER TABLE `precio_vuelo_cabina`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cliente`
@@ -800,25 +734,25 @@ ALTER TABLE `tipo_vuelo_modelo`
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `vuelo`
 --
 ALTER TABLE `vuelo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `vuelo_pasaje`
 --
 ALTER TABLE `vuelo_pasaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Restricciones para tablas volcadas
@@ -859,6 +793,13 @@ ALTER TABLE `pasaje`
   ADD CONSTRAINT `pasaje_ibfk_3` FOREIGN KEY (`cabina`) REFERENCES `cabina` (`id`),
   ADD CONSTRAINT `pasaje_ibfk_4` FOREIGN KEY (`origen`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pasaje_ibfk_5` FOREIGN KEY (`destino`) REFERENCES `locacion` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `precio_vuelo_cabina`
+--
+ALTER TABLE `precio_vuelo_cabina`
+  ADD CONSTRAINT `precio_vuelo_cabina_ibfk_1` FOREIGN KEY (`id_vuelo`) REFERENCES `vuelo` (`id`),
+  ADD CONSTRAINT `precio_vuelo_cabina_ibfk_2` FOREIGN KEY (`id_cabina`) REFERENCES `cabina` (`id`);
 
 --
 -- Filtros para la tabla `tipo_cliente_vuelo`

@@ -19,7 +19,7 @@
         if($pasaje['checkin']){
             $estado = "Checkin";
         }elseif ($pasaje['compra']){
-            $estado = "Compra";
+            $estado = "Pago";
         }
         echo "
         <tr>
@@ -37,7 +37,7 @@
         </form>
         ";
         }
-        elseif($estado=="Compra"){
+        elseif($estado=="Pago"){
             echo "        
             <form class='form-inline mb-2' action='' method='POST' enctype='multipart/form-data'>
                 <input type='hidden' name='pasaje' value=" . $pasaje['id'] . ">

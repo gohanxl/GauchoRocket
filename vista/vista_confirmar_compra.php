@@ -1,7 +1,7 @@
 <?php
-
     if(isset($_POST['pasaje'])){
         $idPasaje = $_POST['pasaje'];
+        $precio = getPrecioPasaje($_POST['pasaje']);
     }
 
     if(isset($_POST['confirmar'])){
@@ -15,7 +15,8 @@
 
     <div class="row mb-4">
         <div class="col-lg-8 mx-auto text-center">
-            <h2 class="display-4">Pago de pasaje</h2>
+            <h2 class="display-4">PAGO DE PASAJE</h2>
+            <h3 class="display-6">Total a pagar $<?php echo $precio; ?></h3>
         </div>
     </div>
     <!-- End -->

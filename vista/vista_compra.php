@@ -31,7 +31,8 @@ if(isset($_POST['reserva'])){
     for($i=0;$i<$pasaje;$i++){
         $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
         $cliente = getClienteId($usuarioId);
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId);
+        $precio = getPrecio($vueloId, $cabina);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio);
         if($tipo_vuelo == "Entre destino"){
             insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
@@ -85,7 +86,8 @@ if (isset($_POST['submit'])) {
 
     if ($pasaje < $total) {
         $codigo = bin2hex(random_bytes(5));
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId);
+        $precio = getPrecio($vueloId, $cabina);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio);
         if($tipo_vuelo == "Entre destino"){
             insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }

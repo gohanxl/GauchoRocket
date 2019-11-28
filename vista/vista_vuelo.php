@@ -63,7 +63,7 @@ if (isset($message)) {
         <th scope="col">Partida</th>
         <th scope="col">Hora</th>
         <?php
-        if( isset($_SESSION['logged'])){
+        if( isset($_SESSION['logged']) and !is_null(getTipoCliente(getClienteId($_SESSION['user'])))){
         echo "<th scope='col'></th>";
         };
         ?>
@@ -81,7 +81,7 @@ if (isset($message)) {
             <td>" . getNaveDescripcion($vuelo['nave']) . "</td>
             <td>" . $vuelo['partida'] . "</td>
             <td>" . $vuelo['hora'] . "</td>";
-            if(isset($_SESSION['logged'])){
+            if(isset($_SESSION['logged']) and !is_null(getTipoCliente(getClienteId($_SESSION['user'])))){
                 echo "
             <td>                
             <div class='row'>
