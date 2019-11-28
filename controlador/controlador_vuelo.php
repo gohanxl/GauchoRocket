@@ -20,24 +20,21 @@ function vuelo_buscar()
     $origen = "";
     $destino = "";
     $tipo_vuelo_desc = "";
+    $partida = "";
+  
     if (isset($_GET['origen'])) {
         $origen = str_replace('+', ' ', $_GET['origen']);
     }
     if (isset($_GET['destino'])) {
         $destino = str_replace('+', ' ', $_GET['destino']);
     }
+
     if (isset($_GET['tipo_vuelo'])) {
         $tipo_vuelo_desc = str_replace('+', ' ', $_GET['tipo_vuelo']);
     }
 
     if ((searchVuelos(getLocacionId($origen), getLocacionId($destino), $_GET['partida'], getTipoVueloIdByDescripcion($tipo_vuelo_desc)))) {
         $vuelos = searchVuelos(getLocacionId($origen), getLocacionId($destino), $_GET['partida'], getTipoVueloIdByDescripcion($tipo_vuelo_desc));
-
-        /*if (isset($_GET['destino'])) {
-            if ((searchVuelos(getLocacionId($destino), getLocacionId($origen), $_GET['vuelta']))) {
-                $vueltas = searchVuelos(getLocacionId($destino), getLocacionId($origen), $_GET['vuelta']);
-            }
-        }*/
 
     } else
         if (!isset($vuelos) || !isset($vueltas)) {

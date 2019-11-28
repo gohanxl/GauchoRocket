@@ -1,7 +1,5 @@
 <?php
-
 include_once("helpers/conexion.php");
-
 function contadorPasajes($vuelo_id, $cabina_id)
 {
     $conn = getConexion();
@@ -9,7 +7,6 @@ function contadorPasajes($vuelo_id, $cabina_id)
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['count'];
 }
-
 function contadorPasajesTrayecto($origen, $circuito, $cabina)
 {
     $conn = getConexion();
@@ -21,7 +18,6 @@ function contadorPasajesTrayecto($origen, $circuito, $cabina)
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['count'];
 }
-
 function insertPasaje($vuelo_id, $cliente_id, $reserva_estado, $fecha_reserva, $codigo_reserva, $cabina_id, $origen, $destino, $precio)
 {
     $conn = getConexion();
@@ -30,13 +26,11 @@ function insertPasaje($vuelo_id, $cliente_id, $reserva_estado, $fecha_reserva, $
     $result = execute_query_return_id($conn, $query);
     return $result;
 }
-
 function insertPasajeTrayecto($trayecto_id, $pasaje_id, $origen){
     $conn = getConexion();
     $query = "INSERT INTO vuelo_pasaje(vuelo_id, pasaje_id, escala) VALUES ($trayecto_id, $pasaje_id, $origen);";
     execute_query($conn, $query);
 }
-
 function getPasajesByCliente($cliente){
     $conn = getConexion();
     $query = "SELECT * FROM pasaje WHERE cliente = $cliente;";
@@ -59,14 +53,12 @@ function getPasajesByCliente($cliente){
     }
     return $resultArray;
 }
-
 function getPrecio($vuelo_id, $cabina_id){
     $conn = getConexion();
     $query = "SELECT * FROM precio_vuelo_cabina WHERE id_vuelo = $vuelo_id AND id_cabina = $cabina_id;";
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['precio'];
 }
-
 function getPrecioPasaje($pasaje){
     $conn = getConexion();
     $query = "SELECT * FROM pasaje;";
