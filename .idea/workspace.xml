@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/vista_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlador/controlador_vuelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/controlador_vuelo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gauchorocket.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gauchorocket.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/modelo_vuelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_vuelo.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +40,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RaIqe8ALv4bAj3MUFUBEZJcyOa" />
@@ -99,7 +106,10 @@
       <workItem from="1570594339988" duration="89000" />
       <workItem from="1571088320531" duration="479000" />
       <workItem from="1571094217321" duration="4490000" />
-      <workItem from="1572374702977" duration="4463000" />
+      <workItem from="1572374702977" duration="6267000" />
+      <workItem from="1572876772966" duration="8448000" />
+      <workItem from="1573073969680" duration="2127000" />
+      <workItem from="1573416528231" duration="17937000" />
     </task>
     <servers />
   </component>
@@ -118,16 +128,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint suspend="NONE" type="php">
-          <url>file://$PROJECT_DIR$/controlador/controlador_vuelo.php</url>
-          <line>30</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
