@@ -26,6 +26,10 @@ function pasaje_compra(){
     include("vista/vista_confirmar_compra.php");
 }
 
+function pasaje_espera(){
+    include("vista/vista_espera.php");
+}
+
 function pasaje_confirmado(){
     include("vista/vista_exito_compra.php");
 }

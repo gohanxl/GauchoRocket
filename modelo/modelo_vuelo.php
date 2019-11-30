@@ -5,7 +5,7 @@ include_once("helpers/trayectos.php");
 function getVuelos()
 {
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE partida > CURDATE() ORDER BY partida;";
+    $query = "SELECT * FROM vuelo WHERE partida >= CURDATE() AND CONCAT(partida,' ',hora) > DATESUB(CURDATE(), INTERVAL 2 HOUR) ORDER BY partida;";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {
@@ -98,7 +98,11 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
     }
 
     if(empty($criterio)){
-        $criterio = $query;
+        $criterio = $query . " WHERE partida >= CURDATE()";
+
+    }
+    else{
+        $criterio = $criterio . " AND partida >= CURDATE()";
     }
 
     $result = execute_query($conn, $criterio);

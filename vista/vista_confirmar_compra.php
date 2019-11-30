@@ -6,6 +6,7 @@
 
     if(isset($_POST['confirmar'])){
         $idPasaje = $_POST['pasaje'];
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
         compraPasaje($idPasaje, date("Y-m-d H:i:s"));
         header('Location: /pasaje/confirmado');
     }

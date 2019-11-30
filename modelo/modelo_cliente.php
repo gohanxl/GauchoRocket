@@ -7,6 +7,13 @@ function getUsuarioId($user)
     return mysqli_fetch_assoc($result)['id'];
 }
 
+function getNombreClienteByIdUsuario($idUsuario){
+    $conn = getConexion();
+    $query = "SELECT * FROM client WHERE usuario = $idUsuario;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['nombre'];
+}
+
 function getClienteId($idUsuario)
 {
     $conn = getConexion();

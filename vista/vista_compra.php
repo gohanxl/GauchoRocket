@@ -2,6 +2,12 @@
 
 if (isset($_POST['vuelo'])) {
     $id = (int)$_POST['vuelo'];
+    if(isset($_POST['espera'])){
+        $espera = true;
+    }
+    else{
+        $espera = false;
+    }
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
     $cabinas = getCabinaModelo($modelo);
@@ -17,6 +23,7 @@ if(isset($_POST['reserva'])){
     $codigo = $_POST['codigo'];
     $cabina = $_POST['cabina'];
     $pasaje = $_POST['pasaje']-1;
+    $espera = $_POST['espera'];
 
     for($i=0;$i<$pasaje;$i++){
         $pass = bin2hex(random_bytes(4));
@@ -32,13 +39,19 @@ if(isset($_POST['reserva'])){
         $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
         $cliente = getClienteId($usuarioId);
         $precio = getPrecio($vueloId, $cabina);
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio);
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio, $espera);
         if($tipo_vuelo == "Entre destino"){
             insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
     }
 
-    header('Location: /pasaje/exito');
+    if($espera){
+        header('Location: /pasaje/espera');
+    }
+    else{
+        header('Location: /pasaje/exito');
+    }
 }
 
 if (isset($_POST['submit'])) {
@@ -57,6 +70,7 @@ if (isset($_POST['submit'])) {
     $pasaje = $_POST['pasaje'];
     $pasajes = contadorPasajes($vuelo['id'], $cabina);
     $capacidad = getCabinaCapacidad($modelo, $cabina);
+    $espera = $_POST['espera'];
 
     if ($tipo_vuelo == "Entre destino"){
         $circuito = getTrayectos(getDescripcionCircuitoById($circuitoId));
@@ -87,7 +101,8 @@ if (isset($_POST['submit'])) {
     if ($pasaje < $total) {
         $codigo = bin2hex(random_bytes(5));
         $precio = getPrecio($vueloId, $cabina);
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio);
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio, $espera);
         if($tipo_vuelo == "Entre destino"){
             insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
@@ -109,6 +124,7 @@ if (isset($_POST['submit'])) {
                       <input type='hidden' name='codigo' value='$codigo'>
                       <input type='hidden' name='cabina' value='$cabina'>
                       <input type='hidden' name='tipo_vuelo' value='$tipo_vuelo'>
+                      <input type='hidden' name='espera' value='$espera'>
                       ";
                         for($i=0;$i<$pasaje-1;$i++){
                             echo "
@@ -187,6 +203,8 @@ if (isset($_POST['submit'])) {
                    disabled>
         </div>
         <input type="hidden" id="vuelo" name="vuelo" value="<?php echo $vuelo['id'] ?>">
+
+        <input type="hidden" id="espera" name="espera" value="<?php echo $espera ?>">
         <div class="form-group col-md-2">
             <label for="inputCabina">Tipo de Cabina</label>
             <select id="inputCabina" class="form-control" name="cabina" required>
