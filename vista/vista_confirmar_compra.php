@@ -39,9 +39,9 @@
                                     <input type="text" name="cardNumber" placeholder="Número de la tarjeta" class="form-control" required>
                                     <div class="input-group-append">
                                     <span class="input-group-text text-muted">
-                                        <i class="fa fa-cc-visa mx-1"></i>
-                                        <i class="fa fa-cc-amex mx-1"></i>
-                                        <i class="fa fa-cc-mastercard mx-1"></i>
+                                        <i class="fab fa-cc-visa mx-1"></i>
+                                        <i class="fab fa-cc-amex mx-1"></i>
+                                        <i class="fab fa-cc-mastercard mx-1"></i>
                                     </span>
                                     </div>
                                 </div>
