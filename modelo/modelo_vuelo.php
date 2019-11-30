@@ -5,7 +5,7 @@ include_once("helpers/trayectos.php");
 function getVuelos()
 {
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE partida > CURDATE() ORDER BY partida;";
+    $query = "SELECT * FROM vuelo WHERE partida >= CURDATE() AND CONCAT(partida,' ',hora) > DATESUB(CURDATE(), INTERVAL 2 HOUR) ORDER BY partida;";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {
@@ -70,7 +70,7 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
 {
     $criterio = "";
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE partida > CURDATE();";
+    $query = "SELECT * FROM vuelo";
     if (isset($origen)) {
         $criterio = $query . " WHERE  origen = $origen";
     }
@@ -82,19 +82,27 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
             $criterio = $criterio . " AND tipo_vuelo = $tipo_vuelo";
         }
     }
-    if (isset($destino)) {
+    if ($destino != '') {
         if (empty($criterio)) {
             $criterio = $query . " WHERE destino = $destino";
         } else if(!empty($destino)){
             $criterio = $criterio . " AND destino = $destino";
         }
     }
-    if (isset($partida)) {
+    if ($partida != '') {
         if (empty($criterio)) {
             $criterio = $query . " WHERE partida = '$partida'";
         } else if(!empty($partida)) {
             $criterio = $criterio . " AND partida = '$partida'";
         }
+    }
+
+    if(empty($criterio)){
+        $criterio = $query . " WHERE partida >= CURDATE()";
+
+    }
+    else{
+        $criterio = $criterio . " AND partida >= CURDATE()";
     }
 
     $result = execute_query($conn, $criterio);

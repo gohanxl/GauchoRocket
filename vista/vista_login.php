@@ -11,6 +11,14 @@ if (isset($_POST['login'])) {
         $user = $_POST['user'];
         $password = $_POST['password'];
 
+        $userId = getUsuarioId($user);
+
+        if(getAdminEstado($userId)){
+            $_SESSION['admin'] = true;
+        }else{
+            $_SESSION['admin'] = false;
+        }
+
         $error = autoLogin($user, $password);
 
         if(isset($_POST['rememberme'])){
@@ -29,6 +37,7 @@ function autoLogin($user, $password){
         session_start();
         $_SESSION['logged'] = true;
         $_SESSION['user'] = $validar['id'];
+        $_SESSION['name'] = getNombreClienteByIdUsuario($_SESSION['user']);
         header('Location: /');
     }else{
         return 'El usuario o la contraseña no son validos.';

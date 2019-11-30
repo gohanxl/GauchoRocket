@@ -89,15 +89,43 @@ if (isset($message)) {
             <td>                
             <div class='row'>
                 <div class='span6 mr-1'>
-                    <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
-                        <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
-                        <button type='submit' class='btn btn-primary btn-sm name='comprar'>Reservar</button>                   
-                    </form>          
+                ";
+                date_default_timezone_set("America/Argentina/Buenos_Aires");
+                $date_vuelo = strtotime($vuelo['partida'] . ' ' . $vuelo['hora']);
+                if($date_vuelo - (60*60*24) < time()){
+                    //Agregar boton en espera
+                    echo"
+                        <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
+                            <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
+                            <input type='hidden' name='espera' value='1'>
+                            <button type='submit' class='btn btn-primary btn-sm name='comprar'>Espera</button>                   
+                        </form>          
+                    </div>
                 </div>
-            </div>
-            </td>";
+                </td>";
+                }
+                /*elseif($date_vuelo - (60*60*2) < time() ){
+                    //solo los que estan en espera pueden comprar
+                    echo"
+                        <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
+                            <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
+                            <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>                   
+                        </form>          
+                    </div>
+                </div>
+                </td>";
+                }*/
+                else{
+                    echo"
+                        <form class='form-inline mb-2' action='/pasaje/reserva' method='POST' enctype='multipart/form-data'>
+                            <input type='hidden' name='vuelo' value=" . $vuelo['id'] . ">
+                            <button type='submit' class='btn btn-primary btn-sm name='comprar'>Comprar</button>                   
+                        </form>          
+                    </div>
+                </div>
+                </td>";
             };
-    echo "</tr>";}
+    echo "</tr>";}}
     echo "
     </tbody>
     </table>";
