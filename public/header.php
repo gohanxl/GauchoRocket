@@ -33,7 +33,9 @@
 
             if (isset($_SESSION['admin'])) {
 
-                echo "<div class=\"dropdown show\">
+                echo "
+                    <li class='nav-item active'>
+                        <div class=\"dropdown show\">
                           <a class=\"btn dropdown-toggle text-white\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                             Reportes
                           </a>
@@ -44,9 +46,10 @@
                             <a class=\"dropdown-item\" href=\"/administrador/cabina\">Cabina mas Vendida</a>
                           </div>
                        </div>
-                       <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>";
-
-
+                       </li>
+                       </ul>
+                       <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
+                        </div>";
             } else {
 
                 echo "<li class='nav-item active'>

@@ -15,8 +15,6 @@ if (isset($_POST['login'])) {
 
         if(getAdminEstado($userId)){
             $_SESSION['admin'] = true;
-        }else{
-            $_SESSION['admin'] = false;
         }
 
         $error = autoLogin($user, $password);

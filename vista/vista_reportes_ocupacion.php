@@ -40,7 +40,8 @@
     echo $vuelos[0]['porcentaje'];
 
     ?>
-
+    </tbody>
+</table>
     <script>
         window.onload = function () {
 
