@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modelo/modelo_administrador.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vista/vista_administrador.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/controlador_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/controlador_login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controlador/controlador_vuelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/controlador_vuelo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gauchorocket.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gauchorocket.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modelo/modelo_pasaje.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_pasaje.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modelo/modelo_registro.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_registro.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/vista_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_login.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -31,6 +31,8 @@
 
             <?php
 
+            //isa se la come
+
             if ($_SESSION['admin']) {
 
                 echo "<div class=\"dropdown show\">
