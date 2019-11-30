@@ -7,9 +7,22 @@ if (isset($_POST['submit'])) {
 
         $clienteId = getClienteId($usuario);
         $centroId = getCentroId($centro);
-        addTurno($fecha, $clienteId, $centroId);
-        addTipoCliente($clienteId);
-        header("Location: /");
+
+        $total = getCentroTurnos($centroId);
+        $turnos = contadorTurnos($fecha, $centroId);
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
+
+        if(date("Y-m-d") > $fecha){
+            $error = "No puede seleccionar una fecha menor que la actual.";
+        }
+        elseif($total-$turnos){
+            addTurno($fecha, $clienteId, $centroId);
+            addTipoCliente($clienteId);
+            header("Location: /");
+        }
+        else{
+            $error = "No se entregan más turnos en " . $centro . " para la fecha " . $fecha . ".";
+        }
     };
 }
 
@@ -24,6 +37,14 @@ if(!is_null(getTipoCliente(getClienteId($_SESSION['user'])))){
     ";
 }
 else{
+    echo"
+    <h2>Solicitud de turno</h2>
+    <p>Eliga el día y su centro méidco más cercano para realizar los chequeos médicos correspondientes.</p>
+    
+   ";
+     if(isset($error)){
+         echo "<p class='text-danger'>$error</p>";
+     }   ;
     echo"
     <form action=\"alta\" method=\"POST\" enctype=\"application/x-www-form-urlencoded\">
     <div class=\"form-row\">

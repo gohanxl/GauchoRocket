@@ -28,6 +28,12 @@ function addTurno($fecha, $usuario, $centro)
     execute_query($conn, $query);
 }
 
+function contadorTurnos($fecha, $centro){
+    $conn = getConexion();
+    $query = "SELECT COUNT(*) as count FROM turno WHERE fecha = '$fecha' AND centro_medico = '$centro';";
+    execute_query($conn, $query);
+}
+
 function addTipoCliente($id)
 {
     $tipo_cliente = random_int(1, 3);

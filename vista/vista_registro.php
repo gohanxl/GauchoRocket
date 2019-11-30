@@ -36,7 +36,8 @@
 
 if(isset($_POST['registro'])){
 
-    if(isset($_POST['user']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['telefono'])){
+    if(isset($_POST['name']) && isset($_POST['user']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['telefono'])){
+        $name = $_POST['name'];
         $user = $_POST['user'];
         $password = $_POST['password'];
         $email = $_POST['email'];
@@ -45,7 +46,7 @@ if(isset($_POST['registro'])){
         registrarUsuario($user, $password, $email);
 
         $userId = getUsuarioId($user);
-        addCliente($user, $userId, $telefono, $fec_nacimiento);
+        addCliente($name, $userId, $telefono, $fec_nacimiento);
 
         header("Location: /login");
     }
@@ -63,15 +64,18 @@ if(isset($_POST['registro'])){
         echo "<label class='text-danger'>" . $error . "</label>";
     }
     ?>
-    <input type='text' id='inputUser' class='form-control' placeholder='Usuario' name='user' value='' required autofocus>
 
-    <input type='password' id='inputPassword' class='form-control mt-3' placeholder='Contraseña'  name='password' required>
+    <input type='text' id='inputUser' class='form-control mt-1' placeholder='Nombre' name='name' required autofocus>
 
-    <input type='email' id='inputEmail' class='form-control' placeholder='E-mail'  name='email'   required>
+    <input type='email' id='inputEmail' class='form-control mt-1' placeholder='E-mail'  name='email'   required>
 
-    <input type='text' id='inputTelefono' class='form-control mt-3' placeholder='Telefono'  name='telefono'   required>
+    <input type='text' id='inputTelefono' class='form-control mt-1' placeholder='Telefono'  name='telefono'   required>
 
-    <input type='date' id='inputDate' class='form-control mt-3' placeholder='Nacimiento'  name='nacimiento'   required>
+    <input type='date' id='inputDate' class='form-control mt-1' placeholder='Nacimiento'  name='nacimiento'   required>
+
+    <input type='text' id='inputUser' class='form-control mt-1' placeholder='Usuario' name='user' required autofocus>
+
+    <input type='password' id='inputPassword' class='form-control mt-1' placeholder='Contraseña'  name='password' required>
 
     <input class="btn btn-primary btn-block mt-2" type="submit" name="registro" value="Registrarse"
            style="background-color: darkslateblue"/>

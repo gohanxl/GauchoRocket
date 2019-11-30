@@ -3,13 +3,14 @@
 if (isset($_POST['vuelo'])) {
     $id = (int)$_POST['vuelo'];
     if(isset($_POST['espera'])){
-        $espera = true;
+        $espera = 1;
     }
     else{
-        $espera = false;
+        $espera = 0;
     }
     $vuelo = searchVueloId($id);
     $modelo = getNaveModelo($vuelo['nave']);
+    $servicios = getServicios();
     $cabinas = getCabinaModelo($modelo);
     $tipo_vuelo = getIdTipoVuelo($id);
 }
@@ -20,6 +21,7 @@ if(isset($_POST['reserva'])){
     $destinoId = $_POST['destinoId'];
     $vueloId = $_POST['vueloReserva'];
     $tipo_vuelo = $_POST['tipo_vuelo'];
+    $servicio = $_POST['servicio'];
     $codigo = $_POST['codigo'];
     $cabina = $_POST['cabina'];
     $pasaje = $_POST['pasaje']-1;
@@ -39,7 +41,7 @@ if(isset($_POST['reserva'])){
         $cliente = getClienteId($usuarioId);
         $precio = getPrecio($vueloId, $cabina);
         date_default_timezone_set("America/Argentina/Buenos_Aires");
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio, $espera);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $servicio, $origenId, $destinoId, $precio, $espera);
         if($tipo_vuelo == "Entre destino"){
             insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
@@ -70,6 +72,7 @@ if (isset($_POST['submit'])) {
     $pasajes = contadorPasajes($vuelo['id'], $cabina);
     $capacidad = getCabinaCapacidad($modelo, $cabina);
     $espera = $_POST['espera'];
+    $servicio = $_POST['servicio'];
 
     if ($tipo_vuelo == "Entre destino"){
         $circuito = getTrayectos(getDescripcionCircuitoById($circuitoId));
@@ -101,7 +104,7 @@ if (isset($_POST['submit'])) {
         $codigo = bin2hex(random_bytes(5));
         $precio = getPrecio($vueloId, $cabina);
         date_default_timezone_set("America/Argentina/Buenos_Aires");
-        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $origenId, $destinoId, $precio, $espera);
+        $pasajeId = insertPasaje($vueloId, $cliente, 1, date("Y-m-d H:i:s"), $codigo, $cabina, $servicio, $origenId, $destinoId, $precio, $espera);
         if($tipo_vuelo == "Entre destino"){
             insertPasajeTrayecto($vueloId, $pasajeId, $origenId);
         }
@@ -124,6 +127,7 @@ if (isset($_POST['submit'])) {
                       <input type='hidden' name='cabina' value='$cabina'>
                       <input type='hidden' name='tipo_vuelo' value='$tipo_vuelo'>
                       <input type='hidden' name='espera' value='$espera'>
+                      <input type='hidden' name='servicio' value='$servicio'>
                       ";
                         for($i=0;$i<$pasaje-1;$i++){
                             echo "
@@ -158,7 +162,7 @@ if (isset($_POST['submit'])) {
 <form action="" method="POST" enctype="application/x-www-form-urlencoded">
 
     <div class="form-row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
             <label for="origen">Origen</label>
             <?php
             if(getDescriptionTipoVuelo($vuelo['tipo_vuelo']) == "Entre destino"){
@@ -176,7 +180,7 @@ if (isset($_POST['submit'])) {
             echo "</select>";
             ?>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
             <label for="destino">Destino</label>
             <?php
             if(getDescriptionTipoVuelo($vuelo['tipo_vuelo']) == "Entre destino"){
@@ -200,15 +204,25 @@ if (isset($_POST['submit'])) {
                    disabled>
         </div>
         <input type="hidden" id="vuelo" name="vuelo" value="<?php echo $vuelo['id'] ?>">
-
         <input type="hidden" id="espera" name="espera" value="<?php echo $espera ?>">
         <div class="form-group col-md-2">
-            <label for="inputCabina">Tipo de Cabina</label>
+            <label for="inputCabina">Tipo de cabina</label>
             <select id="inputCabina" class="form-control" name="cabina" required>
                 <option selected value="">Elegir...</option>
                 <?php
                 foreach ($cabinas as $cabina) {
                     echo "<option value=" . $cabina['cabina'] . ">" . getCabinaDescripcion($cabina['cabina']) . "</option>";
+                };
+                ?>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputServicio">Tipo de servicio</label>
+            <select id="inputServicio" class="form-control" name="servicio" required>
+                <option selected value="">Elegir...</option>
+                <?php
+                foreach ($servicios as $servicio) {
+                    echo "<option value=" . $servicio['id'] . ">" . $servicio['descripcion'] . "</option>";
                 };
                 ?>
             </select>

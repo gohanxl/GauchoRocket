@@ -27,6 +27,22 @@ function getNaveModelo($id)
     return mysqli_fetch_assoc($result)['modelo'];
 }
 
+function getServicios(){
+    $conn = getConexion();
+    $query = "SELECT * FROM servicio;";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['descripcion'] = $row['descripcion'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}
+
 function getCabinaModelo($modelo_id)
 {
     $conn = getConexion();

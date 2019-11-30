@@ -18,6 +18,12 @@ function getCentros(){
     return $resultArray;
 }
 
+function getCentroTurnos($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM centro_medico WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['turnos'];
+}
 
 function getCentroId($nombre)
 {
