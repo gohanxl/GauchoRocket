@@ -34,7 +34,6 @@ if(isset($_POST['reserva'])){
             registrarCliente($usuarioId);
         }
     }
-
     for($i=0;$i<$pasaje;$i++){
         $usuarioId = getUsuarioIdByEmail($_POST['email'.$i]);
         $cliente = getClienteId($usuarioId);
@@ -155,8 +154,6 @@ if (isset($_POST['submit'])) {
         $error = "No es posible comprar esa cantidad. La cantidad máxima es " . $total;
     }
 }
-
-
 ?>
 <form action="" method="POST" enctype="application/x-www-form-urlencoded">
 
@@ -239,6 +236,6 @@ if (isset($_POST['submit'])) {
 
         let selected = cabina.options[cabina.selectedIndex].value;
 
-        return pasaje.value = selected;
+        return true;
     }
 </script>
