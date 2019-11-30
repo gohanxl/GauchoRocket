@@ -1,8 +1,6 @@
 <?php
 include_once("modelo/modelo_administrador.php");
 
-
-
 function administrador_index(){
     if($_SESSION['admin']){
         include("vista/vista_administrador.php");

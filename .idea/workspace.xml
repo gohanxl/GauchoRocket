@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/controlador_administrador.php" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/controlador_administrador.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/vista_reportes_cabina.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_reportes_cabina.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/vista_reportes_facturacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_reportes_facturacion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_confirmar_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_confirmar_compra.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
