@@ -18,11 +18,11 @@ function contadorPasajesTrayecto($origen, $circuito, $cabina)
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['count'];
 }
-function insertPasaje($vuelo_id, $cliente_id, $reserva_estado, $fecha_reserva, $codigo_reserva, $cabina_id, $origen, $destino, $precio, $espera)
+function insertPasaje($vuelo_id, $cliente_id, $reserva_estado, $fecha_reserva, $codigo_reserva, $cabina_id, $servicio_id, $origen, $destino, $precio, $espera)
 {
     $conn = getConexion();
-    $query = "INSERT INTO pasaje (vuelo, cliente, reserva, fecha_reserva, checkin, fecha_checkin, compra, fecha_compra, codigo, cabina, origen, destino, precio, espera) 
-                VALUES ($vuelo_id, $cliente_id, $reserva_estado,'$fecha_reserva', null, null, null, null, '$codigo_reserva'    , $cabina_id, $origen, $destino, $precio, $espera);";
+    $query = "INSERT INTO pasaje (vuelo, cliente, reserva, fecha_reserva, checkin, fecha_checkin, compra, fecha_compra, codigo, cabina, servicio, origen, destino, precio, espera) 
+                VALUES ($vuelo_id, $cliente_id, $reserva_estado,'$fecha_reserva', null, null, null, null, '$codigo_reserva'    , $cabina_id, $servicio_id, $origen, $destino, $precio, $espera);";
     $result = execute_query_return_id($conn, $query);
     return $result;
 }
@@ -33,7 +33,10 @@ function insertPasajeTrayecto($trayecto_id, $pasaje_id, $origen){
 }
 function getPasajesByCliente($cliente){
     $conn = getConexion();
-    $query = "SELECT * FROM pasaje WHERE cliente = $cliente;";
+    $query = "SELECT P.* FROM pasaje P
+                JOIN vuelo V ON P.vuelo = V.id
+                WHERE P.cliente = $cliente AND
+                CONCAT(V.partida, ' ', V.hora) > DATE_SUB(NOW(), INTERVAL 2 HOUR);";
     $result = execute_query($conn, $query);
     $resultArray = Array();
     if (mysqli_num_rows($result) > 0) {

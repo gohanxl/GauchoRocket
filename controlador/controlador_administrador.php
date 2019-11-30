@@ -1,20 +1,42 @@
 <?php
 include_once("modelo/modelo_administrador.php");
 
+$admin = $_SESSION['admin'];
+
 function administrador_index(){
-    include("vista/vista_administrador.php");
+    if(isset($admin) and $admin){
+        include("vista/vista_administrador.php");
+    }
+    else{
+        include("vista/vista_404.php");
+    }
 }
 
 function administrador_ocupacion(){
-    include("vista/vista_reportes_ocupacion.php");
+    if(isset($admin) and $admin){
+        include("vista/vista_reportes_ocupacion.php");
+    }
+    else{
+        include("vista/vista_404.php");
+    }
 }
 
 function administrador_facturacion(){
-    include("vista/vista_reportes_facturacion.php");
+    if(isset($admin) and $admin){
+        include("vista/vista_reportes_facturacion.php");
+    }
+    else{
+        include("vista/vista_404.php");
+    }
 }
 
 function administrador_cabina(){
-    include("vista/vista_reportes_cabina.php");
+    if(isset($admin) and $admin){
+        include("vista/vista_reportes_cabina.php");
+    }
+    else{
+        include("vista/vista_404.php");
+    }
 }
 
 ?>

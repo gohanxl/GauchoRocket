@@ -16,6 +16,9 @@ if (isset($_POST['login'])) {
         if(getAdminEstado($userId)){
             $_SESSION['admin'] = true;
         }
+        else{
+            $_SESSION['admin'] = false;
+        }
 
         $error = autoLogin($user, $password);
 
@@ -102,6 +105,7 @@ function autoLogin($user, $password){
         <input type="checkbox" name="rememberme"> Recordarme
     </label>
     <input class="btn btn-lg btn-primary btn-block" type="submit" name="login" value="Iniciar sesión" style="background-color: darkslateblue"/>
+    <button class="btn btn-danger btn-block mt-2" onclick="window.location='/'">Cancelar</button>
 </form>
 </body>
 </html>

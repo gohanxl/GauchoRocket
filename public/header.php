@@ -31,7 +31,7 @@
 
             <?php
 
-            if (isset($_SESSION['admin'])) {
+            if (isset($_SESSION['admin']) && $_SESSION['admin']) {
 
                 echo "
                     <li class='nav-item active'>
@@ -64,7 +64,7 @@
                                 <a class='nav-link' href='/pasaje/lista'>Pasajes</a>
                             </li>                         
                         </ul>
-                        <h5 class='text-light mr-3'>Bieniveido, " . $_SESSION['name'] . "</h5>
+                        <h5 class='text-light mr-3'>Bienvenido, " . $_SESSION['name'] . "</h5>
                     <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
                     </div>";
             } else {
