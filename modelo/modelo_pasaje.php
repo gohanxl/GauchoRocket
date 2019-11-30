@@ -66,7 +66,7 @@ function getPrecio($vuelo_id, $cabina_id){
 }
 function getPrecioPasaje($pasaje){
     $conn = getConexion();
-    $query = "SELECT * FROM pasaje;";
+    $query = "SELECT * FROM pasaje WHERE id= $pasaje;";
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['precio'];
 }

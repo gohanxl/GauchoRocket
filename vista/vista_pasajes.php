@@ -46,7 +46,7 @@
             }
             else{
                 echo "        
-                    <form class='form-inline mb-2' action='' method='POST' enctype='multipart/form-data'>
+                    <form class='form-inline mb-2' action='/pasaje/compra' method='POST' enctype='multipart/form-data'>
                         <input type='hidden' name='pasaje' value=" . $pasaje['id'] . ">
                         <button type='submit' class='btn btn-primary btn-sm name='comprar'>Pagar</button>                   
                     </form>
@@ -67,7 +67,7 @@
             $date_vuelo = strtotime($vuelo['partida'] . ' ' . $vuelo['hora']);
             if($date_vuelo - (60*60*2) <= time() ){
                 echo "        
-                    <form class='form-inline mb-2' action='' method='POST' enctype='multipart/form-data'>
+                    <form class='form-inline mb-2' action='/pasaje/compra' method='POST' enctype='multipart/form-data'>
                         <input type='hidden' name='pasaje' value=" . $pasaje['id'] . ">
                         <button type='submit' class='btn btn-primary btn-sm name='comprar'>Pagar</button>                   
                     </form>
