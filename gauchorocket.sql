@@ -1,11 +1,9 @@
--- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2019 a las 04:23:37
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+
+DROP SCHEMA IF EXISTS gauchorocket;
+
+CREATE SCHEMA IF NOT EXISTS gauchorocket;
+
+use gauchorocket;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;

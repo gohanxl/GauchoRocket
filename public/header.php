@@ -28,29 +28,50 @@
     </button>
     <div class='collapse navbar-collapse' id='navbarTogglerDemo02'>
         <ul class='navbar-nav mr-auto mt-2 mt-lg-0'>
-            <li class='nav-item active'>
-                <a class='nav-link' href='/vuelo'>Viajes</a>
-            </li>
+
             <?php
-            if (isset($_SESSION['logged'])) {
-                echo "
-                            <li class='nav-item active'>
+
+            if ($_SESSION['admin']) {
+
+                echo "<div class=\"dropdown show\">
+                          <a class=\"btn dropdown-toggle text-white\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                            Reportes
+                          </a>
+                        
+                          <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">
+                            <a class=\"dropdown-item\" href=\"/administrador/ocupacion\">Reporte de Tasa de Ocupacion</a>
+                            <a class=\"dropdown-item\" href=\"/administrador/facturacion\">Facturaciones</a>
+                            <a class=\"dropdown-item\" href=\"/administrador/cabina\">Cabina mas Vendida</a>
+                          </div>
+                       </div>
+                       <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>";
+
+
+            } else {
+
+                echo "<li class='nav-item active'>
+                        <a class='nav-link' href='/vuelo'>Viajes</a>
+                    </li>";
+
+                if (isset($_SESSION['logged'])) {
+                    echo "<li class='nav-item active'>
                                 <a class='nav-link' href='/turno/alta'>Turnos</a>
                             </li>     
                             <li class='nav-item active'>
                                 <a class='nav-link' href='/pasaje/lista'>Pasajes</a>
                             </li>                         
                         </ul>
-                    <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>
-                    </div>";
-            } else {
-                echo "
+                    <button class='btn btn-outline-light my-2 my-sm-0' onclick=\"window.location.replace('/logout')\">Cerrar sesión</button>\";
+                    </div>\";";
+                } else {
+                    echo "
                        
                         </ul>
                         <button class='btn btn-outline-light my-2 my-sm-0 mx-2' type='submit' onclick=\"window.location.replace('/registro')\">Registro</button>
                         <button class='btn btn-outline-light my-2 my-sm-0' type='submit' onclick=\"window.location.replace('/login')\">Iniciar sesión</button>
                         </div>
                         ";
+                }
             }
             ?>
 </nav>
