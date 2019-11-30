@@ -70,7 +70,7 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
 {
     $criterio = "";
     $conn = getConexion();
-    $query = "SELECT * FROM vuelo WHERE partida > CURDATE();";
+    $query = "SELECT * FROM vuelo";
     if (isset($origen)) {
         $criterio = $query . " WHERE  origen = $origen";
     }
@@ -82,19 +82,23 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
             $criterio = $criterio . " AND tipo_vuelo = $tipo_vuelo";
         }
     }
-    if (isset($destino)) {
+    if ($destino != '') {
         if (empty($criterio)) {
             $criterio = $query . " WHERE destino = $destino";
         } else if(!empty($destino)){
             $criterio = $criterio . " AND destino = $destino";
         }
     }
-    if (isset($partida)) {
+    if ($partida != '') {
         if (empty($criterio)) {
             $criterio = $query . " WHERE partida = '$partida'";
         } else if(!empty($partida)) {
             $criterio = $criterio . " AND partida = '$partida'";
         }
+    }
+
+    if(empty($criterio)){
+        $criterio = $query;
     }
 
     $result = execute_query($conn, $criterio);
