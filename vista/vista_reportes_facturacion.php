@@ -1,6 +1,5 @@
 <h2>Reportes de Facturacion</h2>
 
-
 <h4>Mensual</h4>
 
 <table class="table table-striped">
@@ -28,9 +27,9 @@
 
         $dataPoints = array(
             array("label" => "Facturacion", "y" => $f_mensual['facturacion']),
-            array("label" => "Facturacion", "y" => $f_mensual['facturacion']),
         );
     }
+
 
     ?>
     </tbody>

@@ -25,17 +25,12 @@
 
     $cabinas = getCabinasVendidas();
 
-    echo var_dump($cabinas);
-
     foreach ($cabinas as $cabina) {
 
         $dataPoints = array(
-            array("label" => "Facturacion", "y" => $cabina['cantidad']),
-            array("label" => "Facturacion", "y" => $cabina['cantidad']),
-            array("label" => "Facturacion", "y" => $cabina['cantidad']),
+            array("label" => "Cabinas", "y" => $cabina['cantidad']),
         );
     }
-
 
 
     ?>
