@@ -31,7 +31,7 @@
 
             <?php
 
-            if ($_SESSION['admin']) {
+            if (isset($_SESSION['admin'])) {
 
                 echo "<div class=\"dropdown show\">
                           <a class=\"btn dropdown-toggle text-white\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
