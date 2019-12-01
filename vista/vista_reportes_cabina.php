@@ -16,22 +16,22 @@
 
     $cabinaMasVendida = getCabinaMasVendida();
 
+    /*
     echo "
         <tr>
             <td>" . $cabinaMasVendida['cantidad'] . "</td>
             <td>" . $cabinaMasVendida['descripcion'] . "</td>
         </tr>";
-
+*/
 
     $cabinas = getCabinasVendidas();
 
+    $data = array();
+
     foreach ($cabinas as $cabina) {
 
-        $dataPoints = array(
-            array("label" => "Cabinas", "y" => $cabina['cantidad']),
-        );
+        array_push($data, $cabina);
     }
-
 
     ?>
     </tbody>
@@ -55,8 +55,8 @@
                 legendText: "{label}",
                 indexLabelFontSize: 16,
                 indexLabel: "{label} - #percent%",
-                yValueFormatString: "฿#,##0",
-                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                yValueFormatString: "#,##0",
+                dataPoints: <?php echo json_encode($data, JSON_NUMERIC_CHECK); ?>
             }]
         });
         chart.render();

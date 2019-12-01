@@ -69,9 +69,10 @@ if (isset($_POST['submit'])) {
     $modelo = getNaveModelo($vuelo['nave']);
     $tipo_vuelo = getDescriptionTipoVuelo($vuelo['tipo_vuelo']);
     $pasaje = $_POST['pasaje'];
+    $espera = $_POST['espera'];
     $pasajes = contadorPasajes($vuelo['id'], $cabina);
     $capacidad = getCabinaCapacidad($modelo, $cabina);
-    $espera = $_POST['espera'];
+
     $servicio = $_POST['servicio'];
 
     if ($tipo_vuelo == "Entre destino"){

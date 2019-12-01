@@ -29,43 +29,83 @@
             <td>" . $vuelo['capacidad'] . "</td>
             <td>" . $vuelo['porcentaje'] . "</td>
         </tr>";
+    }
 
+    $dataPointGeneral = array();
+    $dataPointFamiliar = array();
+    $dataPointSuit = array();
+    $generales = getReporteTasaDeOcupacionGafrico("General");
+    foreach ($generales as $general){
+        array_push($dataPointGeneral, $general);
+    }
 
-        $dataPoints = array(
-            array("label" => "Viaje y Equipo 1", "y" => $vuelo['pasajes']),
-            array("label" => "Viaje y Equipo", "y" => $vuelo['capacidad'])
-        );
+    $familiares = getReporteTasaDeOcupacionGafrico("Familiar");
+    foreach ($familiares as $familiar){
+        array_push($dataPointFamiliar, $familiar);
+    }
+
+    $suits = getReporteTasaDeOcupacionGafrico("Suit");
+    foreach ($suits as $suit){
+        array_push($dataPointSuit, $suit);
     }
 
     ?>
     </tbody>
 </table>
+
     <script>
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
-                exportEnabled: true,
+                theme: "light2",
                 title:{
-                    text: "Average Expense Per Day  in Thai Baht"
+                    text: "Average Amount Spent on Real and Artificial X-Mas Trees in U.S."
                 },
-                subtitles: [{
-                    text: "Currency Used: Thai Baht (฿)"
-                }],
+                legend:{
+                    cursor: "pointer",
+                    verticalAlign: "center",
+                    horizontalAlign: "right",
+                    itemclick: toggleDataSeries
+                },
                 data: [{
-                    type: "pie",
-                    showInLegend: "true",
-                    legendText: "{label}",
-                    indexLabelFontSize: 16,
-                    indexLabel: "{label} - #percent%",
-                    yValueFormatString: "฿#,##0",
-                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                    type: "column",
+                    name: "General",
+                    indexLabel: "{y}",
+                    yValueFormatString: "#0.##",
+                    showInLegend: true,
+                    dataPoints: <?php echo json_encode($dataPointGeneral, JSON_NUMERIC_CHECK); ?>
+                },{
+                    type: "column",
+                    name: "Familiar",
+                    indexLabel: "{y}",
+                    yValueFormatString: "#0.##",
+                    showInLegend: true,
+                    dataPoints: <?php echo json_encode($dataPointFamiliar, JSON_NUMERIC_CHECK); ?>
+                },{
+                    type: "column",
+                    name: "Suit",
+                    indexLabel: "{y}",
+                    yValueFormatString: "#0.##",
+                    showInLegend: true,
+                    dataPoints: <?php echo json_encode($dataPointSuit, JSON_NUMERIC_CHECK); ?>
                 }]
             });
             chart.render();
+
+            function toggleDataSeries(e){
+                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else{
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
 
         }
     </script>
 
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div class="mb-5 mt-5"></div>

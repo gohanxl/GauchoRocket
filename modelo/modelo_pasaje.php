@@ -7,7 +7,7 @@ function contadorPasajes($vuelo_id, $cabina_id)
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['count'];
 }
-function contadorPasajesTrayecto($origen, $circuito, $cabina)
+function contadorPasajesTrayecto($origen, $circuito, $cabina, $espera)
 {
     $conn = getConexion();
     $query = "SELECT COUNT(*) AS count FROM vuelo_pasaje VP JOIN 
