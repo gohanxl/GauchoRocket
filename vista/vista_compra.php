@@ -24,6 +24,7 @@ if(isset($_POST['reserva'])){
     $servicio = $_POST['servicio'];
     $codigo = $_POST['codigo'];
     $cabina = $_POST['cabina'];
+    echo $cabina;
     $pasaje = $_POST['pasaje']-1;
     $espera = $_POST['espera'];
 

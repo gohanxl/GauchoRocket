@@ -1,28 +1,10 @@
-<h2>Reportes de Cabina</h2>
+<h2>Reporte de Cabina más vendida</h2>
 
-
-<h4>Más vendida</h4>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Cantidad Vendidas</th>
-        <th scope="col">Tipo de Cabina</th>
-    </tr>
-    </thead>
-    <tbody>
 
     <?php
 
     $cabinaMasVendida = getCabinaMasVendida();
 
-    /*
-    echo "
-        <tr>
-            <td>" . $cabinaMasVendida['cantidad'] . "</td>
-            <td>" . $cabinaMasVendida['descripcion'] . "</td>
-        </tr>";
-*/
 
     $cabinas = getCabinasVendidas();
 
@@ -34,8 +16,6 @@
     }
 
     ?>
-    </tbody>
-</table>
 
 <script>
     window.onload = function () {
@@ -44,10 +24,10 @@
             animationEnabled: true,
             exportEnabled: true,
             title: {
-                text: "Average Expense Per Day  in Thai Baht"
+                text: ""
             },
             subtitles: [{
-                text: "Currency Used: Thai Baht (฿)"
+                text: ""
             }],
             data: [{
                 type: "pie",

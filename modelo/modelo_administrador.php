@@ -12,7 +12,7 @@ function getAdminEstado($id)
     return mysqli_fetch_assoc($result)['administrador'];
 }
 
-function getReporteTasaDeOcupacionGafrico($cabina)
+function getReporteTasaDeOcupacionGrafico($cabina)
 {
 
     $conn = getConexion();
