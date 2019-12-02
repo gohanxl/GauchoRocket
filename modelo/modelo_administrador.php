@@ -16,12 +16,18 @@ function getReporteTasaDeOcupacionGrafico($cabina)
 {
 
     $conn = getConexion();
-    $query = "SELECT P.vuelo as label, (COUNT(DISTINCT P.id)*100/MC.capacidad) as y
-                FROM pasaje P JOIN cabina C 
-                    ON P.cabina = C.id JOIN
-                    modelo_cabina MC ON MC.cabina = C.id
-                    WHERE C.descripcion LIKE '$cabina'
-                GROUP BY P.vuelo, P.cabina;";
+
+    $query = "SELECT P.vuelo as label, FORMAT((COUNT(DISTINCT P.id)*100/MC.capacidad),2) as y
+                FROM pasaje P JOIN
+                cabina C ON P.cabina = C.id JOIN
+                vuelo V ON P.vuelo = V.id JOIN
+                nave N ON V.nave = N.id JOIN
+                modelo M ON N.modelo = M.id JOIN
+                modelo_cabina MC ON m.id = MC.modelo
+                WHERE C.descripcion LIKE '$cabina'
+                AND P.cabina = MC.cabina
+                GROUP BY V.id, V.nave, M.id;";
+
 
     $result = execute_query($conn, $query);
     $resultArray = Array();

@@ -71,7 +71,13 @@ if (isset($_POST['submit'])) {
     $tipo_vuelo = getDescriptionTipoVuelo($vuelo['tipo_vuelo']);
     $pasaje = $_POST['pasaje'];
     $espera = $_POST['espera'];
-    $pasajes = contadorPasajes($vuelo['id'], $cabina);
+    $pasajes = 0;
+    if($espera){
+        $pasajes = contadorPasajeEspera($vuelo['id'], $cabina);
+    }
+    else{
+        $pasajes = contadorPasajes($vuelo['id'], $cabina);
+    }
     $capacidad = getCabinaCapacidad($modelo, $cabina);
 
     $servicio = $_POST['servicio'];
@@ -88,7 +94,12 @@ if (isset($_POST['submit'])) {
             }
 
             if($flag){
-                $pasajes = contadorPasajesTrayecto($origenId, $circuitoId, $cabina);
+                if($espera){
+                    $pasajes = contadorPasajeTrayectoEspera($origenId, $circuitoId, $cabina);
+                }
+                else{
+                    $pasajes = contadorPasajesTrayecto($origenId, $circuitoId, $cabina);
+                }
                 if($pasajes > $max){
                     $max = $pasajes;
                 }
@@ -98,7 +109,12 @@ if (isset($_POST['submit'])) {
         $total = $capacidad - $max;
     }
     else{
-        $pasajes = contadorPasajes($vuelo['id'], $cabina);
+        if($espera){
+            $pasajes = contadorPasajeEspera($vuelo['id'], $cabina);
+        }
+        else{
+            $pasajes = contadorPasajes($vuelo['id'], $cabina);
+        }
         $total = $capacidad - $pasajes;
     }
 

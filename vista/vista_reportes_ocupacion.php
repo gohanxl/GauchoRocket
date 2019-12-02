@@ -11,9 +11,6 @@
         array_push($dataPointGeneral, $general);
     }
 
-    echo $dataPointGeneral[0]['label'];
-    echo $dataPointGeneral[0]['y'];
-
     $familiares = getReporteTasaDeOcupacionGrafico("Familiar");
     foreach ($familiares as $familiar){
         array_push($dataPointFamiliar, $familiar);
@@ -23,6 +20,7 @@
     foreach ($suites as $suite){
         array_push($dataPointSuit, $suite);
     }
+
     ?>
 
     <script>
@@ -44,7 +42,7 @@
                     type: "column",
                     name: "General",
                     indexLabel: "{y}",
-                    yValueFormatString: "##",
+                    yValueFormatString: "##0.##",
                     showInLegend: true,
                     dataPoints: <?php echo json_encode($dataPointGeneral, JSON_NUMERIC_CHECK); ?>
                 },{
@@ -58,7 +56,7 @@
                     type: "column",
                     name: "Suite",
                     indexLabel: "{y}",
-                    yValueFormatString: "##",
+                    yValueFormatString: "##0.##",
                     showInLegend: true,
                     dataPoints: <?php echo json_encode($dataPointSuit, JSON_NUMERIC_CHECK); ?>
                 }]

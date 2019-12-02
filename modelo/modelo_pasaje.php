@@ -7,7 +7,27 @@ function contadorPasajes($vuelo_id, $cabina_id)
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['count'];
 }
-function contadorPasajesTrayecto($origen, $circuito, $cabina, $espera)
+
+function contadorPasajeEspera($vuelo_id, $cabina_id){
+    $conn = getConexion();
+    $query = "SELECT COUNT(*) AS count FROM pasaje WHERE vuelo = $vuelo_id AND cabina = $cabina_id AND compra IS NOT NULL;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['count'];
+}
+
+
+function contadorPasajeTrayectoEspera($origen, $circuito, $cabina){
+    $conn = getConexion();
+    $query = "SELECT COUNT(*) AS count FROM vuelo_pasaje VP JOIN 
+                vuelo V ON VP.vuelo_id = V.id JOIN
+                pasaje P ON P.id = VP.pasaje_id
+                WHERE VP.escala = $origen AND V.circuito = $circuito AND P.cabina = $cabina AND P.compra IS NOT NULL
+                GROUP BY VP.vuelo_id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['count'];
+}
+
+function contadorPasajesTrayecto($origen, $circuito, $cabina)
 {
     $conn = getConexion();
     $query = "SELECT COUNT(*) AS count FROM vuelo_pasaje VP JOIN 

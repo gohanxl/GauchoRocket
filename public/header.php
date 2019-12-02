@@ -38,6 +38,18 @@
                     <li class='nav-item active'>
                         <div class=\"dropdown show\">
                           <a class=\"btn dropdown-toggle text-white\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
+                            Administración
+                          </a>
+                        
+                          <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">
+                            <a class=\"dropdown-item\" href=\"/administrador/vuelos\">Carga de vuelos</a>
+                            <a class=\"dropdown-item\" href=\"/administrador/precios\">Carga de precios</a>
+                          </div>
+                       </div>
+                    </li>
+                    <li class='nav-item active'>
+                        <div class=\"dropdown show\">
+                          <a class=\"btn dropdown-toggle text-white\" href=\"#\" role=\"button\" id=\"dropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
                             Reportes
                           </a>
                         
