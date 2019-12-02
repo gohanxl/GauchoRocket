@@ -194,11 +194,5 @@ function getTrayectosByDescripcion($trayecto){
     return getTrayectos($trayecto);
 }
 
-function compraPasaje($id, $date){
-    $conn = getConexion();
-    $query = "UPDATE pasaje SET compra = true, fecha_compra='$date' WHERE id = $id;";
-    execute_query($conn, $query);
-}
-
 ?>
 

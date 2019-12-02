@@ -41,3 +41,7 @@ function pasaje_exito(){
 function pasaje_checkin(){
     include("vista/vista_checkin.php");
 }
+
+function checkin_exito(){
+    include("vista/vista_checkin_exito.php");
+}

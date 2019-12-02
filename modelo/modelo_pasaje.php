@@ -84,9 +84,75 @@ function getPrecio($vuelo_id, $cabina_id){
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['precio'];
 }
+
 function getPrecioPasaje($pasaje){
     $conn = getConexion();
     $query = "SELECT * FROM pasaje WHERE id= $pasaje;";
     $result = execute_query($conn, $query);
     return mysqli_fetch_assoc($result)['precio'];
+}
+
+function getCapacidadCabina($cabina, $modelo){
+    $conn = getConexion();
+    $query = "SELECT MC.capacidad AS count
+                FROM modelo_cabina MC
+                WHERE MC.cabina = $cabina AND MC.modelo = $modelo;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['count'];
+}
+
+function getModeloPasaje($pasajeId){
+    $conn = getConexion();
+    $query = "SELECT M.id AS modelo FROM modelo M JOIN
+                nave N ON N.modelo = M.id JOIN
+                vuelo V ON n.id = V.nave JOIN
+                pasaje P ON V.id = P.vuelo
+                WHERE P.id = $pasajeId;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['modelo'];
+}
+
+function getCabinaPasaje($pasaje){
+    $conn = getConexion();
+    $query = "SELECT * FROM pasaje WHERE id= $pasaje;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['cabina'];
+}
+
+function getVueloPasaje($pasaje){
+    $conn = getConexion();
+    $query = "SELECT * FROM pasaje WHERE id= $pasaje;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['vuelo'];
+}
+
+
+function getAsientos($cabina, $vuelo){
+    $conn = getConexion();
+    $query = "
+        SELECT asiento FROM pasaje
+        WHERE cabina = $cabina AND vuelo = $vuelo;
+    ";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['asiento'] = $row['asiento'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}
+
+function compraPasaje($id, $date){
+    $conn = getConexion();
+    $query = "UPDATE pasaje SET compra = true, fecha_compra='$date' WHERE id = $id;";
+    execute_query($conn, $query);
+}
+
+function checkinPasaje($id, $date, $asiento){
+    $conn = getConexion();
+    $query = "UPDATE pasaje SET checkin = true, fecha_checkin='$date', asiento=$asiento WHERE id = $id;";
+    execute_query($conn, $query);
 }
