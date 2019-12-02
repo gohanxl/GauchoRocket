@@ -13,7 +13,12 @@ if(isset($_POST['submit'])){
 ?>
 
 <script>
-    var doc = new jsPDF()
+    var doc = new jsPDF(landscape);
+    var imgData = 'data:image/jpeg;base64,'+ Base64.encode("/public/img/rocket.png");
+    doc.setFontSize(22);
+    doc.text(20, 20, 'GauchoRocket');
+    doc.setFontSize(16);
+    doc.text(20, 20, 'This is a title');
     
 </script>
 
