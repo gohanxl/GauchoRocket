@@ -256,18 +256,5 @@ if (isset($_POST['submit'])) {
     }
     ?>
     <button type="submit" class="btn btn-primary" name="submit">Comprar</button>
-    <button type="button" class="btn btn-secondary" onclick="window.location.replace('/')" name="cancel">Cancelar
+    <button type="button" class="btn btn-secondary" onclick="window.location.replace('/')" name="cancel">Cancelar</button>
 </form>
-</button>
-
-<script>
-    function test() {
-        let pasaje = document.getElementById("pasaje");
-
-        let cabina = document.getElementById("inputCabina");
-
-        let selected = cabina.options[cabina.selectedIndex].value;
-
-        return true;
-    }
-</script>

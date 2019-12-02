@@ -26,6 +26,7 @@
         echo '<table class="table-borderless" style="margin: auto;">';
         $fila = $capacidad / 10;
         $resto = $capacidad % 10;
+        $columnas = 10;
         $i = 1;
         for($f=0;$f<$fila;$f++){
             echo '<tr>';
@@ -39,7 +40,7 @@
                     $i++;
                 };
             }else{
-                for($c=0;$c<10;$c++){
+                for($c=0;$c<$columnas;$c++){
                     if(in_array($i, $ocupados)){
                         echo '<td id=' . $i . ' style=\'color:red\'><i class="large material-icons">airline_seat_recline_normal</i></td>';
                     }else{

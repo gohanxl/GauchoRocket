@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29fb8433-ece5-4b1e-be16-848eef11b0f5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controlador/controlador_administrador.php" beforeDir="false" afterPath="$PROJECT_DIR$/controlador/controlador_administrador.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gauchorocket.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gauchorocket.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/modelo_nave.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_nave.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelo/modelo_vuelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelo/modelo_vuelo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vista/vista_confirmar_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_confirmar_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_administracion_vuelos.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_administracion_vuelos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_administrador.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_administrador.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_checkin.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_checkin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_compra.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_compra.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vista/vista_vuelo.php" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vista_vuelo.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,15 +74,15 @@
       <recent name="D:\Técnicatura web\Programación web 2\pokedex\public\js" />
     </key>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
+  <component name="RunDashboard">
+    <option name="ruleStates">
       <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
       </list>
     </option>
   </component>
@@ -112,6 +121,7 @@
       <workItem from="1572876772966" duration="8448000" />
       <workItem from="1573073969680" duration="2127000" />
       <workItem from="1573416528231" duration="17937000" />
+      <workItem from="1575292558543" duration="21817000" />
     </task>
     <servers />
   </component>

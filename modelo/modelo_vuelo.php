@@ -125,10 +125,11 @@ function searchVuelos($origen, $destino, $partida, $tipo_vuelo)
     return $resultArray;
 }
 
-function addVuelo($numero, $nombre, $tipo, $imagen)
+function addVuelo($origen, $destino, $duracion, $nave, $partida, $hora, $tipo_vuelo, $circuito)
 {
     $conn = getConexion();
-    $query = "";
+    $query = "INSERT INTO vuelo (origen, destino, duracion, nave, partida, hora, tipo_vuelo, circuito)
+    VALUES ($origen, $destino, $duracion, $nave, '$partida', '$hora', $tipo_vuelo, $circuito);";
     execute_query($conn, $query);
 }
 
@@ -190,9 +191,22 @@ function getPartidaByVueloId($id){
     return mysqli_fetch_assoc($result)['partida'];
 }
 
-function getTrayectosByDescripcion($trayecto){
-    return getTrayectos($trayecto);
-}
+function getCircuitos(){
 
+    $conn = getConexion();
+    $query = "SELECT * FROM circuito";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0){
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['descripcion'] = $row['descripcion'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+
+}
 ?>
 
