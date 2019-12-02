@@ -1,11 +1,11 @@
-<h2>Reportes de Ocupacion de cabina por viaje y equipo</h2>
-
     <?php
 
-
     $dataPointGeneral = array();
+
     $dataPointFamiliar = array();
-    $dataPointSuit = array();
+
+    $dataPointSuite = array();
+
     $generales = getReporteTasaDeOcupacionGrafico("General");
     foreach ($generales as $general){
         array_push($dataPointGeneral, $general);
@@ -18,7 +18,7 @@
 
     $suites = getReporteTasaDeOcupacionGrafico("Suite");
     foreach ($suites as $suite){
-        array_push($dataPointSuit, $suite);
+        array_push($dataPointSuite, $suite);
     }
 
     ?>
@@ -30,7 +30,7 @@
                 animationEnabled: true,
                 theme: "light2",
                 title:{
-                    text: ""
+                    text: "Reportes de ocupación de cabina por viaje y equipo"
                 },
                 legend:{
                     cursor: "pointer",
@@ -41,24 +41,24 @@
                 data: [{
                     type: "column",
                     name: "General",
-                    indexLabel: "{y}",
+                    indexLabel: "Vuelo: {y}",
                     yValueFormatString: "##0.##",
                     showInLegend: true,
                     dataPoints: <?php echo json_encode($dataPointGeneral, JSON_NUMERIC_CHECK); ?>
                 },{
                     type: "column",
                     name: "Familiar",
-                    indexLabel: "{y}",
+                    indexLabel: "Vuelo: {y}",
                     yValueFormatString: "##0.##",
                     showInLegend: true,
                     dataPoints: <?php echo json_encode($dataPointFamiliar, JSON_NUMERIC_CHECK); ?>
                 },{
                     type: "column",
                     name: "Suite",
-                    indexLabel: "{y}",
+                    indexLabel: "Vuelo: {y}",
                     yValueFormatString: "##0.##",
                     showInLegend: true,
-                    dataPoints: <?php echo json_encode($dataPointSuit, JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?php echo json_encode($dataPointSuite, JSON_NUMERIC_CHECK); ?>
                 }]
             });
             chart.render();
@@ -75,7 +75,26 @@
 
         }
     </script>
-
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+    <button id="exportButton" class="btn btn-primary float-right">Exportar PDF</button>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <script>
+        setTimeout(function(){
+            var canvas = $("#chartContainer .canvasjs-chart-canvas").get(0);
+            var dataURL = canvas.toDataURL("image/jpeg");
+
+
+            $("#exportButton").click(function(){
+                var pdf = new jsPDF({orientation: 'landscape'});
+                var width = pdf.internal.pageSize.getWidth();
+                var height = pdf.internal.pageSize.getHeight();
+                const imgProps= pdf.getImageProperties(dataURL);
+                const pdfHeight = (imgProps.height * width) / imgProps.width;
+                pdf.addImage(dataURL, 'JPEG', 0, 0, width-10, pdfHeight);
+                pdf.save("reporte-ocupacion.pdf");
+            });
+            },1000);
+    </script>
 <div class="mb-5 mt-5"></div>

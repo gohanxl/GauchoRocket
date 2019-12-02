@@ -12,6 +12,26 @@ function getAdminEstado($id)
     return mysqli_fetch_assoc($result)['administrador'];
 }
 
+function getVuelosTotales(){
+    $conn = getConexion();
+    $query = "
+                SELECT id as label, 0 as y
+                FROM vuelo;";
+
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['label'] = $row['label'];
+            $element['y'] = $row['y'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}
+
+
 function getReporteTasaDeOcupacionGrafico($cabina)
 {
 
@@ -69,10 +89,12 @@ function getReporteTasaDeOcupacion()
     return $resultArray;
 }
 
+
 function getFacturacionMensual()
 {
     $conn = getConexion();
-    $query = "SELECT year(P.fecha_compra) as año, month(P.fecha_compra) as mes, sum(P.precio) as facturacion
+    $query = "
+                SELECT year(P.fecha_compra) as ano, MONTHNAME(P.fecha_compra) as label, sum(P.precio) as y
                 FROM pasaje P
                 WHERE P.fecha_compra IS NOT NULL
                 group by year(P.fecha_compra), month(P.fecha_compra);";
@@ -82,9 +104,9 @@ function getFacturacionMensual()
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $element = Array();
-            $element['año'] = $row['año'];
-            $element['mes'] = $row['mes'];
-            $element['facturacion'] = $row['facturacion'];
+            $element['ano'] = $row['ano'];
+            $element['label'] = $row['label'];
+            $element['y'] = $row['y'];
             $resultArray[] = $element;
         }
     }
@@ -95,8 +117,10 @@ function getFacturacionCliente()
 {
 
     $conn = getConexion();
-    $query = "SELECT P.cliente, CL.nombre, sum(P.precio) as facturacion
+    $query = "
+            SELECT P.cliente as label, CL.nombre, sum(P.precio) as y
                 FROM pasaje P JOIN client CL ON P.cliente = CL.id
+                WHERE P.fecha_compra IS NOT NULL
                 group by P.cliente;";
 
     $result = execute_query($conn, $query);
@@ -104,9 +128,9 @@ function getFacturacionCliente()
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $element = Array();
-            $element['cliente'] = $row['cliente'];
+            $element['label'] = $row['label'];
             $element['nombre'] = $row['nombre'];
-            $element['facturacion'] = $row['facturacion'];
+            $element['y'] = $row['y'];
             $resultArray[] = $element;
         }
     }

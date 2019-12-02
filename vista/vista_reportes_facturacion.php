@@ -1,65 +1,129 @@
-<h2>Reportes de Facturacion</h2>
 
-<h4>Mensual</h4>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Año</th>
-        <th scope="col">Mes</th>
-        <th scope="col">Facturacion</th>
-    </tr>
-    </thead>
-    <tbody>
 
     <?php
 
     $facturacionMensual = getFacturacionMensual();
 
+    $data = array();
+
     foreach ($facturacionMensual as $f_mensual) {
-        echo "
-        <tr>
-            <td>" . $f_mensual['año'] . "</td>
-            <td>" . $f_mensual['mes'] . "</td>
-            <td>" . $f_mensual['facturacion'] . "</td>
-        </tr>";
+
+        array_push($data, $f_mensual);
+
+    }
 
 
-        $dataPoints = array(
-            array("label" => "Facturacion", "y" => $f_mensual['facturacion']),
-        );
+    $facturacionCliente = getFacturacionCliente();
+
+    $dataCliente = array();
+
+    foreach($facturacionCliente as $f_cliente){
+        array_push($dataCliente, $f_cliente);
     }
 
 
     ?>
-    </tbody>
-</table>
+
 <script>
     window.onload = function () {
 
-        var chart = new CanvasJS.Chart("chartContainer", {
+        var chartMensual = new CanvasJS.Chart("chartContainerMensual", {
             animationEnabled: true,
-            exportEnabled: true,
+            //theme: "light2",
             title:{
-                text: "Average Expense Per Day  in Thai Baht"
+                text: "Reportes de facturación mensual"
             },
-            subtitles: [{
-                text: "Currency Used: Thai Baht (฿)"
-            }],
+            axisX:{
+                title: "Meses",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            axisY:{
+                title: "En pesos ($)",
+                crosshair: {
+                    enabled: true,
+                    snapToDataPoint: true
+                }
+            },
+            toolTip:{
+                enabled: false
+            },
             data: [{
-                type: "pie",
-                showInLegend: "true",
-                legendText: "{label}",
-                indexLabelFontSize: 16,
-                indexLabel: "{label} - #percent%",
-                yValueFormatString: "฿#,##0",
-                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                type: "area",
+                dataPoints: <?php echo json_encode($data, JSON_NUMERIC_CHECK); ?>
             }]
         });
-        chart.render();
+        chartMensual.render();
+
+
+        var chartCliente = new CanvasJS.Chart("chartContainerCliente", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light1", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Reportes de facturación por cliente"
+            },
+            data: [{
+                type: "column", //change type to bar, line, area, pie, etc
+                //indexLabel: "{y}", //Shows y value on all Data Points
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "outside",
+                dataPoints: <?php echo json_encode($dataCliente, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chartCliente.render();
 
     }
 </script>
 
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<div id="chartContainerMensual" style="height: 370px; width: 100%;"></div>
+<div class="mb-5">
+    <button id="exportButtonMensual" class="btn btn-primary float-right">Exportar PDF</button>
+</div>
+<div id="chartContainerCliente" style="height: 370px; width: 100%;"></div>
+<div class="mb-5">
+<button id="exportButtonCliente" class="btn btn-primary float-right">Exportar PDF</button>
+</div>
+<div class="mt-5 mb-5">
+    <hr>
+</div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script>
+    setTimeout(function(){
+        var canvas = $("#chartContainerMensual .canvasjs-chart-canvas").get(0);
+        var dataURL = canvas.toDataURL("image/jpeg");
+
+
+        $("#exportButtonMensual").click(function(){
+            var pdf = new jsPDF({orientation: 'landscape'});
+            var width = pdf.internal.pageSize.getWidth();
+            var height = pdf.internal.pageSize.getHeight();
+            const imgProps= pdf.getImageProperties(dataURL);
+            const pdfHeight = (imgProps.height * width) / imgProps.width;
+            pdf.addImage(dataURL, 'JPEG', 0, 0, width-10, pdfHeight);
+            pdf.save("reporte-facturacion-mensual.pdf");
+        });
+    },1000);
+</script>
+
+    <script>
+        setTimeout(function(){
+            var canvas = $("#chartContainerCliente .canvasjs-chart-canvas").get(0);
+            var dataURL = canvas.toDataURL("image/jpeg");
+
+
+            $("#exportButtonCliente").click(function(){
+                var pdf = new jsPDF({orientation: 'landscape'});
+                var width = pdf.internal.pageSize.getWidth();
+                var height = pdf.internal.pageSize.getHeight();
+                const imgProps= pdf.getImageProperties(dataURL);
+                const pdfHeight = (imgProps.height * width) / imgProps.width;
+                pdf.addImage(dataURL, 'JPEG', 0, 0, width-10, pdfHeight);
+                pdf.save("reporte-facturacion-cliente.pdf");
+            });
+        },1000);
+    </script>

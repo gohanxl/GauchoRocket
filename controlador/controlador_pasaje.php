@@ -37,3 +37,7 @@ function pasaje_confirmado(){
 function pasaje_exito(){
     include("vista/vista_exito.php");
 }
+
+function pasaje_checkin(){
+    include("vista/vista_checkin.php");
+}

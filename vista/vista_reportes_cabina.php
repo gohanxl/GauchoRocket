@@ -45,4 +45,24 @@
 </script>
 
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<button id="exportButton" class="btn btn-primary float-right">Exportar PDF</button>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<script>
+    setTimeout(function(){
+        var canvas = $("#chartContainer .canvasjs-chart-canvas").get(0);
+        var dataURL = canvas.toDataURL("image/jpeg");
+
+
+        $("#exportButton").click(function(){
+            var pdf = new jsPDF({orientation: 'landscape'});
+            var width = pdf.internal.pageSize.getWidth();
+            var height = pdf.internal.pageSize.getHeight();
+            const imgProps= pdf.getImageProperties(dataURL);
+            const pdfHeight = (imgProps.height * width) / imgProps.width;
+            pdf.addImage(dataURL, 'JPEG', 0, 0, width-10, pdfHeight);
+            pdf.save("reporte-cabina.pdf");
+        });
+    },0);
+</script>

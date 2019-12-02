@@ -1,6 +1,6 @@
 <h2>Pasajes</h2>
 
-<table class="table table-striped">
+<table class="table table-striped mb-5">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -55,9 +55,9 @@
         }
         elseif($estado=="Pago"){
             echo "        
-            <form class='form-inline mb-2' action='' method='POST' enctype='multipart/form-data'>
+            <form class='form-inline mb-2' action='/pasaje/checkin' method='POST' enctype='multipart/form-data'>
                 <input type='hidden' name='pasaje' value=" . $pasaje['id'] . ">
-                <button type='submit' class='btn btn-primary btn-sm name='checkin'>Checkin</button>                   
+                <button type='submit' class='btn btn-primary btn-sm name='checkin'>Check-in</button>                   
             </form>
             ";
         }
