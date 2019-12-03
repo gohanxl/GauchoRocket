@@ -1,6 +1,26 @@
 <?php
 include_once("helpers/conexion.php");
 
+
+function getNaves(){
+
+    $conn = getConexion();
+    $query = "SELECT * FROM nave;";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['matricula'] = $row['matricula'];
+            $element['modelo'] = $row['modelo'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+
+}
+
 function getNaveId($matricula)
 {
     $conn = getConexion();
@@ -99,4 +119,12 @@ function getCabinaCapacidad($modelo, $cabina)
     $result = execute_query($conn, $query);
 
     return mysqli_fetch_assoc($result)['capacidad'];
+}
+
+function getNaveDescripcionByModeloId($modelo){
+    $conn = getConexion();
+    $query = "SELECT DISTINCT * FROM modelo WHERE id = $modelo;";
+    $result = execute_query($conn, $query);
+
+    return mysqli_fetch_assoc($result)['descripcion'];
 }

@@ -19,6 +19,7 @@ if(isset($_POST['submit'])){
 
 ?>
 
+<<<<<<< HEAD
 
 
 <div class="jumbotron jumbotron-fluid">
@@ -31,6 +32,16 @@ if(isset($_POST['submit'])){
 <div id="qrcode"></div>
 <script type="text/javascript">
     new QRCode(document.getElementById("qrcode"), "https://github.com/gohanxl/GauchoRocket");
+=======
+<script>
+    var doc = new jsPDF(landscape);
+    var imgData = 'data:image/jpeg;base64,'+ Base64.encode("/public/img/rocket.png");
+    doc.setFontSize(22);
+    doc.text(20, 20, 'GauchoRocket');
+    doc.setFontSize(16);
+    doc.text(20, 20, 'This is a title');
+    
+>>>>>>> 6f6753ee28e8f5bf2845d4fa52abe92c66acbe68
 </script>
 
 <script>

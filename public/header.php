@@ -46,8 +46,8 @@
                           </a>
                         
                           <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuLink\">
-                            <a class=\"dropdown-item\" href=\"/administrador/vuelos\">Carga de vuelos</a>
-                            <a class=\"dropdown-item\" href=\"/administrador/precios\">Carga de precios</a>
+                            <a class=\"dropdown-item\" href=\"/administrador/vuelos\">Carga de Vuelos</a>
+                            <a class=\"dropdown-item\" href=\"/administrador/precios\">Carga de Precios</a>
                           </div>
                        </div>
                     </li>
