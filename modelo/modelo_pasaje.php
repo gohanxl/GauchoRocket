@@ -51,6 +51,35 @@ function insertPasajeTrayecto($trayecto_id, $pasaje_id, $origen){
     $query = "INSERT INTO vuelo_pasaje(vuelo_id, pasaje_id, escala) VALUES ($trayecto_id, $pasaje_id, $origen);";
     execute_query($conn, $query);
 }
+
+function getPasajesById($pasajeId){
+    $conn = getConexion();
+    $query = "SELECT * FROM pasaje
+                WHERE id = $pasajeId;";
+    $result = execute_query($conn, $query);
+    $resultArray = Array();
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $element = Array();
+            $element['id'] = $row['id'];
+            $element['codigo'] = $row['codigo'];
+            $element['cabina'] = $row['cabina'];
+            $element['vuelo'] = $row['vuelo'];
+            $element['cliente'] = $row['cliente'];
+            $element['origen'] = $row['origen'];
+            $element['destino'] = $row['destino'];
+            $element['reserva'] = $row['reserva'];
+            $element['compra'] = $row['compra'];
+            $element['checkin'] = $row['checkin'];
+            $element['asiento'] = $row['asiento'];
+            $element['precio'] = $row['precio'];
+            $element['espera'] = $row['espera'];
+            $resultArray[] = $element;
+        }
+    }
+    return $resultArray;
+}
+
 function getPasajesByCliente($cliente){
     $conn = getConexion();
     $query = "SELECT P.* FROM pasaje P
@@ -78,6 +107,7 @@ function getPasajesByCliente($cliente){
     }
     return $resultArray;
 }
+
 function getPrecio($vuelo_id, $cabina_id){
     $conn = getConexion();
     $query = "SELECT * FROM precio_vuelo_cabina WHERE id_vuelo = $vuelo_id AND id_cabina = $cabina_id;";

@@ -42,6 +42,6 @@ function pasaje_checkin(){
     include("vista/vista_checkin.php");
 }
 
-function checkin_exito(){
+function pasaje_impresion(){
     include("vista/vista_checkin_exito.php");
 }

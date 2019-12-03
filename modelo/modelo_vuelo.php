@@ -176,6 +176,13 @@ function getOrigenByVueloId($id){
     return mysqli_fetch_assoc($result)['origen'];
 }
 
+function getHoraByVueloId($id){
+    $conn = getConexion();
+    $query = "SELECT * FROM vuelo WHERE id = $id;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['hora'];
+}
+
 function getDescripcionCircuitoById($id){
     $conn = getConexion();
     $query = "SELECT * FROM circuito WHERE id = $id;";

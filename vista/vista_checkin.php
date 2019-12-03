@@ -2,7 +2,7 @@
 
 <div class="row justify-content-md-center">
 <div class="col-6">
-    <form action="/checkin/exito" method="post">
+    <form action="/pasaje/impresion" method="post">
 <?php
 
     if(isset($_POST['pasaje'])){

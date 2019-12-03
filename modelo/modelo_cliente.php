@@ -22,6 +22,15 @@ function getClienteId($idUsuario)
     return mysqli_fetch_assoc($result)['id'];
 }
 
+
+function getClienteNombre($idCliente)
+{
+    $conn = getConexion();
+    $query = "SELECT * FROM client WHERE id = $idCliente;";
+    $result = execute_query($conn, $query);
+    return mysqli_fetch_assoc($result)['nombre'];
+}
+
 function addCliente($user, $userId, $telefono, $fecha_nacimiento){
 
     $conn = getConexion();
